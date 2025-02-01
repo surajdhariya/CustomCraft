@@ -2,145 +2,156 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CustomCraft</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet" />
-   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <!-- <link rel="stylesheet" href="../style.css" /> -->
-<style>
-/* For Webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
-  height: 12px; /* Height of the scrollbar (for horizontal scrollbar) */
-  border-radius: 20px;
-  background-color: #ff973c;
-}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CustomCraft</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
 
-::-webkit-scrollbar-track {
-  background-color: whitesmoke; /* Color of the scrollbar track */
-  border-radius: 10px;
-  color: red;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
 
-::-webkit-scrollbar-thumb {
-  background-color:   #FFB473;
-  ; /* Color of the scrollbar thumb */
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Hover color for the scrollbar thumb */
-}
+    <!-- <link rel="stylesheet" href="../style.css" /> -->
+    <style>
+        /* For Webkit browsers (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 5px;
+            /* Width of the scrollbar */
+            height: 12px;
+            /* Height of the scrollbar (for horizontal scrollbar) */
+            border-radius: 20px;
+            background-color: #ff973c;
+        }
 
+        ::-webkit-scrollbar-track {
+            background-color: whitesmoke;
+            /* Color of the scrollbar track */
+            border-radius: 10px;
+            color: red;
+        }
 
+        ::-webkit-scrollbar-thumb {
+            background-color: #FFB473;
+            ;
+            /* Color of the scrollbar thumb */
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
 
-body{
-
-  font-family: "Urbanist", sans-serif;
-  background-color: #F6E7DA;
-}
-nav {
-    background-color: #FFB473;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10; /* Ensure the navbar stays on top */
-    font-family: "Urbanist", sans-serif;
-    font-size: 20px;
-    box-shadow: 0px 0.8px 1px -1px;
-  
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-  
-}
-
-.logo img {
-    height: 50px;
-    width: 50px;
-    /* margin-right: 10px; */
-    padding-left: 20px;
-  
-}
-.logo img:hover{transition: 0.5s;
-    transform: scale(1.1);
-    
-}
-
-.logo h1 {
-    margin: 0;
-    font-size: 2em;
-    font-weight: bold;
-    margin-left: 20px;
-}
-
-.link ul {
-    list-style: none;
-    /* margin: 10px; */
-    /* padding: 10px; */
-    display: flex;
-   
-}
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* Hover color for the scrollbar thumb */
+        }
 
 
 
-.link ul li {
-    /* margin-left: 20px; */
-    margin-top:9px; 
-    :hover{
-        color: white;
-        transform: scale(1.5px);  
-        transition: 0.3s;
-        /* font-size: 1.05em; */
-       
-     }
-}
+        body {
+
+            font-family: "Urbanist", sans-serif;
+            background-color: #F6E7DA;
+        }
+
+        nav {
+            background-color: #FFB473;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            /* Ensure the navbar stays on top */
+            font-family: "Urbanist", sans-serif;
+            font-size: 20px;
+            box-shadow: 0px 0.8px 1px -1px;
+
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            /* margin-right: 10px; */
+            padding-left: 20px;
+
+        }
+
+        .logo img:hover {
+            transition: 0.5s;
+            transform: scale(1.1);
+
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .link ul {
+            list-style: none;
+            /* margin: 10px; */
+            /* padding: 10px; */
+            display: flex;
+
+        }
 
 
-.link ul li a {
-    text-decoration: none;
-    color: #333;
-    /* font-weight: bold; */
-    padding-right: 50px;
 
- 
-}
-.link ul img{
-    padding-left: 10px;
-    padding-right: 20px;
-    filter: invert(10%) ;
+        .link ul li {
+            /* margin-left: 20px; */
+            margin-top: 9px;
 
-}
-.link ul img:hover{
-    /* filter: invert(20%) ; */
-transition: 0.5s;
-        transform: scale(1.05);
-    transition: 0.3s;
-    
-  }
+            :hover {
+                color: white;
+                transform: scale(1.5px);
+                transition: 0.3s;
+                /* font-size: 1.05em; */
+
+            }
+        }
 
 
-/* General Styles */
-/* body {
+        .link ul li a {
+            text-decoration: none;
+            color: #333;
+            /* font-weight: bold; */
+            padding-right: 50px;
+
+
+        }
+
+        .link ul img {
+            padding-left: 10px;
+            padding-right: 20px;
+            filter: invert(10%);
+
+        }
+
+        .link ul img:hover {
+            /* filter: invert(20%) ; */
+            transition: 0.5s;
+            transform: scale(1.05);
+            transition: 0.3s ease;
+
+        }
+
+
+        /* General Styles */
+        /* body {
     font-family: 'Urbanist', sans-serif;
 
     color: #333;
@@ -148,443 +159,446 @@ transition: 0.5s;
     padding: 0;
 } */
 
-.container {
-    /* max-width: 1200px; */
-    margin-top: 80px ;
-    padding: 20px;
-    position: relative;
-}
+        .container {
+            /* max-width: 1300px; */
+            margin-top: 80px;
+            padding: 20px;
+            /* display: flex; */
+        }
 
 
-.text-center {
-    text-align: center;
-}
+        .text-center {
+            text-align: center;
+        }
 
-/* Customization Container */
-.customization-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-     
-    max-height: 80vh; /* Limits height */
-    overflow-y: auto; 
-}
+        /* Customization Container */
+        .customization-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-.step-indicator {
-    font-size: 17px;
-    color: #666;
-    /* margin-bottom: 20px; */
-}
 
-.row {
-    display: flex;
-    gap: 20px;
-}
 
-.col {
-    flex: 1;
-}
+        }
 
-/* Device Options */
-.device-options {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+        .step-indicator {
+            font-size: 17px;
+            color: #666;
+            /* margin-bottom: 20px; */
+        }
 
-}
+        .row {
+            display: flex;
+            gap: 20px;
+        }
 
-.device-option {
-    padding: 10px 20px;
+        .col {
+            flex: 1;
+        }
+
+        /* Device Options */
+        .device-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+
+        }
+
+        .device-option {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 80px;
+            width: 150px;
+            font-size: 20px;
+            font-family: "Urbanist", sans-serif;
+        }
+
+        .device-option.active {
+            border-color: #FFB473;
+            background: #FFB473;
+            color: black;
+        }
+
+        /* Specification Section */
+        .specification-section {
+            margin-top: 20px;
+        }
+
+        .spec-option {
+            margin-bottom: 15px;
+
+        }
+
+        .spec-option label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .spec-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            /* height: 100px; */
+            /* width: 200px; */
+        }
+
+        .spec-button {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 150px;
+            height: 80px;
+            font-family: "Urbanist", sans-serif;
+            font-size: 20px;
+        }
+
+        .spec-button.active {
+            border-color: #FFB473;
+            background: #FFB473;
+            color: black;
+        }
+
+
+        #customMessage {
+            width: 81%;
+    height: 100px;
+    border-radius: 12px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #f9f9f9;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.3s ease;
-    height: 80px;
-    width: 150px;
-    font-size:20px;
-    font-family: "Urbanist", sans-serif;
-}
-
-.device-option.active {
-    border-color: #FFB473;
-    background: #FFB473;
-    color: black;
-}
-
-/* Specification Section */
-.specification-section {
-    margin-top: 20px;
-}
-
-.spec-option {
-    margin-bottom: 15px;
-
-}
-
-.spec-option label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-.spec-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    /* height: 100px; */
-  /* width: 200px; */
-}
-
-.spec-button {
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #f9f9f9;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.3s ease;
-    width: 150px;
-    height: 80px;
-    font-family: "Urbanist", sans-serif;
-    font-size: 20px;
-}
-
-.spec-button.active {
-    border-color: #FFB473;
-    background: #FFB473;
-    color: black;
-}
-
-
-#customMessage {
-    width: 81%;
-    height:100px;
-    border-radius: 16px;
-    padding: 10px;
-    border: 1px solid #ccc;
     font-size: 14px;
     resize: vertical;
-    text-decoration: none;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    resize: none;
+
+    font-family: "Urbanist", sans-serif;
+        }
+
+
+#customMessage:focus {
+    border-color:#F6E7DA;
+    background-color: #fff;
+    box-shadow: #F6E7DA;
 }
 
+        /* Preview Section */
+        .preview-section {
+            background: #F6E7DA;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border:0.1px solid rgb(148, 147, 147);
+    
+        }
 
-/* Preview Section */
-.preview-section {
-    background:#F6E7DA;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* border:0.1px solid rgb(148, 147, 147); */
-    position: sticky;
-    top: 0; /* Sticks only inside the parent */
-    align-self: flex-start;
-    max-height: auto; Limits height
-    /* overflow-y: auto; Allows scrolling inside */
+        .preview-section h3 {
+            margin-bottom: -20px;
+        }
 
+        #preview p {
+            margin: 10px 0;
+        }
 
-}
+        .proceed-button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background: #FFB473;
+            color: black;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.preview-section h3 {
-    margin-bottom: 15px;
-}
-
-#preview p {
-    margin: 10px 0;
-}
-
-.proceed-button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background: #FFB473;
-    color: black;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.proceed-button:hover {
-    background: #ff973c;
-    color: black;
-}
+        .proceed-button:hover {
+            background: #ff973c;
+            color: black;
+        }
 
 
-.device-image {
-    /* margin-bottom: 20px; */
-    text-align: center;
-}
+        .device-image {
+            /* margin-bottom: 20px; */
+            text-align: center;
+        }
 
-.device-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-}
-
-
-.new-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Adds space between the containers */
-}
-
-</style>
+        .device-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+        }
+    </style>
 </head>
 
 <body>
-  <nav>
-    <div class="logo">
-      <a href="../index.html"><img src="../img/cc.png" height="1000px" width=100px" alt="CustomCraft Logo" /></a>
-      <h1 style="font-family: Anonymous Pro" , monospace;;">CustomCraft</h1>
-    </div>
-   <div class="link"> <ul >
-      <li><a href="#">Customize-Devices</a></li>
-      <li><a href="#">Smartphone</a></li>
-      <li><a href="#">Laptops</a></li>
-      <li><a href="#">Tablet</a></li>
-      <ul class="cart-user" >
-        <a class="cart" href="other pages/cart.html" class="cart"><img src="../img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo"/></a>
-        <img src="../img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
-       </ul>
-    </ul> 
-  </div>
-   
-  </nav>
+    <nav>
+        <div class="logo">
+            <a href="../index.html"><img src="../img/cc.png" height="1000px" width=100px" alt="CustomCraft Logo" /></a>
+            <h1 style="font-family: Anonymous Pro" , monospace;">CustomCraft</h1>
+        </div>
+        <div class="link">
+            <ul>
+                <li><a href="#">Customize-Devices</a></li>
+                <li><a href="#">Smartphone</a></li>
+                <li><a href="#">Laptops</a></li>
+                <li><a href="#">Tablet</a></li>
+                <ul class="cart-user">
+                    <a class="cart" href="other pages/cart.html" class="cart"><img src="../img/cart2.png" height="40px"
+                            width="40px" alt="CustomCraft Logo" /></a>
+                    <img src="../img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
+                </ul>
+            </ul>
+        </div>
+
+    </nav>
 
 
-<!-- customization sections -->
+    <!-- customization sections -->
 
-<div class="container">
-  <div class="customization-container">
-      <div class="step-indicator">Step 1 of 3</div>
-      <div class="row">
-          <!-- Left Side: Device and Specifications -->
-          <div class="col">
-              <h2>Select Your Device</h2>
-              <div class="device-options">
-                  <button class="device-option" data-device="computer">Computer</button>
-                  <button class="device-option" data-device="smartphone">Smartphone</button>
-                  <button class="device-option" data-device="tablet">Tablet</button>
-              </div>
-
-              <div class="specification-section">
-                  <h3>Specifications</h3>
-                  <div class="spec-option">
-                      <label>Screen Size:</label>
-                      <div class="spec-buttons" id="screen-size-buttons">
-                          <button class="spec-button" data-spec="screenSize" data-value="14">14 inch</button>
-                          <button class="spec-button" data-spec="screenSize" data-value="15">15 inch</button>
-                          <button class="spec-button" data-spec="screenSize" data-value="16">16 inch</button>
-                      </div>
-                  </div>
-                  <div class="spec-option">
-                      <label>Processor:</label>
-                      <div class="spec-buttons" id="processor-buttons">
-                          <button class="spec-button" data-spec="processor" data-value="i3">i3</button>
-                          <button class="spec-button" data-spec="processor" data-value="i5">i5</button>
-                          <button class="spec-button" data-spec="processor" data-value="i7">i7</button>
-                      </div>
-                  </div>
-                  <div class="spec-option">
-                      <label>RAM:</label>
-                      <div class="spec-buttons" id="ram-buttons">
-                          <button class="spec-button" data-spec="ram" data-value="8GB">8GB</button>
-                          <button class="spec-button" data-spec="ram" data-value="16GB">16GB</button>
-                          <button class="spec-button" data-spec="ram" data-value="32GB">32GB</button>
-                      </div>
-                  </div>
-                  <div class="spec-option">
-                      <label>Storage:</label>
-                      <div class="spec-buttons" id="storage-buttons">
-                          <button class="spec-button" data-spec="storage" data-value="256GB">256GB SSD</button>
-                          <button class="spec-button" data-spec="storage" data-value="512GB">512GB SSD</button>
-                          <button class="spec-button" data-spec="storage" data-value="1TB">1TB SSD</button>
-                      </div>
-                  </div>
-                  <div class="spec-option">
-                      <label>Operating System:</label>
-                      <div class="spec-buttons" id="os-buttons">
-                          <button class="spec-button" data-spec="os" data-value="windows">Windows</button>
-                          <button class="spec-button" data-spec="os" data-value="linux">Linux</button>
-                          <button class="spec-button" data-spec="os" data-value="dos">DOS</button>
-                      </div>
-                      <div class="form-group">
-                        <label for="customMessage">Custom Message (Optional):</label>
-                        <textarea id="customMessage" class="form-control" rows="3" placeholder="Enter your message..."></textarea>
+    <div class="container">
+        <div class="customization-container">
+            <div class="step-indicator">Step 1 of 3</div>
+            <div class="row">
+                <!-- Left Side: Device and Specifications -->
+                <div class="col">
+                    <h2>Select Your Device</h2>
+                    <div class="device-options">
+                        <button class="device-option" data-device="computer">Computer</button>
+                        <button class="device-option" data-device="smartphone">Smartphone</button>
+                        <button class="device-option" data-device="tablet">Tablet</button>
                     </div>
-                  </div>
-              </div>
-          </div>
-       
-          <!-- Right Side: Preview -->
-          <div class="col">
-             <div class="preview-section">
-<h3>Your Selection</h3>
-<div id="preview">
-  <!-- Device Image Preview -->
-  <div class="device-image">
-      <img id="preview-image" src="../img/device.png" alt="Device Image" style="max-width:40%; height: auto; border-radius: 8px;">
-  </div>
-  <p><strong>Device:</strong> <span id="preview-device">None</span></p>
-  <p><strong>Screen Size:</strong> <span id="preview-screen-size">None</span></p>
-  <p><strong>Processor:</strong> <span id="preview-processor">None</span></p>
-  <p><strong>RAM:</strong> <span id="preview-ram">None</span></p>
-  <p><strong>Storage:</strong> <span id="preview-storage">None</span></p>
-  <p><strong>Operating System:</strong> <span id="preview-os">None</span></p>
-</div>
-<a href="cart.html"><button class="proceed-button">Proceed</button></a>
-</div>
-</div>
-</div>
+
+                    <div class="specification-section">
+                        <h3>Specifications</h3>
+                        <div class="spec-option">
+                            <label>Screen Size:</label>
+                            <div class="spec-buttons" id="screen-size-buttons">
+                                <button class="spec-button" data-spec="screenSize" data-value="14">14 inch</button>
+                                <button class="spec-button" data-spec="screenSize" data-value="15">15 inch</button>
+                                <button class="spec-button" data-spec="screenSize" data-value="16">16 inch</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>Processor:</label>
+                            <div class="spec-buttons" id="processor-buttons">
+                                <button class="spec-button" data-spec="processor" data-value="i3">i3</button>
+                                <button class="spec-button" data-spec="processor" data-value="i5">i5</button>
+                                <button class="spec-button" data-spec="processor" data-value="i7">i7</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>RAM:</label>
+                            <div class="spec-buttons" id="ram-buttons">
+                                <button class="spec-button" data-spec="ram" data-value="8GB">8GB</button>
+                                <button class="spec-button" data-spec="ram" data-value="16GB">16GB</button>
+                                <button class="spec-button" data-spec="ram" data-value="32GB">32GB</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>Storage:</label>
+                            <div class="spec-buttons" id="storage-buttons">
+                                <button class="spec-button" data-spec="storage" data-value="256GB">256GB SSD</button>
+                                <button class="spec-button" data-spec="storage" data-value="512GB">512GB SSD</button>
+                                <button class="spec-button" data-spec="storage" data-value="1TB">1TB SSD</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>Operating System:</label>
+                            <div class="spec-buttons" id="os-buttons">
+                                <button class="spec-button" data-spec="os" data-value="windows">Windows</button>
+                                <button class="spec-button" data-spec="os" data-value="linux">Linux</button>
+                                <button class="spec-button" data-spec="os" data-value="dos">DOS</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="customMessage">Custom Message (Optional):</label>
+                                <textarea id="customMessage" class="form-control" rows="3"
+                                    placeholder="Enter your message..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Preview -->
+                <div class="col">
+                    <div class="preview-section">
+                        <h3>Your Selection</h3>
+                        <div id="preview">
+                            <!-- Device Image Preview -->
+                            <div class="device-image">
+                                <img id="preview-image" src="../img/device.png" alt="Device Image"
+                                    style="max-width:40%; height: auto; border-radius: 8px;">
+                            </div>
+                            <p><strong>Device:</strong> <span id="preview-device">None</span></p>
+                            <p><strong>Screen Size:</strong> <span id="preview-screen-size">None</span></p>
+                            <p><strong>Processor:</strong> <span id="preview-processor">None</span></p>
+                            <p><strong>RAM:</strong> <span id="preview-ram">None</span></p>
+                            <p><strong>Storage:</strong> <span id="preview-storage">None</span></p>
+                            <p><strong>Operating System:</strong> <span id="preview-os">None</span></p>
+                        </div>
+                        <a href="cart.html"><button class="proceed-button">Proceed</button></a>
+                    </div>
+                </div>
+            </div>
 
 
 
-  <script >
- document.addEventListener('DOMContentLoaded', function () {
-    const deviceOptions = document.querySelectorAll('.device-option');
-    const specButtonsContainers = {
-        screenSize: document.getElementById('screen-size-buttons'),
-        processor: document.getElementById('processor-buttons'),
-        ram: document.getElementById('ram-buttons'),
-        storage: document.getElementById('storage-buttons'),
-        os: document.getElementById('os-buttons'),
-    };
-    const preview = {
-        device: document.getElementById('preview-device'),
-        screenSize: document.getElementById('preview-screen-size'),
-        processor: document.getElementById('preview-processor'),
-        ram: document.getElementById('preview-ram'),
-        storage: document.getElementById('preview-storage'),
-        os: document.getElementById('preview-os'),
-        image: document.getElementById('preview-image'), // Image element
-    };
-    const proceedButton = document.querySelector('.proceed-button');
 
-    // Device images (replace with actual image URLs)
-    const deviceImages = {
-        computer: '../img/coding.png',
-        smartphone: '../img/phone.png',
-        tablet: '../img/ipad.png',
-    };
 
-    // Device specifications
-    const deviceSpecs = {
-        computer: {
-            screenSize: ['13inch','14 inch', '15 inch', '16 inch'],
-            processor: ['i3', 'i5', 'i7'],
-            ram: ['8GB', '16GB', '32GB','64GB'],
-            storage: ['256GB SSD', '512GB SSD', '1TB SSD','10TB','2TB'],
-            os: ['Windows', 'Linux', 'DOS'],
-        },
-        smartphone: {
-            screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
-            processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
-            ram: ['6GB', '8GB', '12GB'],
-            storage: ['128GB', '256GB', '512GB','1TB'],
-            os: ['Android', 'iOS'],
-        },
-        tablet: {
-            screenSize: ['10 inch', '11 inch', '12.9 inch'],
-            processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
-            ram: ['4GB', '6GB', '8GB'],
-            storage: ['64GB', '128GB', '256GB','1TB'],
-            os: ['Android', 'iPadOS'],
-        },
-    };
 
-    let selectedDevice = null;
-    let selectedSpecs = {
-        screenSize: null,
-        processor: null,
-        ram: null,
-        storage: null,
-        os: null,
-    };
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const deviceOptions = document.querySelectorAll('.device-option');
+                    const specButtonsContainers = {
+                        screenSize: document.getElementById('screen-size-buttons'),
+                        processor: document.getElementById('processor-buttons'),
+                        ram: document.getElementById('ram-buttons'),
+                        storage: document.getElementById('storage-buttons'),
+                        os: document.getElementById('os-buttons'),
+                    };
+                    const preview = {
+                        device: document.getElementById('preview-device'),
+                        screenSize: document.getElementById('preview-screen-size'),
+                        processor: document.getElementById('preview-processor'),
+                        ram: document.getElementById('preview-ram'),
+                        storage: document.getElementById('preview-storage'),
+                        os: document.getElementById('preview-os'),
+                        image: document.getElementById('preview-image'), // Image element
+                    };
+                    const proceedButton = document.querySelector('.proceed-button');
 
-    // Device Selection
-    deviceOptions.forEach(option => {
-        option.addEventListener('click', function () {
-            deviceOptions.forEach(opt => opt.classList.remove('active'));
-            this.classList.add('active');
-            selectedDevice = this.dataset.device;
-            updateSpecifications(selectedDevice); // Update specifications based on device
-            updatePreview();
-        });
-    });
+                    // Device images (replace with actual image URLs)
+                    const deviceImages = {
+                        computer: '../img/coding.png',
+                        smartphone: '../img/phone.png',
+                        tablet: '../img/ipad.png',
+                    };
 
-    // Update Specifications Based on Device
-    function updateSpecifications(device) {
-        for (const spec in specButtonsContainers) {
-            // Clear existing buttons
-            specButtonsContainers[spec].innerHTML = '';
+                    // Device specifications
+                    const deviceSpecs = {
+                        computer: {
+                            screenSize: ['13inch', '14 inch', '15 inch', '16 inch'],
+                            processor: ['i3', 'i5', 'i7'],
+                            ram: ['8GB', '16GB', '32GB', '64GB'],
+                            storage: ['256GB SSD', '512GB SSD', '1TB SSD', '10TB', '2TB'],
+                            os: ['Windows', 'Linux', 'DOS'],
+                        },
+                        smartphone: {
+                            screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
+                            processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
+                            ram: ['6GB', '8GB', '12GB'],
+                            storage: ['128GB', '256GB', '512GB', '1TB'],
+                            os: ['Android', 'iOS'],
+                        },
+                        tablet: {
+                            screenSize: ['10 inch', '11 inch', '12.9 inch'],
+                            processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
+                            ram: ['4GB', '6GB', '8GB'],
+                            storage: ['64GB', '128GB', '256GB', '1TB'],
+                            os: ['Android', 'iPadOS'],
+                        },
+                    };
 
-            // Add new buttons for the selected device
-            deviceSpecs[device][spec].forEach(option => {
-                const button = document.createElement('button');
-                button.className = 'spec-button';
-                button.dataset.spec = spec;
-                button.dataset.value = option;
-                button.textContent = option;
-                specButtonsContainers[spec].appendChild(button);
-            });
-        }
+                    let selectedDevice = null;
+                    let selectedSpecs = {
+                        screenSize: null,
+                        processor: null,
+                        ram: null,
+                        storage: null,
+                        os: null,
+                    };
 
-        // Add event listeners to the new buttons
-        document.querySelectorAll('.spec-button').forEach(button => {
-            button.addEventListener('click', function () {
-                const spec = this.dataset.spec;
-                const value = this.dataset.value;
-                selectedSpecs[spec] = value;
-                updatePreview();
-                document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    }
+                    // Device Selection
+                    deviceOptions.forEach(option => {
+                        option.addEventListener('click', function () {
+                            deviceOptions.forEach(opt => opt.classList.remove('active'));
+                            this.classList.add('active');
+                            selectedDevice = this.dataset.device;
+                            updateSpecifications(selectedDevice); // Update specifications based on device
+                            updatePreview();
+                        });
+                    });
 
-    // Update Preview Section
-    function updatePreview() {
-        // Update device image
-        preview.image.src = deviceImages[selectedDevice] || ''; // Set image based on selected device
-        preview.image.alt = `${selectedDevice} Image`;
+                    // Update Specifications Based on Device
+                    function updateSpecifications(device) {
+                        for (const spec in specButtonsContainers) {
+                            // Clear existing buttons
+                            specButtonsContainers[spec].innerHTML = '';
 
-        // Update other preview details
-        preview.device.textContent = selectedDevice || 'None';
-        preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
-        preview.processor.textContent = selectedSpecs.processor || 'None';
-        preview.ram.textContent = selectedSpecs.ram || 'None';
-        preview.storage.textContent = selectedSpecs.storage || 'None';
-        preview.os.textContent = selectedSpecs.os || 'None';
-    }
+                            // Add new buttons for the selected device
+                            deviceSpecs[device][spec].forEach(option => {
+                                const button = document.createElement('button');
+                                button.className = 'spec-button';
+                                button.dataset.spec = spec;
+                                button.dataset.value = option;
+                                button.textContent = option;
+                                specButtonsContainers[spec].appendChild(button);
+                            });
+                        }
 
-    // Proceed Button
-    proceedButton.addEventListener('click', function () {
-        if (!selectedDevice || !selectedSpecs.screenSize || !selectedSpecs.processor || !selectedSpecs.ram || !selectedSpecs.storage || !selectedSpecs.os) {
-            alert('Please select all specifications before proceeding.');
-            return;
-        }
-        const configuration = {
-            device: selectedDevice,
-            ...selectedSpecs,
-        };
-        console.log('Selected Configuration:', configuration);
-        alert('Proceeding to the next step with the selected configuration.');
-        // Add logic to proceed to the next step or send the configuration to the backend
-    });
-});
+                        // Add event listeners to the new buttons
+                        document.querySelectorAll('.spec-button').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const spec = this.dataset.spec;
+                                const value = this.dataset.value;
+                                selectedSpecs[spec] = value;
+                                updatePreview();
+                                document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
+                                this.classList.add('active');
+                            });
+                        });
+                    }
 
-document.getElementById("customMessage").addEventListener("input", function() {
-    let customText = this.value;
-    console.log("Custom Message: ", customText);
-});
+                    // Update Preview Section
+                    function updatePreview() {
+                        // Update device image
+                        preview.image.src = deviceImages[selectedDevice] || ''; // Set image based on selected device
+                        preview.image.alt = `${selectedDevice} Image`;
 
-  </script>
+                        // Update other preview details
+                        preview.device.textContent = selectedDevice || 'None';
+                        preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
+                        preview.processor.textContent = selectedSpecs.processor || 'None';
+                        preview.ram.textContent = selectedSpecs.ram || 'None';
+                        preview.storage.textContent = selectedSpecs.storage || 'None';
+                        preview.os.textContent = selectedSpecs.os || 'None';
+                    }
+
+                    // Proceed Button
+                    proceedButton.addEventListener('click', function () {
+                        if (!selectedDevice || !selectedSpecs.screenSize || !selectedSpecs.processor || !selectedSpecs.ram || !selectedSpecs.storage || !selectedSpecs.os) {
+                            alert('Please select all specifications before proceeding.');
+                            return;
+                        }
+                        const configuration = {
+                            device: selectedDevice,
+                            ...selectedSpecs,
+                        };
+                        console.log('Selected Configuration:', configuration);
+                        alert('Proceeding to the next step with the selected configuration.');
+                        // Add logic to proceed to the next step or send the configuration to the backend
+                    });
+                });
+
+                document.getElementById("customMessage").addEventListener("input", function () {
+                    let customText = this.value;
+                    console.log("Custom Message: ", customText);
+                });
+
+            </script>
 </body>
 
 </html>

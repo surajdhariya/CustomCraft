@@ -3,254 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CustomCraft Cart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Urbanist', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .cart-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        .cart-header {
-            padding: 20px;
-            background: #007bff;
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cart-header a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .cart-body {
-            padding: 20px;
-        }
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-        .cart-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .cart-item-details {
-            flex: 1;
-            margin-left: 15px;
-        }
-        .cart-item-title {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .cart-item-price {
-            color: #28a745;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-        }
-        .quantity-controls button {
-            width: 30px;
-            height: 30px;
-            font-size: 18px;
-            text-align: center;
-            line-height: 1;
-        }
-        .wishlist-link {
-            color: #007bff;
-            font-size: 14px;
-            margin-top: 5px;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .summary {
-            margin-top: 20px;
-        }
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            font-size: 18px;
-        }
-        .summary-total {
-            font-weight: bold;
-            font-size: 20px;
-        }
-        .checkout-container {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .coupon {
-            display: flex;
-            flex-direction: column;
-            width: 48%;
-        }
-        .coupon input {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .coupon button {
-            padding: 10px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .secure-checkout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 48%;
-            background-color: #28a745;
-            padding: 20px;
-            border-radius: 10px;
-            color: #fff;
-            text-align: center;
-        }
-        .secure-checkout img {
-            width: 40px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>Document</title>
 </head>
+<style>
+    body {
+    font-family: 'Urbanist', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Customization Container */
+.customization-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-indicator {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.col {
+    flex: 1;
+}
+
+/* Device Options */
+.device-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.device-option {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.device-option.active {
+    border-color: #007bff;
+    background: #007bff;
+    color: #fff;
+}
+
+/* Specification Section */
+.specification-section {
+    margin-top: 20px;
+}
+
+.spec-option {
+    margin-bottom: 15px;
+}
+
+.spec-option label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.spec-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.spec-button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.spec-button.active {
+    border-color: #007bff;
+    background: #007bff;
+    color: #fff;
+}
+
+/* Preview Section */
+.preview-section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-section h3 {
+    margin-bottom: 15px;
+}
+
+#preview p {
+    margin: 10px 0;
+}
+
+.proceed-button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.proceed-button:hover {
+    background: #0056b3;
+}
+
+
+.device-image {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.device-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+</style>
 <body>
-    <div class="cart-container">
-        <div class="cart-header">
-            <span>Your Cart</span>
-            <a href="/products">Continue Shopping</a>
+
+    <div class="container">
+        <h1 class="text-center">CustomCraft</h1>
+        <div class="customization-container">
+            <div class="step-indicator">Step 1 of 3</div>
+            <div class="row">
+                <!-- Left Side: Device and Specifications -->
+                <div class="col">
+                    <h2>Select Your Device</h2>
+                    <div class="device-options">
+                        <button class="device-option" data-device="laptop">Laptop</button>
+                        <button class="device-option" data-device="smartphone">Smartphone</button>
+                        <button class="device-option" data-device="tablet">Tablet</button>
+                    </div>
+
+                    <div class="specification-section">
+                        <h3>Specifications</h3>
+                        <div class="spec-option">
+                            <label>Screen Size:</label>
+                            <div class="spec-buttons" id="screen-size-buttons">
+                                <button class="spec-button" data-spec="screenSize" data-value="14">14 inch</button>
+                                <button class="spec-button" data-spec="screenSize" data-value="15">15 inch</button>
+                                <button class="spec-button" data-spec="screenSize" data-value="16">16 inch</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>Processor:</label>
+                            <div class="spec-buttons" id="processor-buttons">
+                                <button class="spec-button" data-spec="processor" data-value="i3">i3</button>
+                                <button class="spec-button" data-spec="processor" data-value="i5">i5</button>
+                                <button class="spec-button" data-spec="processor" data-value="i7">i7</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>RAM:</label>
+                            <div class="spec-buttons" id="ram-buttons">
+                                <button class="spec-button" data-spec="ram" data-value="8GB">8GB</button>
+                                <button class="spec-button" data-spec="ram" data-value="16GB">16GB</button>
+                                <button class="spec-button" data-spec="ram" data-value="32GB">32GB</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>Storage:</label>
+                            <div class="spec-buttons" id="storage-buttons">
+                                <button class="spec-button" data-spec="storage" data-value="256GB">256GB SSD</button>
+                                <button class="spec-button" data-spec="storage" data-value="512GB">512GB SSD</button>
+                                <button class="spec-button" data-spec="storage" data-value="1TB">1TB SSD</button>
+                            </div>
+                        </div>
+                        <div class="spec-option">
+                            <label>Operating System:</label>
+                            <div class="spec-buttons" id="os-buttons">
+                                <button class="spec-button" data-spec="os" data-value="windows">Windows</button>
+                                <button class="spec-button" data-spec="os" data-value="linux">Linux</button>
+                                <button class="spec-button" data-spec="os" data-value="dos">DOS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Preview -->
+                <div class="col">
+                   <div class="preview-section">
+    <h3>Your Selection</h3>
+    <div id="preview">
+        <!-- Device Image Preview -->
+        <div class="device-image">
+            <img id="preview-image" src="" alt="Device Image" style="max-width: 100%; height: auto; border-radius: 8px;">
         </div>
-        <div class="cart-body">
-            <div id="cart-items">
-                <!-- Dynamic Cart Items Will Be Injected Here -->
-            </div>
-            <div class="summary">
-                <div class="summary-item">
-                    <span>Subtotal:</span>
-                    <span id="subtotal">$0.00</span>
-                </div>
-                <div class="summary-item">
-                    <span>Tax (10%):</span>
-                    <span id="tax">$0.00</span>
-                </div>
-                <div class="summary-item summary-total">
-                    <span>Total:</span>
-                    <span id="total">$0.00</span>
-                </div>
-            </div>
-            <div class="checkout-container">
-                <div class="coupon">
-                    <input type="text" id="coupon-code" placeholder="Enter Coupon Code">
-                    <button onclick="applyCoupon()">Apply Coupon</button>
-                </div>
-                <div class="secure-checkout">
-                    <img src="https://via.placeholder.com/40" alt="Secure">
-                    <span>Secure Checkout</span>
-                    <button class="btn btn-light mt-3" onclick="checkout()">Proceed to Checkout</button>
-                </div>
-            </div>
-        </div>
+        <p><strong>Device:</strong> <span id="preview-device">None</span></p>
+        <p><strong>Screen Size:</strong> <span id="preview-screen-size">None</span></p>
+        <p><strong>Processor:</strong> <span id="preview-processor">None</span></p>
+        <p><strong>RAM:</strong> <span id="preview-ram">None</span></p>
+        <p><strong>Storage:</strong> <span id="preview-storage">None</span></p>
+        <p><strong>Operating System:</strong> <span id="preview-os">None</span></p>
+    </div>
+    <button class="proceed-button">Proceed</button>
+</div>
     </div>
 
     <script>
-        const cartItems = [
-            { id: 1, title: 'Custom Laptop', price: 899.99, quantity: 1, image: 'https://via.placeholder.com/80' },
-            { id: 2, title: 'Custom Smartphone', price: 499.99, quantity: 1, image: 'https://via.placeholder.com/80' }
-        ];
 
-        function renderCart() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';
 
-            let subtotal = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    const deviceOptions = document.querySelectorAll('.device-option');
+    const specButtons = document.querySelectorAll('.spec-button');
+    const preview = {
+        device: document.getElementById('preview-device'),
+        screenSize: document.getElementById('preview-screen-size'),
+        processor: document.getElementById('preview-processor'),
+        ram: document.getElementById('preview-ram'),
+        storage: document.getElementById('preview-storage'),
+        os: document.getElementById('preview-os'),
+        image: document.getElementById('preview-image'), // Image element
+    };
+    const proceedButton = document.querySelector('.proceed-button');
 
-            cartItems.forEach(item => {
-                subtotal += item.price * item.quantity;
-                cartItemsContainer.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.title}">
-                        <div class="cart-item-details">
-                            <div class="cart-item-title">${item.title}</div>
-                            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                            <a class="wishlist-link" onclick="moveToWishlist(${item.id})">Move to Wishlist</a>
-                        </div>
-                        <div class="quantity-controls">
-                            <button onclick="updateQuantity(${item.id}, -1)">-</button>
-                            <span class="px-2">${item.quantity}</span>
-                            <button onclick="updateQuantity(${item.id}, 1)">+</button>
-                        </div>
-                        <button class="btn btn-danger btn-sm" onclick="removeItem(${item.id})">Remove</button>
-                    </div>
-                `;
-            });
+    // Device images (replace with actual image URLs)
+    const deviceImages = {
+        laptop: 'https://via.placeholder.com/300x200?text=Laptop+Image',
+        smartphone: 'https://via.placeholder.com/300x200?text=Smartphone+Image',
+        tablet: 'https://via.placeholder.com/300x200?text=Tablet+Image',
+    };
 
-            const tax = subtotal * 0.1;
-            const total = subtotal + tax;
+    let selectedDevice = null;
+    let selectedSpecs = {
+        screenSize: null,
+        processor: null,
+        ram: null,
+        storage: null,
+        os: null,
+    };
 
-            document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
-            document.getElementById('tax').innerText = `$${tax.toFixed(2)}`;
-            document.getElementById('total').innerText = `$${total.toFixed(2)}`;
+    // Device Selection
+    deviceOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            deviceOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+            selectedDevice = this.dataset.device;
+            updatePreview();
+        });
+    });
+
+    // Specification Selection
+    specButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const spec = this.dataset.spec;
+            const value = this.dataset.value;
+            selectedSpecs[spec] = value;
+            updatePreview();
+            document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Update Preview Section
+    function updatePreview() {
+        // Update device image
+        preview.image.src = deviceImages[selectedDevice] || ''; // Set image based on selected device
+        preview.image.alt = `${selectedDevice} Image`;
+
+        // Update other preview details
+        preview.device.textContent = selectedDevice || 'None';
+        preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
+        preview.processor.textContent = selectedSpecs.processor || 'None';
+        preview.ram.textContent = selectedSpecs.ram || 'None';
+        preview.storage.textContent = selectedSpecs.storage || 'None';
+        preview.os.textContent = selectedSpecs.os || 'None';
+    }
+
+    // Proceed Button
+    proceedButton.addEventListener('click', function () {
+        if (!selectedDevice || !selectedSpecs.screenSize || !selectedSpecs.processor || !selectedSpecs.ram || !selectedSpecs.storage || !selectedSpecs.os) {
+            alert('Please select all specifications before proceeding.');
+            return;
         }
+        const configuration = {
+            device: selectedDevice,
+            ...selectedSpecs,
+        };
+        console.log('Selected Configuration:', configuration);
+        alert('Proceeding to the next step with the selected configuration.');
+        // Add logic to proceed to the next step or send the configuration to the backend
+    });
+});
 
-        function updateQuantity(itemId, change) {
-            const item = cartItems.find(item => item.id === itemId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity < 1) item.quantity = 1;
-                renderCart();
-            }
-        }
 
-        function removeItem(itemId) {
-            const index = cartItems.findIndex(item => item.id === itemId);
-            if (index !== -1) {
-                cartItems.splice(index, 1);
-                renderCart();
-            }
-        }
-
-        function applyCoupon() {
-            const code = document.getElementById('coupon-code').value;
-            if (code === 'DISCOUNT10') {
-                alert('Coupon applied! You get a 10% discount.');
-            } else {
-                alert('Invalid coupon code.');
-            }
-        }
-
-        function moveToWishlist(itemId) {
-            alert(`Item ${itemId} moved to wishlist.`);
-        }
-
-        function checkout() {
-            alert('Proceeding to checkout...');
-        }
-
-        renderCart();
     </script>
 </body>
 </html>
