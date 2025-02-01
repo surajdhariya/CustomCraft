@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Build Your Device</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CustomCraft</title>
   <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,147 +16,254 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-    <link rel="stylesheet" href="../style.css" />
-  <style>
-    /* body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    } */
+  <!-- <link rel="stylesheet" href="../style.css" /> -->
+<style>
+body{
 
-    .container {
-      display: flex;
-      gap: 20px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 1200px;
-    }
+  font-family: "Urbanist", sans-serif;
+}
+nav {
+    background-color: #FFB473;
 
-    .device-selection {
-      width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure the navbar stays on top */
+    font-family: "Urbanist", sans-serif;
+    font-size: 20px;
+    box-shadow: 0px 0.8px 1px -1px;
+  
+}
 
-    .device-selection button {
-      background-color: #ddd;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+.logo {
+    display: flex;
+    align-items: center;
+  
+}
 
-    .device-selection button.active {
-      background-color: #333;
-      color: #fff;
-    }
+.logo img {
+    height: 50px;
+    width: 50px;
+    /* margin-right: 10px; */
+    padding-left: 20px;
+  
+}
+.logo img:hover{transition: 0.5s;
+    transform: scale(1.1);
+    
+}
 
-    .selection-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-    }
+.logo h1 {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 20px;
+}
 
-    .selection-option {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+.link ul {
+    list-style: none;
+    /* margin: 10px; */
+    /* padding: 10px; */
+    display: flex;
+   
+}
 
-    .selection-option.active {
-      background-color: #333;
-      color: #fff;
-    }
 
-    .selection-preview {
-      width: 600px;
-      height: 400px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
 
-    .selection-preview img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
+.link ul li {
+    /* margin-left: 20px; */
+    margin-top:9px; 
+    :hover{
+        color: white;
+        transform: scale(1.5px);  
+        transition: 0.3s;
+        /* font-size: 1.05em; */
+       
+     }
+}
 
-    .selection-preview .device-details {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 10px;
-      border-radius: 8px;
-    }
 
-    .selection-preview .device-details h3 {
-      margin: 0;
-      font-size: 1.2rem;
-    }
+.link ul li a {
+    text-decoration: none;
+    color: #333;
+    /* font-weight: bold; */
+    padding-right: 50px;
 
-    .selection-preview .device-details p {
-      margin: 5px 0;
-    }
+ 
+}
+.link ul img{
+    padding-left: 10px;
+    padding-right: 20px;
+    filter: invert(10%) ;
 
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
+}
+.link ul img:hover{
+    /* filter: invert(20%) ; */
+transition: 0.5s;
+        transform: scale(1.05);
+    transition: 0.3s;
+    
+  }
 
-    .button-container button {
-      background-color: #333;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
 
-    .button-container button:hover {
-      background-color: #555;
-    }
+/* General Styles */
+/* body {
+    font-family: 'Urbanist', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+} */
 
-    .selection-preview.laptop {
-      /* Laptop preview styles */
-    }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-    .selection-preview.smartphone {
-      /* Smartphone preview styles */
-    }
+.text-center {
+    text-align: center;
+}
 
-    .selection-preview.tablet {
-      /* Tablet preview styles */
-    }
-  </style>
+/* Customization Container */
+.customization-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-indicator {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.col {
+    flex: 1;
+}
+
+/* Device Options */
+.device-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.device-option {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.device-option.active {
+    border-color: #007bff;
+    background: #007bff;
+    color: #fff;
+}
+
+/* Specification Section */
+.specification-section {
+    margin-top: 20px;
+}
+
+.spec-option {
+    margin-bottom: 15px;
+}
+
+.spec-option label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.spec-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.spec-button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.spec-button.active {
+    border-color: #007bff;
+    background: #007bff;
+    color: #fff;
+}
+
+/* Preview Section */
+.preview-section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-section h3 {
+    margin-bottom: 15px;
+}
+
+#preview p {
+    margin: 10px 0;
+}
+
+.proceed-button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.proceed-button:hover {
+    background: #0056b3;
+}
+
+
+.device-image {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.device-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+</style>
 </head>
+
 <body>
   <nav>
     <div class="logo">
-     <a href="../index.html"> <img  src="../img/cc.png" height="1000px" width=100px" alt="CustomCraft Logo" /></a>
+      <a href="../index.html"><img src="../img/cc.png" height="1000px" width=100px" alt="CustomCraft Logo" /></a>
       <h1 style="font-family: Anonymous Pro" , monospace;;">CustomCraft</h1>
     </div>
    <div class="link"> <ul >
@@ -164,7 +272,7 @@
       <li><a href="#">Laptops</a></li>
       <li><a href="#">Tablet</a></li>
       <ul class="cart-user" >
-        <a class="cart" href="1cart.html" class="cart"><img src="../img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo"/></a>
+        <a class="cart" href="other pages/cart.html" class="cart"><img src="../img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo"/></a>
         <img src="../img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
        </ul>
     </ul> 
@@ -172,142 +280,177 @@
    
   </nav>
 
-
-<br><br>
-<br><br><br><br>
+  <br> <br> <br> <br>
 
 
-  <div class="container">
-    <div class="device-selection">
-      <button class="active" data-device="laptop">Laptop</button>
-      <button data-device="smartphone">Smart Phone</button>
-      <button data-device="tablet">Tablet</button>
-    </div>
-    <div class="selection-options" id="selection-options">
-      </div>
-    <div class="selection-preview laptop" id="selection-preview">
-      <img src="https://www.freeiconspng.com/thumbs/laptop-icon/laptop-icon-12.png" alt="Laptop">
-      <div class="device-details">
-        <h3>Laptop</h3>
-        <p>Screen: 14 inch</p>
-        <p>Processor: i3 12th Gen</p>
-        <p>RAM: 8GB</p>
-        <p>Storage: 256GB SSD</p>
-      </div>
-    </div>
-  </div>
-  <h1>  <a href="index.html">dsfsdf</a></h1>
-  <script>
-    const deviceSelection = document.querySelectorAll(".device-selection button");
-    const selectionOptionsContainer = document.getElementById("selection-options");
-    const selectionPreview = document.getElementById("selection-preview");
+<!-- customization sections -->
 
-    // Function to show the selected device card
-    function showDeviceCard(device) {
-      deviceSelection.forEach(button => button.classList.remove("active"));
-      document.querySelector(`[data-device="${device}"]`).classList.add("active");
-      updateSelectionOptions(device);
-    }
+<div class="container">
+  <div class="customization-container">
+      <div class="step-indicator">Step 1 of 3</div>
+      <div class="row">
+          <!-- Left Side: Device and Specifications -->
+          <div class="col">
+              <h2>Select Your Device</h2>
+              <div class="device-options">
+                  <button class="device-option" data-device="laptop">Laptop</button>
+                  <button class="device-option" data-device="smartphone">Smartphone</button>
+                  <button class="device-option" data-device="tablet">Tablet</button>
+              </div>
 
-    // Function to update the selection options based on the device
-    function updateSelectionOptions(device) {
-      selectionOptionsContainer.innerHTML = '';
-      const options = {
-        laptop: [
-          { name: 'Screen Size', options: ['14 inch', '15 inch', '16 inch'] },
-          { name: 'Processor', options: ['i3 12th Gen', 'i5 12th Gen', 'i7 12th Gen'] },
-          { name: 'RAM', options: ['8GB', '16GB', '32GB'] },
-          { name: 'Storage', options: ['256GB SSD', '512GB SSD', '1TB SSD'] },
-        ],
-        smartphone: [
-          { name: 'Screen Size', options: ['6.1 inch', '6.4 inch', '6.7 inch'] },
-          { name: 'Processor', options: ['Snapdragon 8 Gen 1', 'Apple A15 Bionic', 'Exynos 2200'] },
-          { name: 'RAM', options: ['8GB', '12GB', '16GB'] },
-          { name: 'Storage', options: ['128GB', '256GB', '512GB'] },
-        ],
-        tablet: [
-          { name: 'Screen Size', options: ['10.2 inch', '11 inch', '12.9 inch'] },
-          { name: 'Processor', options: ['Apple A14 Bionic', 'Snapdragon 870', 'MediaTek Dimensity 1100'] },
-          { name: 'RAM', options: ['6GB', '8GB', '12GB'] },
-          { name: 'Storage', options: ['64GB', '128GB', '256GB'] },
-        ]
-      };
-
-      options[device].forEach(category => {
-        const categoryElement = document.createElement('div');
-        categoryElement.classList.add('selection-option');
-        categoryElement.innerHTML = `
-          <h3>${category.name}</h3>
-          <div class="options">
-            ${category.options.map(option => `
-              <button data-category="${category.name}" data-option="${option}">${option}</button>
-            `).join('')}
+              <div class="specification-section">
+                  <h3>Specifications</h3>
+                  <div class="spec-option">
+                      <label>Screen Size:</label>
+                      <div class="spec-buttons" id="screen-size-buttons">
+                          <button class="spec-button" data-spec="screenSize" data-value="14">14 inch</button>
+                          <button class="spec-button" data-spec="screenSize" data-value="15">15 inch</button>
+                          <button class="spec-button" data-spec="screenSize" data-value="16">16 inch</button>
+                      </div>
+                  </div>
+                  <div class="spec-option">
+                      <label>Processor:</label>
+                      <div class="spec-buttons" id="processor-buttons">
+                          <button class="spec-button" data-spec="processor" data-value="i3">i3</button>
+                          <button class="spec-button" data-spec="processor" data-value="i5">i5</button>
+                          <button class="spec-button" data-spec="processor" data-value="i7">i7</button>
+                      </div>
+                  </div>
+                  <div class="spec-option">
+                      <label>RAM:</label>
+                      <div class="spec-buttons" id="ram-buttons">
+                          <button class="spec-button" data-spec="ram" data-value="8GB">8GB</button>
+                          <button class="spec-button" data-spec="ram" data-value="16GB">16GB</button>
+                          <button class="spec-button" data-spec="ram" data-value="32GB">32GB</button>
+                      </div>
+                  </div>
+                  <div class="spec-option">
+                      <label>Storage:</label>
+                      <div class="spec-buttons" id="storage-buttons">
+                          <button class="spec-button" data-spec="storage" data-value="256GB">256GB SSD</button>
+                          <button class="spec-button" data-spec="storage" data-value="512GB">512GB SSD</button>
+                          <button class="spec-button" data-spec="storage" data-value="1TB">1TB SSD</button>
+                      </div>
+                  </div>
+                  <div class="spec-option">
+                      <label>Operating System:</label>
+                      <div class="spec-buttons" id="os-buttons">
+                          <button class="spec-button" data-spec="os" data-value="windows">Windows</button>
+                          <button class="spec-button" data-spec="os" data-value="linux">Linux</button>
+                          <button class="spec-button" data-spec="os" data-value="dos">DOS</button>
+                      </div>
+                  </div>
+              </div>
           </div>
-        `;
-        selectionOptionsContainer.appendChild(categoryElement);
-      });
-    }
 
-    // Function to update the selection preview based on selected options
-    function updatePreview(device, options) {
-      const previewImage = selectionPreview.querySelector("img");
-      const deviceDetails = selectionPreview.querySelector(".device-details");
+          <!-- Right Side: Preview -->
+          <div class="col">
+             <div class="preview-section">
+<h3>Your Selection</h3>
+<div id="preview">
+  <!-- Device Image Preview -->
+  <div class="device-image">
+      <img id="preview-image" src="" alt="Device Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+  </div>
+  <p><strong>Device:</strong> <span id="preview-device">None</span></p>
+  <p><strong>Screen Size:</strong> <span id="preview-screen-size">None</span></p>
+  <p><strong>Processor:</strong> <span id="preview-processor">None</span></p>
+  <p><strong>RAM:</strong> <span id="preview-ram">None</span></p>
+  <p><strong>Storage:</strong> <span id="preview-storage">None</span></p>
+  <p><strong>Operating System:</strong> <span id="preview-os">None</span></p>
+</div>
+<button class="proceed-button">Proceed</button>
+</div>
+</div>
 
-      selectionPreview.classList.remove("laptop", "smartphone", "tablet");
-      selectionPreview.classList.add(device);
+<!-- customization sections -->
 
-      if (device === "laptop") {
-        previewImage.src = "https://www.freeiconspng.com/thumbs/laptop-icon/laptop-icon-12.png";
-        deviceDetails.querySelector('h3').textContent = 'Laptop';
-      } else if (device === "smartphone") {
-        previewImage.src = "https://www.freeiconspng.com/thumbs/smartphone-icon/smartphone-icon-10.png";
-        deviceDetails.querySelector('h3').textContent = 'Smart Phone';
-      } else if (device === "tablet") {
-        previewImage.src = "https://www.freeiconspng.com/thumbs/tablet-icon/tablet-icon-15.png";
-        deviceDetails.querySelector('h3').textContent = 'Tablet';
-      }
+ 
+  <script >
+    document.addEventListener('DOMContentLoaded', function () {
+    const deviceOptions = document.querySelectorAll('.device-option');
+    const specButtons = document.querySelectorAll('.spec-button');
+    const preview = {
+        device: document.getElementById('preview-device'),
+        screenSize: document.getElementById('preview-screen-size'),
+        processor: document.getElementById('preview-processor'),
+        ram: document.getElementById('preview-ram'),
+        storage: document.getElementById('preview-storage'),
+        os: document.getElementById('preview-os'),
+        image: document.getElementById('preview-image'), // Image element
+    };
+    const proceedButton = document.querySelector('.proceed-button');
 
-      deviceDetails.querySelectorAll('p').forEach((p, index) => {
-        p.textContent = `${options[index].name}: ${options[index].option}`;
-      });
-    }
+    // Device images (replace with actual image URLs)
+    const deviceImages = {
+        laptop: 'https://via.placeholder.com/300x200?text=Laptop+Image',
+        smartphone: 'https://via.placeholder.com/300x200?text=Smartphone+Image',
+        tablet: 'https://via.placeholder.com/300x200?text=Tablet+Image',
+    };
 
-    // Event listener for device selection
-    deviceSelection.forEach(button => {
-      button.addEventListener("click", () => {
-        const selectedDevice = button.dataset.device;
-        showDeviceCard(selectedDevice);
-        updatePreview(selectedDevice, []);
-      });
-    });
+    let selectedDevice = null;
+    let selectedSpecs = {
+        screenSize: null,
+        processor: null,
+        ram: null,
+        storage: null,
+        os: null,
+    };
 
-    // Event listener for option selection
-    selectionOptionsContainer.addEventListener('click', (event) => {
-      if (event.target.tagName === 'BUTTON') {
-        const category = event.target.dataset.category;
-        const option = event.target.dataset.option;
-        const selectedDevice = document.querySelector('.device-selection button.active').dataset.device;
-
-        // Update selected options array
-        const selectedOptions = [];
-        selectionOptionsContainer.querySelectorAll('.selection-option.active').forEach(optionElement => {
-          selectedOptions.push({
-            name: optionElement.querySelector('h3').textContent,
-            option: optionElement.querySelector('.options button.active').textContent
-          });
+    // Device Selection
+    deviceOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            deviceOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+            selectedDevice = this.dataset.device;
+            updatePreview();
         });
-
-        // Update preview
-        updatePreview(selectedDevice, selectedOptions);
-
-        // Toggle active class on option button
-        event.target.classList.toggle('active');
-      }
     });
 
-    // Initial setup
-    showDeviceCard('laptop');
+    // Specification Selection
+    specButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const spec = this.dataset.spec;
+            const value = this.dataset.value;
+            selectedSpecs[spec] = value;
+            updatePreview();
+            document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 
+    // Update Preview Section
+    function updatePreview() {
+        // Update device image
+        preview.image.src = deviceImages[selectedDevice] || ''; // Set image based on selected device
+        preview.image.alt = `${selectedDevice} Image`;
+
+        // Update other preview details
+        preview.device.textContent = selectedDevice || 'None';
+        preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
+        preview.processor.textContent = selectedSpecs.processor || 'None';
+        preview.ram.textContent = selectedSpecs.ram || 'None';
+        preview.storage.textContent = selectedSpecs.storage || 'None';
+        preview.os.textContent = selectedSpecs.os || 'None';
+    }
+
+    // Proceed Button
+    proceedButton.addEventListener('click', function () {
+        if (!selectedDevice || !selectedSpecs.screenSize || !selectedSpecs.processor || !selectedSpecs.ram || !selectedSpecs.storage || !selectedSpecs.os) {
+            alert('Please select all specifications before proceeding.');
+            return;
+        }
+        const configuration = {
+            device: selectedDevice,
+            ...selectedSpecs,
+        };
+        console.log('Selected Configuration:', configuration);
+        alert('Proceeding to the next step with the selected configuration.');
+        // Add logic to proceed to the next step or send the configuration to the backend
+    });
+});
   </script>
+
 </body>
+
 </html>
