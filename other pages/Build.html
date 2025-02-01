@@ -11,6 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
+   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -121,10 +122,12 @@ transition: 0.5s;
 } */
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    /* max-width: 1200px; */
+    margin-top: 80px ;
     padding: 20px;
+    position: relative;
 }
+
 
 .text-center {
     text-align: center;
@@ -136,10 +139,13 @@ transition: 0.5s;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     
+    max-height: 80vh; /* Limits height */
+    overflow-y: auto; /* Allows scrolling */
 }
 
 .step-indicator {
-    font-size: 14px;
+    font-size: 17px;
     color: #666;
     margin-bottom: 20px;
 }
@@ -158,6 +164,7 @@ transition: 0.5s;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+
 }
 
 .device-option {
@@ -170,6 +177,8 @@ transition: 0.5s;
     transition: all 0.3s ease;
     height: 80px;
     width: 150px;
+    font-size:20px;
+    font-family: "Urbanist", sans-serif;
 }
 
 .device-option.active {
@@ -198,7 +207,8 @@ transition: 0.5s;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    /* height: 50px; */
+    /* height: 100px; */
+  /* width: 200px; */
 }
 
 .spec-button {
@@ -209,6 +219,10 @@ transition: 0.5s;
     cursor: pointer;
     text-align: center;
     transition: all 0.3s ease;
+    width: 150px;
+    height: 80px;
+    font-family: "Urbanist", sans-serif;
+    font-size: 20px;
 }
 
 .spec-button.active {
@@ -217,6 +231,19 @@ transition: 0.5s;
     color: black;
 }
 
+
+#customMessage {
+    width: 81%;
+    height:100px;
+    border-radius: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    resize: vertical;
+    text-decoration: none;
+}
+
+
 /* Preview Section */
 .preview-section {
     background:#F6E7DA;
@@ -224,6 +251,13 @@ transition: 0.5s;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* border:0.1px solid rgb(148, 147, 147); */
+    position: sticky;
+    top: 0; /* Sticks only inside the parent */
+    align-self: flex-start; /* Prevents stretching */
+    max-height: 80vh; /* Limits height */
+    overflow-y: auto; /* Allows scrolling inside */
+
+
 }
 
 .preview-section h3 {
@@ -287,7 +321,7 @@ transition: 0.5s;
    
   </nav>
 
-  <br> <br> <br><br>
+  <!-- <br> <br> <br> -->
 
 
 <!-- customization sections -->
@@ -346,10 +380,14 @@ transition: 0.5s;
                           <button class="spec-button" data-spec="os" data-value="linux">Linux</button>
                           <button class="spec-button" data-spec="os" data-value="dos">DOS</button>
                       </div>
+                      <div class="form-group">
+                        <label for="customMessage">Custom Message (Optional):</label>
+                        <textarea id="customMessage" class="form-control" rows="3" placeholder="Enter your message..."></textarea>
+                    </div>
                   </div>
               </div>
           </div>
-
+       
           <!-- Right Side: Preview -->
           <div class="col">
              <div class="preview-section">
@@ -370,9 +408,13 @@ transition: 0.5s;
 </div>
 </div>
 
-<!-- customization sections -->
 
- 
+
+
+
+
+    
+
   <script >
  document.addEventListener('DOMContentLoaded', function () {
     const deviceOptions = document.querySelectorAll('.device-option');
@@ -404,24 +446,24 @@ transition: 0.5s;
     // Device specifications
     const deviceSpecs = {
         computer: {
-            screenSize: ['14 inch', '15 inch', '16 inch'],
+            screenSize: ['13inch','14 inch', '15 inch', '16 inch'],
             processor: ['i3', 'i5', 'i7'],
-            ram: ['8GB', '16GB', '32GB'],
-            storage: ['256GB SSD', '512GB SSD', '1TB SSD'],
+            ram: ['8GB', '16GB', '32GB','64GB'],
+            storage: ['256GB SSD', '512GB SSD', '1TB SSD','10TB','2TB'],
             os: ['Windows', 'Linux', 'DOS'],
         },
         smartphone: {
             screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
             processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
             ram: ['6GB', '8GB', '12GB'],
-            storage: ['128GB', '256GB', '512GB'],
+            storage: ['128GB', '256GB', '512GB','1TB'],
             os: ['Android', 'iOS'],
         },
         tablet: {
             screenSize: ['10 inch', '11 inch', '12.9 inch'],
             processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
             ram: ['4GB', '6GB', '8GB'],
-            storage: ['64GB', '128GB', '256GB'],
+            storage: ['64GB', '128GB', '256GB','1TB'],
             os: ['Android', 'iPadOS'],
         },
     };
@@ -506,8 +548,13 @@ transition: 0.5s;
         // Add logic to proceed to the next step or send the configuration to the backend
     });
 });
-  </script>
 
+document.getElementById("customMessage").addEventListener("input", function() {
+    let customText = this.value;
+    console.log("Custom Message: ", customText);
+});
+
+  </script>
 </body>
 
 </html>
