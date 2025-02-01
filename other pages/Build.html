@@ -21,6 +21,7 @@
 body{
 
   font-family: "Urbanist", sans-serif;
+  background-color: #F6E7DA;
 }
 nav {
     background-color: #FFB473;
@@ -113,7 +114,7 @@ transition: 0.5s;
 /* General Styles */
 /* body {
     font-family: 'Urbanist', sans-serif;
-    background-color: #f4f4f4;
+
     color: #333;
     margin: 0;
     padding: 0;
@@ -350,7 +351,7 @@ transition: 0.5s;
 <div id="preview">
   <!-- Device Image Preview -->
   <div class="device-image">
-      <img id="preview-image" src="" alt="Device Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+      <img id="preview-image" src="" alt="Device Image" style="max-width:40%; height: auto; border-radius: 8px;">
   </div>
   <p><strong>Device:</strong> <span id="preview-device">None</span></p>
   <p><strong>Screen Size:</strong> <span id="preview-screen-size">None</span></p>
@@ -367,9 +368,15 @@ transition: 0.5s;
 
  
   <script >
-    document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     const deviceOptions = document.querySelectorAll('.device-option');
-    const specButtons = document.querySelectorAll('.spec-button');
+    const specButtonsContainers = {
+        screenSize: document.getElementById('screen-size-buttons'),
+        processor: document.getElementById('processor-buttons'),
+        ram: document.getElementById('ram-buttons'),
+        storage: document.getElementById('storage-buttons'),
+        os: document.getElementById('os-buttons'),
+    };
     const preview = {
         device: document.getElementById('preview-device'),
         screenSize: document.getElementById('preview-screen-size'),
@@ -388,6 +395,31 @@ transition: 0.5s;
         tablet: 'https://via.placeholder.com/300x200?text=Tablet+Image',
     };
 
+    // Device specifications
+    const deviceSpecs = {
+        laptop: {
+            screenSize: ['14 inch', '15 inch', '16 inch'],
+            processor: ['i3', 'i5', 'i7'],
+            ram: ['8GB', '16GB', '32GB'],
+            storage: ['256GB SSD', '512GB SSD', '1TB SSD'],
+            os: ['Windows', 'Linux', 'DOS'],
+        },
+        smartphone: {
+            screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
+            processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
+            ram: ['6GB', '8GB', '12GB'],
+            storage: ['128GB', '256GB', '512GB'],
+            os: ['Android', 'iOS'],
+        },
+        tablet: {
+            screenSize: ['10 inch', '11 inch', '12.9 inch'],
+            processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
+            ram: ['4GB', '6GB', '8GB'],
+            storage: ['64GB', '128GB', '256GB'],
+            os: ['Android', 'iPadOS'],
+        },
+    };
+
     let selectedDevice = null;
     let selectedSpecs = {
         screenSize: null,
@@ -403,21 +435,40 @@ transition: 0.5s;
             deviceOptions.forEach(opt => opt.classList.remove('active'));
             this.classList.add('active');
             selectedDevice = this.dataset.device;
+            updateSpecifications(selectedDevice); // Update specifications based on device
             updatePreview();
         });
     });
 
-    // Specification Selection
-    specButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const spec = this.dataset.spec;
-            const value = this.dataset.value;
-            selectedSpecs[spec] = value;
-            updatePreview();
-            document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+    // Update Specifications Based on Device
+    function updateSpecifications(device) {
+        for (const spec in specButtonsContainers) {
+            // Clear existing buttons
+            specButtonsContainers[spec].innerHTML = '';
+
+            // Add new buttons for the selected device
+            deviceSpecs[device][spec].forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'spec-button';
+                button.dataset.spec = spec;
+                button.dataset.value = option;
+                button.textContent = option;
+                specButtonsContainers[spec].appendChild(button);
+            });
+        }
+
+        // Add event listeners to the new buttons
+        document.querySelectorAll('.spec-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const spec = this.dataset.spec;
+                const value = this.dataset.value;
+                selectedSpecs[spec] = value;
+                updatePreview();
+                document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
         });
-    });
+    }
 
     // Update Preview Section
     function updatePreview() {
