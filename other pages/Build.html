@@ -168,12 +168,14 @@ transition: 0.5s;
     cursor: pointer;
     text-align: center;
     transition: all 0.3s ease;
+    height: 80px;
+    width: 150px;
 }
 
 .device-option.active {
-    border-color: #007bff;
-    background: #007bff;
-    color: #fff;
+    border-color: #FFB473;
+    background: #FFB473;
+    color: black;
 }
 
 /* Specification Section */
@@ -183,6 +185,7 @@ transition: 0.5s;
 
 .spec-option {
     margin-bottom: 15px;
+
 }
 
 .spec-option label {
@@ -195,6 +198,7 @@ transition: 0.5s;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    /* height: 50px; */
 }
 
 .spec-button {
@@ -208,17 +212,18 @@ transition: 0.5s;
 }
 
 .spec-button.active {
-    border-color: #007bff;
-    background: #007bff;
-    color: #fff;
+    border-color: #FFB473;
+    background: #FFB473;
+    color: black;
 }
 
 /* Preview Section */
 .preview-section {
-    background: #f9f9f9;
+    background:#F6E7DA;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* border:0.1px solid rgb(148, 147, 147); */
 }
 
 .preview-section h3 {
@@ -235,14 +240,15 @@ transition: 0.5s;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background: #007bff;
-    color: #fff;
+    background: #FFB473;
+    color: black;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .proceed-button:hover {
-    background: #0056b3;
+    background: #ff973c;
+    color: black;
 }
 
 
@@ -255,7 +261,7 @@ transition: 0.5s;
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 </style>
@@ -281,7 +287,7 @@ transition: 0.5s;
    
   </nav>
 
-  <br> <br> <br> <br>
+  <br> <br> <br><br>
 
 
 <!-- customization sections -->
@@ -294,7 +300,7 @@ transition: 0.5s;
           <div class="col">
               <h2>Select Your Device</h2>
               <div class="device-options">
-                  <button class="device-option" data-device="laptop">Laptop</button>
+                  <button class="device-option" data-device="computer">Computer</button>
                   <button class="device-option" data-device="smartphone">Smartphone</button>
                   <button class="device-option" data-device="tablet">Tablet</button>
               </div>
@@ -351,7 +357,7 @@ transition: 0.5s;
 <div id="preview">
   <!-- Device Image Preview -->
   <div class="device-image">
-      <img id="preview-image" src="" alt="Device Image" style="max-width:40%; height: auto; border-radius: 8px;">
+      <img id="preview-image" src="../img/device.png" alt="Device Image" style="max-width:40%; height: auto; border-radius: 8px;">
   </div>
   <p><strong>Device:</strong> <span id="preview-device">None</span></p>
   <p><strong>Screen Size:</strong> <span id="preview-screen-size">None</span></p>
@@ -360,7 +366,7 @@ transition: 0.5s;
   <p><strong>Storage:</strong> <span id="preview-storage">None</span></p>
   <p><strong>Operating System:</strong> <span id="preview-os">None</span></p>
 </div>
-<button class="proceed-button">Proceed</button>
+<a href="cart.html"><button class="proceed-button">Proceed</button></a>
 </div>
 </div>
 
@@ -390,14 +396,14 @@ transition: 0.5s;
 
     // Device images (replace with actual image URLs)
     const deviceImages = {
-        laptop: 'https://via.placeholder.com/300x200?text=Laptop+Image',
-        smartphone: 'https://via.placeholder.com/300x200?text=Smartphone+Image',
-        tablet: 'https://via.placeholder.com/300x200?text=Tablet+Image',
+        computer: '../img/coding.png',
+        smartphone: '../img/phone.png',
+        tablet: '../img/ipad.png',
     };
 
     // Device specifications
     const deviceSpecs = {
-        laptop: {
+        computer: {
             screenSize: ['14 inch', '15 inch', '16 inch'],
             processor: ['i3', 'i5', 'i7'],
             ram: ['8GB', '16GB', '32GB'],
