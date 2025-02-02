@@ -1,38 +1,48 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const path = require('path'); // Import path module to serve static files
 
-// Initialize Express app
 const app = express();
-const port = 3001;
+const port = 3002;
 
-// MongoDB connection string (replace with your actual connection string)
+// MongoDB connection string
 const uri = 'mongodb+srv://surajdhariya:Suraj@18@customcraft-cluster.xoakt.mongodb.net/?retryWrites=true&w=majority&appName=customcraft-cluster';
 
-// Connect to MongoDB
+// MongoDB connection function
 async function connectToDB() {
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         await client.connect();
         console.log("Connected to MongoDB!");
-
-        // Access the database and collection here if needed
-        const db = client.db("customcraftDB");  // Database name
-        const collection = db.collection("devices");  // Example collection
-
-        // You can perform operations like insert, find, etc. on the collection
+        return client;
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
     }
 }
 
-// Run the function to connect to MongoDB
-connectToDB();
+// Middleware to parse incoming JSON requests
+app.use(express.json());
 
-// Simple route to test the server
-app.get('/', (req, res) => {
-    res.send('Hello from server.js!');
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Save configuration route
+app.post('/saveConfiguration', async (req, res) => {
+    const configuration = req.body; // Get the configuration from the request body
+    const client = await connectToDB();
+    const db = client.db("customcraftDB");  // Select the database
+    const collection = db.collection("devices");  // Select the collection
+
+    try {
+        const result = await collection.insertOne(configuration);  // Insert the configuration document
+        res.json({ message: 'Configuration saved successfully!', id: result.insertedId });
+    } catch (error) {
+        console.error("Error saving configuration:", error);
+        res.status(500).json({ message: 'Failed to save configuration' });
+    }
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
