@@ -1,44 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <title>CustomCraft</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-    <link rel="stylesheet" href="../style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Selection - CustomCraft</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Urbanist", sans-serif;
+            background-color: #F6E7DA;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .specifications {
+            margin-bottom: 20px;
+        }
+
+        .vendor-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .vendor-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .vendor-item:hover {
+            background-color: #FFB473;
+        }
+
+        .selected-vendor {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
+
 <body>
-    <nav>
-        <div class="logo">
-         <a href="../index.html"> <img  src="../img/cc.png" height="1000px" width=100px" alt="CustomCraft Logo" /></a>
-          <h1 style="font-family: Anonymous Pro" , monospace;;">CustomCraft</h1>
+    <div class="container">
+        <h2>Vendor Selection</h2>
+
+        <div class="specifications">
+            <h3>Your Selected Specifications</h3>
+            <p><strong>Device:</strong> <span id="selected-device">None</span></p>
+            <p><strong>Screen Size:</strong> <span id="selected-screen-size">None</span></p>
+            <p><strong>Processor:</strong> <span id="selected-processor">None</span></p>
+            <p><strong>RAM:</strong> <span id="selected-ram">None</span></p>
+            <p><strong>Storage:</strong> <span id="selected-storage">None</span></p>
+            <p><strong>Operating System:</strong> <span id="selected-os">None</span></p>
         </div>
-       <div class="link"> <ul >
-          <li><a href="#">Customize-Devices</a></li>
-          <li><a href="#">Smartphone</a></li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Tablet</a></li>
-          <ul class="cart-user" >
-            <a class="cart" href="other pages/cart.html" class="cart"><img src="../img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo"/></a>
-            <img src="../img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
-           </ul>
-        </ul> 
-      </div>
-       
-      </nav>
-    
-  
-    <h1>  <a href="../index.html">CART</a></h1>
+
+        <h3>Available Vendors</h3>
+        <ul class="vendor-list" id="vendor-list">
+            <!-- Vendor items will be populated here -->
+        </ul>
+
+        <div class="selected-vendor" id="selected-vendor-info" style="display: none;">
+            <h4>Selected Vendor Information</h4>
+            <p><strong>Name:</strong> <span id="vendor-name"></span></p>
+            <p><strong>Rating:</strong> <span id="vendor-rating"></span></p>
+            <p><strong>Price:</strong> <span id="vendor-price"></span></p>
+        </div>
+
+        <button id="proceed-to-cart" style="width: 100%; padding: 10px; background-color: #FFB473; border: none; border-radius: 4px; color: black; cursor: pointer;">Proceed to Cart</button>
+    </div>
+
+    <script>
+        // Fetch selected specifications from local storage or pass them through query parameters
+        const selectedSpecs = JSON.parse(localStorage.getItem('selectedSpecs')) || {
+            device: 'None',
+            screenSize: 'None',
+            processor: 'None',
+            ram: 'None',
+            storage: 'None',
+            os: 'None'
+        };
+
+        // Display selected specifications
+        document.getElementById('selected-device').textContent = selectedSpecs.device;
+        document.getElementById('selected-screen-size').textContent = selectedSpecs.screenSize;
+        document.getElementById('selected-processor').textContent = selectedSpecs.processor;
+        document.getElementById('selected-ram').textContent = selectedSpecs.ram;
+        document.getElementById('selected-storage').textContent = selectedSpecs.storage;
+        document.getElementById('selected-os').textContent = selectedSpecs.os;
+
+        // Fetch vendor data from the server
+        fetch('/vendors')
+            .then(response => response.json())
+            .then(vendors => {
+                const vendorList = document.getElementById('vendor-list');
+                vendors.forEach(vendor => {
+                    const vendorItem = document.createElement('li');
+                    vendorItem.className = 'vendor-item';
+                    vendorItem.textContent = vendor.name; // Assuming vendor has a 'name' property
+                    vendorItem.dataset.rating = vendor.rating; // Assuming vendor has a 'rating' property
+                    vendorItem.dataset.price = vendor.price; // Assuming vendor has a 'price' property
+
+                    // Add click event to display vendor information
+                    vendorItem.addEventListener('click', function () {
+                        document.getElementById('vendor-name').textContent = vendor.name;
+                        document.getElementById('vendor-rating').textContent = vendor.rating;
+                        document.getElementById('vendor-price').textContent = vendor.price;
+                        document.getElementById('selected-vendor-info').style.display = 'block';
+                    });
+
+                    vendorList.appendChild(vendorItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching vendors:', error);
+            });
+
+        // Proceed to cart button functionality
+        document.getElementById('proceed-to-cart').addEventListener('click', function () {
+            // Logic to add selected vendor and specifications to the cart
+            const selectedVendor = document.getElementById('vendor-name').textContent;
+            if (selectedVendor === '') {
+                alert('Please select a vendor before proceeding to the cart.');
+                return;
+            }
+
+            // Here you can implement the logic to save the cart information
+            // For example, you can save it to local storage or send it to the server
+
+            alert('Proceeding to cart with selected vendor: ' + selectedVendor);
+            // Redirect to cart page
+            window.location.href = 'cart.html'; // Change to your cart page
+        });
+    </script>
 </body>
+
 </html>
