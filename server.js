@@ -20,6 +20,7 @@ async function connectToDB() {
     }
 }
 
+
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
@@ -45,23 +46,4 @@ app.post('/saveConfiguration', async (req, res) => {
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
-});
-
-
-
-
-
-
-app.post('/saveConfiguration', async (req, res) => {
-    const configuration = req.body; // Get the configuration from the request body
-    const db = client.db("customcraftDB");  // Select the database
-    const collection = db.collection("configurations");  // Select the collection
-
-    try {
-        const result = await collection.insertOne(configuration);  // Insert the configuration document
-        res.json({ message: 'Configuration saved successfully!', id: result.insertedId });
-    } catch (error) {
-        console.error("Error saving configuration:", error);
-        res.status(500).json({ message: 'Failed to save configuration' });
-    }
 });

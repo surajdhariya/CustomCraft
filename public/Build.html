@@ -613,6 +613,39 @@
                     });
                 });
 
+                
+                proceedButton.addEventListener('click', function () {
+    if (!selectedDevice || !selectedSpecs.screenSize || !selectedSpecs.processor || !selectedSpecs.ram || !selectedSpecs.storage || !selectedSpecs.os) {
+        alert('Please select all specifications before proceeding.');
+        return;
+    }
+    const configuration = {
+        device: selectedDevice,
+        ...selectedSpecs,
+        customMessage: document.getElementById("customMessage").value // Include custom message if needed
+    };
+
+    // Store the selected specifications in localStorage
+    localStorage.setItem('selectedSpecs', JSON.stringify(configuration));
+
+    fetch('/saveConfiguration', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(configuration),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Redirect to vendor selection page
+        window.location.href = 'cart.html'; // Change to your vendor selection page
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
                 document.getElementById("customMessage").addEventListener("input", function () {
                     let customText = this.value;
                     console.log("Custom Message: ", customText);

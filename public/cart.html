@@ -16,25 +16,16 @@
         }
 
         .container {
-            max-width: 800px;
-            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .specifications, .vendor-list {
+            width: 48%;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        .specifications {
-            margin-bottom: 20px;
-        }
-
-        .vendor-list {
-            list-style-type: none;
-            padding: 0;
         }
 
         .vendor-item {
@@ -50,22 +41,22 @@
             background-color: #FFB473;
         }
 
-        .selected-vendor {
+        .vendor-details {
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             background-color: #f9f9f9;
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2>Vendor Selection</h2>
-
+        <!-- Left Side: Selected Specifications -->
         <div class="specifications">
-            <h3>Your Selected Specifications</h3>
+            <h2>Your Selected Specifications</h2>
             <p><strong>Device:</strong> <span id="selected-device">None</span></p>
             <p><strong>Screen Size:</strong> <span id="selected-screen-size">None</span></p>
             <p><strong>Processor:</strong> <span id="selected-processor">None</span></p>
@@ -74,33 +65,37 @@
             <p><strong>Operating System:</strong> <span id="selected-os">None</span></p>
         </div>
 
-        <h3>Available Vendors</h3>
-        <ul class="vendor-list" id="vendor-list">
-            <!-- Vendor items will be populated here -->
-        </ul>
-
-        <div class="selected-vendor" id="selected-vendor-info" style="display: none;">
-            <h4>Selected Vendor Information</h4>
-            <p><strong>Name:</strong> <span id="vendor-name"></span></p>
-            <p><strong>Rating:</strong> <span id="vendor-rating"></span></p>
-            <p><strong>Price:</strong> <span id="vendor-price"></span></p>
+        <!-- Right Side: Vendor List -->
+        <div class="vendor-list">
+            <h2>Available Vendors</h2>
+            <div id="vendor-list">
+                <!-- Vendor items will be populated here -->
+            </div>
         </div>
+    </div>
 
-        <button id="proceed-to-cart" style="width: 100%; padding: 10px; background-color: #FFB473; border: none; border-radius: 4px; color: black; cursor: pointer;">Proceed to Cart</button>
+    <!-- Vendor Details Section -->
+    <div class="vendor-details" id="vendor-details">
+        <h3>Vendor Information</h3>
+        <p><strong>Name:</strong> <span id="vendor-name"></span></p>
+        <p><strong>Rating:</strong> <span id="vendor-rating"></span></p>
+        <p><strong>Price:</strong> <span id="vendor-price"></span></p>
+        <p><strong>Address:</strong> <span id="vendor-address"></span></p>
+        <p><strong>Reviews:</strong> <span id="vendor-reviews"></span></p>
     </div>
 
     <script>
-        // Fetch selected specifications from local storage or pass them through query parameters
+        // Fetch selected specifications from local storage
         const selectedSpecs = JSON.parse(localStorage.getItem('selectedSpecs')) || {
             device: 'None',
-            screenSize: 'None',
+            screenSize : 'None',
             processor: 'None',
             ram: 'None',
             storage: 'None',
-            os: 'None'
+            os: 'None',
         };
 
-        // Display selected specifications
+        // Populate selected specifications
         document.getElementById('selected-device').textContent = selectedSpecs.device;
         document.getElementById('selected-screen-size').textContent = selectedSpecs.screenSize;
         document.getElementById('selected-processor').textContent = selectedSpecs.processor;
@@ -108,49 +103,30 @@
         document.getElementById('selected-storage').textContent = selectedSpecs.storage;
         document.getElementById('selected-os').textContent = selectedSpecs.os;
 
-        // Fetch vendor data from the server
-        fetch('/vendors')
+        // Fetch vendor data from the backend
+        fetch('/getVendors') // Ensure this endpoint is set up in your backend
             .then(response => response.json())
             .then(vendors => {
                 const vendorList = document.getElementById('vendor-list');
                 vendors.forEach(vendor => {
-                    const vendorItem = document.createElement('li');
+                    const vendorItem = document.createElement('div');
                     vendorItem.className = 'vendor-item';
-                    vendorItem.textContent = vendor.name; // Assuming vendor has a 'name' property
-                    vendorItem.dataset.rating = vendor.rating; // Assuming vendor has a 'rating' property
-                    vendorItem.dataset.price = vendor.price; // Assuming vendor has a 'price' property
-
-                    // Add click event to display vendor information
-                    vendorItem.addEventListener('click', function () {
-                        document.getElementById('vendor-name').textContent = vendor.name;
-                        document.getElementById('vendor-rating').textContent = vendor.rating;
-                        document.getElementById('vendor-price').textContent = vendor.price;
-                        document.getElementById('selected-vendor-info').style.display = 'block';
-                    });
-
+                    vendorItem.textContent = `${vendor.name} - $${vendor.price}`;
+                    vendorItem.addEventListener('click', () => displayVendorDetails(vendor));
                     vendorList.appendChild(vendorItem);
                 });
             })
-            .catch(error => {
-                console.error('Error fetching vendors:', error);
-            });
+            .catch(error => console.error('Error fetching vendors:', error));
 
-        // Proceed to cart button functionality
-        document.getElementById('proceed-to-cart').addEventListener('click', function () {
-            // Logic to add selected vendor and specifications to the cart
-            const selectedVendor = document.getElementById('vendor-name').textContent;
-            if (selectedVendor === '') {
-                alert('Please select a vendor before proceeding to the cart.');
-                return;
-            }
-
-            // Here you can implement the logic to save the cart information
-            // For example, you can save it to local storage or send it to the server
-
-            alert('Proceeding to cart with selected vendor: ' + selectedVendor);
-            // Redirect to cart page
-            window.location.href = 'cart.html'; // Change to your cart page
-        });
+        // Function to display vendor details
+        function displayVendorDetails(vendor) {
+            document.getElementById('vendor-name').textContent = vendor.name;
+            document.getElementById('vendor-rating').textContent = vendor.rating;
+            document.getElementById('vendor-price').textContent = `$${vendor.price}`;
+            document.getElementById('vendor-address').textContent = vendor.address;
+            document.getElementById('vendor-reviews').textContent = vendor.reviews.join(', ');
+            document.getElementById('vendor-details').style.display = 'block'; // Show vendor details
+        }
     </script>
 </body>
 
