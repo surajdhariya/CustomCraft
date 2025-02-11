@@ -1,8 +1,11 @@
 
 body{
     background-color: #F6E7DA;
-
-  
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 
@@ -286,3 +289,47 @@ body {
 
 
 
+
+  /* footer  */
+  .footer {
+  width: 100vw;
+    background-color: #FFB473;
+   
+  color: black;
+  padding: 50px 20px;
+  font-family: "Urbanist", sans-serif;
+
+  box-sizing: border-box;
+  bottom: 0;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+  color: black;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+.social-icons a img {
+  width: 24px;
+  height: 24px;
+}
