@@ -117,7 +117,7 @@ transition: 0.5s;
     margin: auto;
     position: relative;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 12px;
     box-shadow: aqua;
     box-shadow: 0px 4px 6px -1px;
 
@@ -191,7 +191,7 @@ transition: 0.5s;
     height: 10px;
     background-color: #fff;
     margin: 10px;
-    border-radius: 20px;
+    border-radius: 24px;
     transition: 0.9s;
 }
 .slider .dots li.active{
@@ -244,7 +244,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     padding: 20px;
     font-family: "Urbanist", sans-serif;
 
@@ -252,10 +252,10 @@ body {
 
   .card {
     background-color: white;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 24px;
+    padding: 50px;
     text-align: center;
-    box-shadow: 0 2px 4px ;
+    /* box-shadow: 0 0.5px 0.5px ; */
     width: 300px;
   }
 
@@ -270,9 +270,9 @@ body {
     color: white;
     padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 16px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 50px;
     transition: background-color 0.3s ease;
     margin-top: 20px;
   }
@@ -290,46 +290,162 @@ body {
 
 
 
-  /* footer  */
-  .footer {
-  width: 100vw;
-    background-color: #FFB473;
-   
-  color: black;
-  padding: 50px 20px;
-  font-family: "Urbanist", sans-serif;
-
-  box-sizing: border-box;
-  bottom: 0;
-}
-
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.footer-section {
-  flex: 1;
-  min-width: 250px;
-  padding: 0 20px;
-}
-
-.footer-bottom {
+/* prebuild products */
+.pbp-container {
+  width: 90%;
+  margin: auto;
+  padding: 20px 0;
   text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #444;
-  font-size: 14px;
-  color: black;
+}
+.products-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.products-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.products {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.product {
+  width: 200px;
+  margin-left: 25px;
+margin-right: 25px;
+  text-align: center;
+  flex-shrink: 0;
+  border: 2px solid black;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 24px;
+  
+}
+.product img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: auto;
+}
+.navigation {
+  margin-top: 20px;
+}
+.nav-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.social-icons a {
-  margin-right: 10px;
-}
 
-.social-icons a img {
-  width: 24px;
-  height: 24px;
-}
+
+
+
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+} */
+        footer {
+          background-color:#FFB473;
+          ;
+          color: black;
+          padding: 0px 0;
+          text-align: center;
+    font-family: "Urbanist", sans-serif;
+    /* border-radius: 24px; */
+    border-start-start-radius: 24px;
+    border-top-right-radius: 24px;
+
+
+
+      }
+
+      .footer-container {
+          width: 1479px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+
+      .footer-content {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          margin-bottom: 15px;
+      }
+
+      .footer-content div {
+          flex: 1;
+          padding: 10px;
+          min-width: 200px;
+
+      }
+
+      .footer-content h3 {
+          font-size: 18px;
+          margin-bottom: 10px;
+          font-weight: bold;
+          text-transform: uppercase;
+      }
+
+      .footer-content p {
+          font-size: 15px;
+          line-height: 1.4;
+      }
+
+      .footer-content ul {
+          list-style: none;
+          padding: 0;
+      }
+
+      .footer-content ul li {
+          margin-bottom: 12px;
+      }
+
+      .footer-content ul li a {
+          color: black;
+          text-decoration: none;
+          font-size: 20px;
+          transition: color 0.3s ease;
+      }
+
+      .footer-content ul li a:hover {
+          color: white;
+      }
+
+      .social-icons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .social-icons a {
+          margin: 0 8px;
+          font-size: 16px;
+          color: black;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+
+
+      .social-icons a:hover {
+          color: #f39c12;
+      }
+
+      .footer-bottom {
+          /* border-top: 0.5px solid black; */
+          padding: 1px 0;
+          font-size: 12px;
+          color: black;
+      }
+
+      .footer-bottom p {
+          margin: 0;
+      }

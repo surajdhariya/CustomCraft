@@ -40,3 +40,41 @@ window.onresize = function(event) {
 
 
 
+
+
+// prebuild proudcts
+function scrollLeft() {
+    var container = document.getElementById('scroll-container');
+    // Get the current scroll position
+    var currentScroll = container.scrollLeft;
+    // Get the scroll width of the container
+    var scrollWidth = container.scrollWidth;
+    // Get the visible width of the container
+    var clientWidth = container.clientWidth;
+
+    if (currentScroll <= 0) {
+        // If already at the leftmost, scroll to the rightmost
+        container.scrollLeft = scrollWidth;
+    } else {
+        // Otherwise scroll left by 200px
+        container.scrollLeft -= 200;
+    }
+}
+
+function scrollRight() {
+    var container = document.getElementById('scroll-container');
+    // Get the current scroll position
+    var currentScroll = container.scrollLeft;
+    // Get the scroll width of the container
+    var scrollWidth = container.scrollWidth;
+    // Get the visible width of the container
+    var clientWidth = container.clientWidth;
+
+    if (currentScroll + clientWidth >= scrollWidth) {
+        // If at the rightmost, scroll to the leftmost
+        container.scrollLeft = 0;
+    } else {
+        // Otherwise scroll right by 200px
+        container.scrollLeft += 200;
+    }
+}
