@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Vendor</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file -->
+</head>
+<body>
+    <h1>Vendor Selection</h1>
+
+    <!-- Device Specifications -->
+    <div id="device-specs">
+        <h2>Your Selected Device</h2>
+        <p><strong>Device:</strong> <span id="spec-device"></span></p>
+        <p><strong>Screen Size:</strong> <span id="spec-screenSize"></span></p>
+        <p><strong>Processor:</strong> <span id="spec-processor"></span></p>
+        <p><strong>RAM:</strong> <span id="spec-ram"></span></p>
+        <p><strong>Storage:</strong> <span id="spec-storage"></span></p>
+        <p><strong>Operating System:</strong> <span id="spec-os"></span></p>
+    </div>
+
+    <!-- Vendor List -->
+    <div id="vendor-list">
+        <h2>Available Vendors</h2>
+        <ul id="vendors"></ul>
+    </div>
+
+    <!-- Selected Vendor Details -->
+    <div id="vendor-details">
+        <h2>Selected Vendor</h2>
+        <p><strong>Name:</strong> <span id="vendor-name"></span></p>
+        <p><strong>Location:</strong> <span id="vendor-location"></span></p>
+        <p><strong>Price:</strong> <span id="vendor-price"></span></p>
+    </div>
+
+    <!-- Proceed Button -->
+    <button id="proceed-button">Proceed to Cart</button>
+
+    <script>
+       document.addEventListener("DOMContentLoaded", async function() {
+    console.log("Checking localStorage:", localStorage.getItem("selectedSpecs")); // Debugging log
+
+    const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
+    
+    if (!selectedSpecs) {
+        alert("⚠️ No device selected! Redirecting...");
+        window.location.href = "Build.html";
+        return;
+    }
+
+    // Display selected device specifications
+    document.getElementById("spec-device").textContent = selectedSpecs.device || "Not selected";
+    document.getElementById("spec-screenSize").textContent = selectedSpecs.screenSize || "Not selected";
+    document.getElementById("spec-processor").textContent = selectedSpecs.processor || "Not selected";
+    document.getElementById("spec-ram").textContent = selectedSpecs.ram || "Not selected";
+    document.getElementById("spec-storage").textContent = selectedSpecs.storage || "Not selected";
+    document.getElementById("spec-os").textContent = selectedSpecs.os || "Not selected";
+
+    // Fetch vendors from backend
+    try {
+        const response = await fetch('/getVendors', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(selectedSpecs)
+        });
+
+        const vendors = await response.json();
+        console.log("Vendors received:", vendors); // Debugging log
+
+        // Display vendor list
+        const vendorList = document.getElementById("vendors");
+        vendorList.innerHTML = ""; // Clear previous vendors
+
+        vendors.forEach(vendor => {
+            const li = document.createElement("li");
+            li.textContent = `${vendor.name} - ₹${vendor.price}`;
+            li.addEventListener("click", () => selectVendor(vendor));
+            vendorList.appendChild(li);
+        });
+
+    } catch (error) {
+        console.error("❌ Error fetching vendors:", error);
+    }
+});
+
+    </script>
+</body>
+</html>
