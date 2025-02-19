@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vendor Selection - CustomCraft</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: "Urbanist", sans-serif;
@@ -15,119 +14,186 @@
             padding: 20px;
         }
 
-        .container {
+        .cart-container {
             display: flex;
-            justify-content: space-between;
-        }
-
-        .specifications, .vendor-list {
-            width: 48%;
-            background: white;
+            flex-direction: column;
+            background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
         }
 
-        .vendor-item {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            margin: 10px 0;
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .cart-item img {
+            width: 120px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff4d00;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-control button {
+            padding: 5px 10px;
+            border: none;
+            background: #FFB473;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 16px;
         }
 
-        .vendor-item:hover {
-            background-color: #FFB473;
-        }
-
-        .vendor-details {
+        .promo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 20px;
+        }
+
+        .promo-container input {
             padding: 10px;
-            border: 1px solid #ddd;
+            width: 200px;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 250px;
+            margin: 20px auto;
+            padding: 12px;
+            background: #FFB473;
+            border: none;
             border-radius: 4px;
-            background-color: #f9f9f9;
-            display: none; /* Initially hidden */
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .checkout-button:hover {
+            background: #ff973c;
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <!-- Left Side: Selected Specifications -->
-        <div class="specifications">
-            <h2>Your Selected Specifications</h2>
-            <p><strong>Device:</strong> <span id="selected-device">None</span></p>
-            <p><strong>Screen Size:</strong> <span id="selected-screen-size">None</span></p>
-            <p><strong>Processor:</strong> <span id="selected-processor">None</span></p>
-            <p><strong>RAM:</strong> <span id="selected-ram">None</span></p>
-            <p><strong>Storage:</strong> <span id="selected-storage">None</span></p>
-            <p><strong>Operating System:</strong> <span id="selected-os">None</span></p>
+    <h1 style="text-align: center;">Shopping Cart</h1>
+    <div class="cart-container">
+        <div class="cart-item">
+            <img id="spec-image" src="" alt="Selected Device Image">
+            <div>
+                <p><strong>Device:</strong> <span id="spec-device"></span></p>
+                <p><strong>Processor:</strong> <span id="spec-processor"></span></p>
+                <p><strong>RAM:</strong> <span id="spec-ram"></span></p>
+                <p><strong>Storage:</strong> <span id="spec-storage"></span></p>
+                <p><strong>OS:</strong> <span id="spec-os"></span></p>
+            </div>
+            <p class="price" id="vendor-price">₹0.00</p>
         </div>
 
-        <!-- Right Side: Vendor List -->
-        <div class="vendor-list">
-            <h2>Available Vendors</h2>
-            <div id="vendor-list">
-                <!-- Vendor items will be populated here -->
+        <div class="cart-item">
+            <div>
+                <p><strong>Vendor:</strong> <span id="vendor-name"></span></p>
+                <p><strong>About:</strong> <span id="vendor-about"></span></p>
+                <p><strong>Address:</strong> <span id="vendor-address"></span></p>
             </div>
         </div>
-    </div>
 
-    <!-- Vendor Details Section -->
-    <div class="vendor-details" id="vendor-details">
-        <h3>Vendor Information</h3>
-        <p><strong>Name:</strong> <span id="vendor-name"></span></p>
-        <p><strong>Rating:</strong> <span id="vendor-rating"></span></p>
-        <p><strong>Price:</strong> <span id="vendor-price"></span></p>
-        <p><strong>Address:</strong> <span id="vendor-address"></span></p>
-        <p><strong>Reviews:</strong> <span id="vendor-reviews"></span></p>
+        <div class="promo-container">
+            <input type="text" id="promo-code" placeholder="Enter Promo Code">
+            <button onclick="applyPromoCode()">Apply</button>
+        </div>
+
+        <!-- Display normal price, discount, delivery charge, and final price -->
+        <div class="cart-item">
+            <p>Normal Price: ₹<span id="normal-price">0.00</span></p>
+            <p>Discount: ₹<span id="discount">0.00</span></p>
+            <p>Delivery Charges: ₹<span id="delivery-charges">200.00</span></p>
+        </div>
+
+        <p class="price" id="final-price">Final Price: ₹0.00</p>
+        <button class="checkout-button" onclick="checkout()">Proceed to Checkout</button>
     </div>
 
     <script>
-        // Fetch selected specifications from local storage
-        const selectedSpecs = JSON.parse(localStorage.getItem('selectedSpecs')) || {
-            device: 'None',
-            screenSize : 'None',
-            processor: 'None',
-            ram: 'None',
-            storage: 'None',
-            os: 'None',
-        };
+        let basePrice, discount, deliveryCharges = 200;
 
-        // Populate selected specifications
-        document.getElementById('selected-device').textContent = selectedSpecs.device;
-        document.getElementById('selected-screen-size').textContent = selectedSpecs.screenSize;
-        document.getElementById('selected-processor').textContent = selectedSpecs.processor;
-        document.getElementById('selected-ram').textContent = selectedSpecs.ram;
-        document.getElementById('selected-storage').textContent = selectedSpecs.storage;
-        document.getElementById('selected-os').textContent = selectedSpecs.os;
+document.addEventListener("DOMContentLoaded", function () {
+    const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
+    const selectedVendor = JSON.parse(localStorage.getItem("selectedVendor"));
 
-        // Fetch vendor data from the backend
-        fetch('/getVendors') // Ensure this endpoint is set up in your backend
-            .then(response => response.json())
-            .then(vendors => {
-                const vendorList = document.getElementById('vendor-list');
-                vendors.forEach(vendor => {
-                    const vendorItem = document.createElement('div');
-                    vendorItem.className = 'vendor-item';
-                    vendorItem.textContent = `${vendor.name} - $${vendor.price}`;
-                    vendorItem.addEventListener('click', () => displayVendorDetails(vendor));
-                    vendorList.appendChild(vendorItem);
-                });
-            })
-            .catch(error => console.error('Error fetching vendors:', error));
+    if (!selectedSpecs || !selectedVendor) {
+        alert("⚠️ No items in the cart! Redirecting...");
+        window.location.href = "Build.html";
+        return;
+    }
 
-        // Function to display vendor details
-        function displayVendorDetails(vendor) {
-            document.getElementById('vendor-name').textContent = vendor.name;
-            document.getElementById('vendor-rating').textContent = vendor.rating;
-            document.getElementById('vendor-price').textContent = `$${vendor.price}`;
-            document.getElementById('vendor-address').textContent = vendor.address;
-            document.getElementById('vendor-reviews').textContent = vendor.reviews.join(', ');
-            document.getElementById('vendor-details').style.display = 'block'; // Show vendor details
-        }
+    // Populate the cart with the selected specifications and vendor details
+    document.getElementById("spec-device").textContent = selectedSpecs.device;
+    document.getElementById("spec-processor").textContent = selectedSpecs.processor;
+    document.getElementById("spec-ram").textContent = selectedSpecs.ram;
+    document.getElementById("spec-storage").textContent = selectedSpecs.storage;
+    document.getElementById("spec-os").textContent = selectedSpecs.os;
+
+    const deviceImages = {
+        computer: '../img/coding.png',
+        smartphone: '../img/phone.png',
+        tablet: '../img/ipad.png',
+    };
+    document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
+
+    // Populate the vendor details
+    document.getElementById("vendor-name").textContent = selectedVendor.name;
+    document.getElementById("vendor-about").textContent = selectedVendor.about;
+    document.getElementById("vendor-address").textContent = selectedVendor.address;
+
+    // Set base price and update UI
+    basePrice = parseFloat(selectedVendor.price.replace(/₹/, ""));
+    discount = 0; // No discount initially
+    updateCartUI();
+});
+
+function applyPromoCode() {
+    const promoCode = document.getElementById("promo-code").value;
+    if (promoCode === "customcraft") {
+        discount = basePrice * 0.10; // Apply 10% discount
+        alert("✅ Promo code applied! 10% discount added.");
+    } else {
+        alert("❌ Invalid promo code");
+    }
+    updateCartUI();
+}
+
+function updateCartUI() {
+    // Calculate final price with delivery charges and discount
+    let finalPrice = basePrice - discount + deliveryCharges;
+    if (isNaN(finalPrice)) finalPrice = 0; // Prevent NaN result
+
+    // Update the UI with prices
+    document.getElementById("normal-price").textContent = basePrice.toFixed(2);
+    document.getElementById("discount").textContent = discount.toFixed(2);
+    document.getElementById("delivery-charges").textContent = deliveryCharges.toFixed(2);
+    document.getElementById("final-price").textContent = "Final Price: ₹" + finalPrice.toFixed(2);
+    document.getElementById("vendor-price").textContent = "₹" + basePrice.toFixed(2);  // Show the base price
+}
+
+function checkout() {
+    alert("Proceeding to payment...");
+}
+
     </script>
 </body>
-
 </html>

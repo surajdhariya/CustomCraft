@@ -4,101 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Vendor</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Urbanist", sans-serif;
+            background-color: #F6E7DA;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        #device-specs, #vendor-list {
+            width: 48%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #vendor-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+
+        #vendor-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #vendor-list li {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: background 0.3s ease;
+        }
+
+        #vendor-list li:hover {
+            background: #FFB473;
+            color: black;
+        }
+
+        #vendor-details {
+            margin: 20px auto;
+            width: 80%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .proceed-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background: #FFB473;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .proceed-button:hover {
+            background: #ff973c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Vendor Selection</h1>
-
-    <!-- Device Specifications -->
-    <div id="device-specs">
-        <h2>Your Selected Device</h2>
-        <img id="spec-image" src="" alt="Selected Device Image" style="width: 200px; height: auto;"> 
-        <p><strong>Device:</strong> <span id="spec-device"></span></p>
-        <p><strong>Screen Size:</strong> <span id="spec-screenSize"></span></p>
-        <p><strong>Processor:</strong> <span id="spec-processor"></span></p>
-        <p><strong>RAM:</strong> <span id="spec-ram"></span></p>
-        <p><strong>Storage:</strong> <span id="spec-storage"></span></p>
-        <p><strong>Operating System:</strong> <span id="spec-os"></span></p>
+    <h1 style="text-align: center; font-size: 28px;">Vendor Selection</h1>
+    <div class="container">
+        <div id="device-specs">
+            <h2>Your Selected Device</h2>
+            <img id="spec-image" src="" alt="Selected Device Image" style="width: 200px; height: auto;">
+            <p><strong>Device:</strong> <span id="spec-device"></span></p>
+            <p><strong>Screen Size:</strong> <span id="spec-screenSize"></span></p>
+            <p><strong>Processor:</strong> <span id="spec-processor"></span></p>
+            <p><strong>RAM:</strong> <span id="spec-ram"></span></p>
+            <p><strong>Storage:</strong> <span id="spec-storage"></span></p>
+            <p><strong>Operating System:</strong> <span id="spec-os"></span></p>
+        </div>
+        
+        <div id="vendor-list">
+            <h2>Available Vendors</h2>
+            <ul id="vendors"></ul>
+        </div>
     </div>
 
-    <!-- Vendor List -->
-    <div id="vendor-list">
-        <h2>Available Vendors</h2>
-        <ul id="vendors"></ul>
-    </div>
-
-    <!-- Selected Vendor Details -->
     <div id="vendor-details">
         <h2>Selected Vendor</h2>
-        <img id="vendor-image" src="" alt="Vendor Image" width="150">
         <p><strong>Name:</strong> <span id="vendor-name"></span></p>
-        <p><strong>Location:</strong> <span id="vendor-location"></span></p>
-        <p><strong>Price:</strong> <span id="vendor-price"></span></p>
         <p><strong>About:</strong> <span id="vendor-about"></span></p>
-        <h3>Reviews:</h3>
-        <ul id="vendor-reviews"></ul> <!-- Added missing review list -->
+        <p><strong>Address:</strong> <span id="vendor-address"></span></p>
+        <p><strong>Price:</strong> <span id="vendor-price"></span></p>
+        <p><strong>Reviews:</strong></p>
+        <ul id="vendor-reviews"></ul>
     </div>
 
-    <!-- Proceed Button -->
-    <button id="proceed-button">Proceed to Cart</button>
+    <button id="proceed-button" class="proceed-button">Proceed to Cart</button>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async function () {
-            console.log("Checking localStorage:", localStorage.getItem("selectedSpecs"));
-
+        document.addEventListener("DOMContentLoaded", function () {
             const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
-
             if (!selectedSpecs) {
                 alert("⚠️ No device selected! Redirecting...");
                 window.location.href = "Build.html";
                 return;
             }
-
-            // Display selected device specifications
+            
             document.getElementById("spec-device").textContent = selectedSpecs.device || "Not selected";
             document.getElementById("spec-screenSize").textContent = selectedSpecs.screenSize || "Not selected";
             document.getElementById("spec-processor").textContent = selectedSpecs.processor || "Not selected";
             document.getElementById("spec-ram").textContent = selectedSpecs.ram || "Not selected";
             document.getElementById("spec-storage").textContent = selectedSpecs.storage || "Not selected";
             document.getElementById("spec-os").textContent = selectedSpecs.os || "Not selected";
-
-            // Device images from Build.html
+            
             const deviceImages = {
                 computer: '../img/coding.png',
                 smartphone: '../img/phone.png',
                 tablet: '../img/ipad.png',
             };
-
-            // Display selected device image
+            
             document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
-            document.getElementById("spec-image").alt = selectedSpecs.device + " Image";
 
-            // Fetch vendors from backend
-            try {
-                const response = await fetch("/getVendors");
-                const vendors = await response.json();
+            const vendors = [
+                { name: "Vendor 1", about: "High-quality products", address: "Mumbai", reviews: ["Great service!", "Affordable prices."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 2", about: "Reliable and trusted", address: "Delhi", reviews: ["Fast delivery!", "Good customer support."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 3", about: "Best in market", address: "Bangalore", reviews: ["Amazing experience!", "Would buy again."], price: Math.floor(Math.random() * 50000) + 10000 }
+            ];
 
-                const vendorList = document.getElementById("vendors");
-                vendors.forEach((vendor) => {
-                    const li = document.createElement("li");
-                    li.textContent = `${vendor.name} - ₹${vendor.price}`;
-                    li.addEventListener("click", () => showVendorDetails(vendor));
-                    vendorList.appendChild(li);
-                });
-            } catch (error) {
-                console.error("Error fetching vendors:", error);
-            }
+            const vendorList = document.getElementById("vendors");
+            vendors.forEach((vendor) => {
+                const li = document.createElement("li");
+                li.textContent = `${vendor.name} - ₹${vendor.price}`;
+                li.addEventListener("click", () => showVendorDetails(vendor));
+                vendorList.appendChild(li);
+            });
         });
 
         function showVendorDetails(vendor) {
             document.getElementById("vendor-name").textContent = vendor.name;
-            document.getElementById("vendor-location").textContent = vendor.address;
-            document.getElementById("vendor-price").textContent = `₹${vendor.price}`;
             document.getElementById("vendor-about").textContent = vendor.about;
-            document.getElementById("vendor-image").src = vendor.image || "default.jpg";
-
+            document.getElementById("vendor-address").textContent = vendor.address;
+            document.getElementById("vendor-price").textContent = `₹${vendor.price}`; // Display the price
+            
             const reviewsList = document.getElementById("vendor-reviews");
-            reviewsList.innerHTML = ""; // Clear previous reviews
+            reviewsList.innerHTML = "";
             vendor.reviews.forEach((review) => {
                 const li = document.createElement("li");
                 li.textContent = review;
@@ -109,11 +167,10 @@
         document.getElementById("proceed-button").addEventListener("click", () => {
             const selectedVendor = {
                 name: document.getElementById("vendor-name").textContent,
-                image: document.getElementById("vendor-image").src,
-                price: document.getElementById("vendor-price").textContent,
-                address: document.getElementById("vendor-location").textContent
+                about: document.getElementById("vendor-about").textContent,
+                address: document.getElementById("vendor-address").textContent,
+                price: document.getElementById("vendor-price").textContent // Include the price
             };
-
             localStorage.setItem("selectedVendor", JSON.stringify(selectedVendor));
             window.location.href = "cart.html";
         });
