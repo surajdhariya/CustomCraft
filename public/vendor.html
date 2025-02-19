@@ -93,6 +93,12 @@
             border-radius: 8px;
         }
 
+        .message {
+            color: red;
+            text-align: center;
+            margin: 10px 0;
+        }
+
         .specification-text {
             font-size: 16px;
             line-height: 1.5;
@@ -125,14 +131,18 @@
         </div>
     </div>
 
+    <div class="message" id="message"></div> <!-- Message area -->
+
     <button id="proceed-button" class="proceed-button">Proceed to Cart</button>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
             if (!selectedSpecs) {
-                alert("⚠️ No device selected! Redirecting...");
-                window.location.href = "Build.html";
+                document.getElementById("message").textContent = "⚠️ No device selected! Redirecting...";
+                setTimeout(() => {
+                    window.location.href = "Build.html";
+                }, 2000);
                 return;
             }
             
@@ -170,6 +180,7 @@
                 li.addEventListener("click", () => {
                     showVendorDetails(vendor);
                     highlightSelectedVendor(li);
+                    document.getElementById("message").textContent = ""; // Clear any previous messages
                 });
                 vendorList.appendChild(li);
             });
@@ -199,8 +210,14 @@
         }
 
         document.getElementById("proceed-button").addEventListener("click", () => {
+            const selectedVendorName = document.getElementById("vendor-name").textContent;
+            if (!selectedVendorName) {
+                document.getElementById("message").textContent = "⚠️ Please select a vendor to proceed.";
+                return; // Prevent proceeding if no vendor is selected
+            }
+
             const selectedVendor = {
-                name: document.getElementById("vendor-name").textContent,
+                name: selectedVendorName,
                 about: document.getElementById("vendor-about").textContent,
                 address: document.getElementById("vendor-address").textContent,
                 price: document.getElementById("vendor-price").textContent // Include the price
