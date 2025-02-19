@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Vendor</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body {
@@ -21,12 +20,19 @@
             gap: 20px;
         }
 
-        #device-specs, #vendor-list {
-            width: 48%;
+        .section {
+            flex: 1; /* Allow sections to grow equally */
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 400px; /* Set a fixed height for uniformity */
+        }
+
+        #device-specs {
+            height: auto; /* Allow height to adjust based on content */
         }
 
         #vendor-list {
@@ -52,13 +58,13 @@
             color: black;
         }
 
+        .selected {
+            background: #FFB473; /* Highlight selected vendor */
+            color: black;
+        }
+
         #vendor-details {
-            margin: 20px auto;
-            width: 80%;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow vendor details to grow */
         }
 
         .proceed-button {
@@ -76,36 +82,47 @@
         .proceed-button:hover {
             background: #ff973c;
         }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 10px;
+            border-radius: 8px;
+        }
+
+        .specification-text {
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; font-size: 28px;">Vendor Selection</h1>
+    <h1>Vendor Selection</h1>
     <div class="container">
-        <div id="device-specs">
+        <div id="device-specs" class="section">
             <h2>Your Selected Device</h2>
             <img id="spec-image" src="" alt="Selected Device Image" style="width: 200px; height: auto;">
-            <p><strong>Device:</strong> <span id="spec-device"></span></p>
-            <p><strong>Screen Size:</strong> <span id="spec-screenSize"></span></p>
-            <p><strong>Processor:</strong> <span id="spec-processor"></span></p>
-            <p><strong>RAM:</strong> <span id="spec-ram"></span></p>
-            <p><strong>Storage:</strong> <span id="spec-storage"></span></p>
-            <p><strong>Operating System:</strong> <span id="spec-os"></span></p>
+            <p class="specification-text" id="specification-text"></p>
         </div>
         
-        <div id="vendor-list">
+        <div id="vendor-list" class="section">
             <h2>Available Vendors</h2>
             <ul id="vendors"></ul>
         </div>
-    </div>
-
-    <div id="vendor-details">
-        <h2>Selected Vendor</h2>
-        <p><strong>Name:</strong> <span id="vendor-name"></span></p>
-        <p><strong>About:</strong> <span id="vendor-about"></span></p>
-        <p><strong>Address:</strong> <span id="vendor-address"></span></p>
-        <p><strong>Price:</strong> <span id="vendor-price"></span></p>
-        <p><strong>Reviews:</strong></p>
-        <ul id="vendor-reviews"></ul>
+        
+        <div id="vendor-details" class="section">
+            <h2>Selected Vendor</h2>
+            <p><strong>Name:</strong> <span id="vendor-name"></span></p>
+            <p><strong>About:</strong> <span id="vendor-about"></span></p>
+            <p><strong>Address:</strong> <span id="vendor-address"></span></p>
+            <p><strong>Price:</strong> <span id="vendor-price"></span></p>
+            <p><strong>Reviews:</strong></p>
+            <ul id="vendor-reviews"></ul>
+        </div>
     </div>
 
     <button id="proceed-button" class="proceed-button">Proceed to Cart</button>
@@ -119,13 +136,10 @@
                 return;
             }
             
-            document.getElementById("spec-device").textContent = selectedSpecs.device || "Not selected";
-            document.getElementById("spec-screenSize").textContent = selectedSpecs.screenSize || "Not selected";
-            document.getElementById("spec-processor").textContent = selectedSpecs.processor || "Not selected";
-            document.getElementById("spec-ram").textContent = selectedSpecs.ram || "Not selected";
-            document.getElementById("spec-storage").textContent = selectedSpecs.storage || "Not selected";
-            document.getElementById("spec-os").textContent = selectedSpecs.os || "Not selected";
-            
+            // Construct the specification sentence
+            const specificationSentence = `${selectedSpecs.device}, ${selectedSpecs.processor}, ${selectedSpecs.screenSize}, ${selectedSpecs.ram} RAM, ${selectedSpecs.storage} Storage, ${selectedSpecs.os}`;
+            document.getElementById("specification-text").textContent = specificationSentence;
+
             const deviceImages = {
                 computer: '../img/coding.png',
                 smartphone: '../img/phone.png',
@@ -135,16 +149,28 @@
             document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
 
             const vendors = [
-                { name: "Vendor 1", about: "High-quality products", address: "Mumbai", reviews: ["Great service!", "Affordable prices."], price: Math.floor(Math.random() * 50000) + 10000 },
-                { name: "Vendor 2", about: "Reliable and trusted", address: "Delhi", reviews: ["Fast delivery!", "Good customer support."], price: Math.floor(Math.random() * 50000) + 10000 },
-                { name: "Vendor 3", about: "Best in market", address: "Bangalore", reviews: ["Amazing experience!", "Would buy again."], price: Math.floor(Math.random() * 50000) + 10000 }
+                { name: "Vendor 1", about: "High-quality products with excellent customer service.", address: "Mumbai", reviews: ["Great service!", "Affordable prices."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 2", about: "Reliable and trusted vendor with a wide range of products.", address: "Delhi", reviews: ["Fast delivery!", "Good customer support."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 3", about: "Best in market with competitive pricing.", address: "Bangalore", reviews: ["Amazing experience!", "Would buy again."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 4", about: "Known for their premium quality and durability.", address: "Chennai", reviews: ["Excellent quality!", "Highly recommend."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 5", about: "Offers a variety of products at great prices.", address: "Kolkata", reviews: ["Very satisfied!", "Quick response."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 6", about: "Customer-centric approach with a focus on quality.", address: "Hyderabad", reviews: ["Fantastic service!", "Will buy again."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 7", about: "Innovative products with cutting-edge technology.", address: "Ahmedabad", reviews: ["Top-notch quality!", "Great value for money."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 8", about: "Trusted by thousands of customers for their reliability.", address: "Pune", reviews: ["Very reliable!", "Excellent support."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 9", about: "Specializes in high-end products with premium features.", address: "Jaipur", reviews: ["Luxury experience!", "Worth every penny."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 10", about: "Affordable options without compromising on quality.", address: "Surat", reviews: ["Great deals!", "Happy with my purchase."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 11", about: "Expert in electronics with a vast selection.", address: "Lucknow", reviews: ["Knowledgeable staff!", "Helpful and friendly."], price: Math.floor(Math.random() * 50000) + 10000 },
+                { name: "Vendor 12", about: "Offers exclusive products that are hard to find elsewhere.", address: "Indore", reviews: ["Unique items!", "Very pleased."], price: Math.floor(Math.random() * 50000) + 10000 }
             ];
 
             const vendorList = document.getElementById("vendors");
             vendors.forEach((vendor) => {
                 const li = document.createElement("li");
                 li.textContent = `${vendor.name} - ₹${vendor.price}`;
-                li.addEventListener("click", () => showVendorDetails(vendor));
+                li.addEventListener("click", () => {
+                    showVendorDetails(vendor);
+                    highlightSelectedVendor(li);
+                });
                 vendorList.appendChild(li);
             });
         });
@@ -164,6 +190,14 @@
             });
         }
 
+        function highlightSelectedVendor(selectedLi) {
+            const vendorListItems = document.querySelectorAll("#vendor-list li");
+            vendorListItems.forEach(li => {
+                li.classList.remove("selected"); // Remove highlight from all
+            });
+            selectedLi.classList.add("selected"); // Highlight the selected vendor
+        }
+
         document.getElementById("proceed-button").addEventListener("click", () => {
             const selectedVendor = {
                 name: document.getElementById("vendor-name").textContent,
@@ -172,7 +206,7 @@
                 price: document.getElementById("vendor-price").textContent // Include the price
             };
             localStorage.setItem("selectedVendor", JSON.stringify(selectedVendor));
-            window.location.href = "cart.html";
+            window.location.href = "cart.html"; // Navigate to the cart page
         });
     </script>
 </body>
