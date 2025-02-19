@@ -27,17 +27,25 @@
 
         .cart-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            gap: 15px;
+            gap: 20px;
             border-bottom: 1px solid #ddd;
             padding: 15px 0;
         }
 
-        .cart-item img {
+        .device-info, .vendor-info, .price-info {
+            flex: 1;
+        }
+
+        .device-info img {
             width: 120px;
             height: auto;
             border-radius: 8px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
         }
 
         .price {
@@ -62,14 +70,15 @@
 
         .promo-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             margin-top: 20px;
         }
 
         .promo-container input {
             padding: 10px;
             width: 200px;
+            margin-bottom: 10px;
         }
 
         .checkout-button {
@@ -87,113 +96,218 @@
         .checkout-button:hover {
             background: #ff973c;
         }
+
+        .pricing-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align to the right */
+            margin-top: 20px;
+        }
+
+        .pricing-details p {
+            margin: 5px 0; /* Add some spacing between price elements */
+        }
+
+        .address-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .address-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .payment-methods {
+            margin-top: 10px;
+        }
+
+        .payment-methods label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1 style="text-align: center;">Shopping Cart</h1>
     <div class="cart-container">
         <div class="cart-item">
-            <img id="spec-image" src="" alt="Selected Device Image">
-            <div>
+            <div class="device-info">
+                <h3>Device Specifications</h3>
+                <img id="spec-image" src="" alt="Selected Device Image">
                 <p><strong>Device:</strong> <span id="spec-device"></span></p>
                 <p><strong>Processor:</strong> <span id="spec-processor"></span></p>
                 <p><strong>RAM:</strong> <span id="spec-ram"></span></p>
                 <p><strong>Storage:</strong> <span id="spec-storage"></span></p>
                 <p><strong>OS:</strong> <span id="spec-os"></span></p>
             </div>
-            <p class="price" id="vendor-price">₹0.00</p>
-        </div>
-
-        <div class="cart-item">
-            <div>
+            <div class="vendor-info">
+                <h3>Vendor Information</h3>
                 <p><strong>Vendor:</strong> <span id="vendor-name"></span></p>
                 <p><strong>About:</strong> <span id="vendor-about"></span></p>
                 <p><strong>Address:</strong> <span id="vendor-address"></span></p>
             </div>
+            <div class="price-info">
+                <h3>Price Information</h3>
+                <p class="price" id="vendor-price">₹0.00</p>
+                <div class="quantity-control">
+                    <button id="decrease-quantity">-</button>
+                    <span id="quantity">1</span>
+                    <button id="increase-quantity">+</button>
+                </div>
+                <div class="promo-container">
+                    <input type="text" id="promo-code" placeholder="Enter Promo Code">
+                    <button onclick="applyPromoCode()">Apply</button>
+                </div>
+                <div class="promom" id="promom"></div>
+                <div class="pricing-details">
+                    <p>Normal Price: ₹<span id="normal-price">0.00</span></p>
+                    <p>Discount: ₹<span id="discount">0.00</span></p>
+                    <p>Delivery Charges: ₹<span id="delivery-charges">200.00</span></p>
+                    <p class="price" id="final-price">Final Price: ₹0.00</p>
+                </div>
+            </div>
         </div>
 
-        <div class="promo-container">
-            <input type="text" id="promo-code" placeholder="Enter Promo Code">
-            <button onclick="applyPromoCode()">Apply</button>
+        <div class="address-container">
+            <h3>Enter Your Address</h3>
+            <input type="text" id="address" placeholder="Street Address" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="state" placeholder="State" required>
+            <input type="text" id="zip" placeholder="Zip Code" required>
         </div>
 
-        <!-- Display normal price, discount, delivery charge, and final price -->
-        <div class="cart-item">
-            <p>Normal Price: ₹<span id="normal-price">0.00</span></p>
-            <p>Discount: ₹<span id="discount">0.00</span></p>
-            <p>Delivery Charges: ₹<span id="delivery-charges">200.00</span></p>
+        <div class="payment-methods">
+            <h3>Select Payment Method</h3>
+            <label><input type="radio" name="payment-method" value="credit-card"> Credit Card</label>
+            <label><input type="radio" name="payment-method" value="debit-card"> Debit Card</label>
+            <label><input type="radio" name="payment-method" value="paypal"> PayPal</label>
+            <label><input type="radio" name="payment-method" value="cash-on-delivery"> Cash on Delivery</label>
         </div>
 
-        <p class="price" id="final-price">Final Price: ₹0.00</p>
+        <div class="message" id="message"></div>
+
         <button class="checkout-button" onclick="checkout()">Proceed to Checkout</button>
     </div>
 
     <script>
         let basePrice, discount, deliveryCharges = 200;
+        let quantity = 1;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
-    const selectedVendor = JSON.parse(localStorage.getItem("selectedVendor"));
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
+            const selectedVendor = JSON.parse(localStorage.getItem("selectedVendor"));
 
-    if (!selectedSpecs || !selectedVendor) {
-        alert("⚠️ No items in the cart! Redirecting...");
-        window.location.href = "Build.html";
+            if (!selectedSpecs || !selectedVendor) {
+                document.getElementById("message").textContent = "⚠️ No items in the cart! Redirecting...";
+                setTimeout(() => {
+                    window.location.href = "Build.html";
+                }, 2000);
+                return;
+            }
+
+            // Populate the cart with the selected specifications and vendor details
+            document.getElementById("spec-device").textContent = selectedSpecs.device;
+            document.getElementById("spec-processor").textContent = selectedSpecs.processor;
+            document.getElementById("spec-ram").textContent = selectedSpecs.ram;
+            document.getElementById("spec-storage").textContent = selectedSpecs.storage;
+            document.getElementById("spec-os").textContent = selectedSpecs.os;
+
+            const deviceImages = {
+                computer: '../img/coding.png',
+                smartphone: '../img/phone.png',
+                tablet: '../img/ipad.png',
+            };
+            document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
+
+            // Populate the vendor details
+            document.getElementById("vendor-name").textContent = selectedVendor.name;
+            document.getElementById("vendor-about").textContent = selectedVendor.about;
+            document.getElementById("vendor-address").textContent = selectedVendor.address;
+
+            // Set base price and update UI
+            basePrice = parseFloat(selectedVendor.price.replace(/₹/, ""));
+            discount = 0; // No discount initially
+            updateCartUI();
+
+            // Add event listeners for quantity control
+            document.getElementById("increase-quantity").addEventListener("click", () => {
+                quantity++;
+                updateCartUI();
+            });
+
+            document.getElementById("decrease-quantity").addEventListener("click", () => {
+                if (quantity > 1) {
+                    quantity--;
+                    updateCartUI();
+                }
+            });
+        });
+
+        function applyPromoCode() {
+            const promoCode = document.getElementById("promo-code").value;
+            if (promoCode === "customcraft") {
+                discount = basePrice * 0.10; // Apply 10% discount
+                document.getElementById("promom").textContent = "✅ Promo code applied! 10% discount added.";
+            } else {
+                document.getElementById("promom").textContent = "❌ Invalid promo code";
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Calculate total price based on quantity
+            let totalPrice = basePrice * quantity;
+            let finalPrice = totalPrice - discount + deliveryCharges;
+            if (isNaN(finalPrice)) finalPrice = 0; // Prevent NaN result
+
+            // Update the UI with prices
+            document.getElementById("normal-price").textContent = (totalPrice).toFixed(2);
+            document.getElementById("discount").textContent = discount.toFixed(2);
+            document.getElementById("delivery-charges").textContent = deliveryCharges.toFixed(2);
+            document.getElementById("final-price").textContent = "Final Price: ₹" + finalPrice.toFixed(2);
+            document.getElementById("vendor-price").textContent = "₹" + basePrice.toFixed(2);  // Show the base price
+            document.getElementById("quantity").textContent = quantity; // Update quantity display
+        }
+
+        function checkout() {
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zip = document.getElementById("zip").value;
+    const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
+
+    // Clear previous messages
+    document.getElementById("message").textContent = "";
+
+    // Validate the input fields
+    if (!address || !city || !state || !zip || !paymentMethod) {
+        document.getElementById("message").textContent = "⚠️ Please fill in all the fields before proceeding to checkout.";
         return;
     }
 
-    // Populate the cart with the selected specifications and vendor details
-    document.getElementById("spec-device").textContent = selectedSpecs.device;
-    document.getElementById("spec-processor").textContent = selectedSpecs.processor;
-    document.getElementById("spec-ram").textContent = selectedSpecs.ram;
-    document.getElementById("spec-storage").textContent = selectedSpecs.storage;
-    document.getElementById("spec-os").textContent = selectedSpecs.os;
-
-    const deviceImages = {
-        computer: '../img/coding.png',
-        smartphone: '../img/phone.png',
-        tablet: '../img/ipad.png',
+    // Store the address and payment method in local storage or session storage
+    const orderDetails = {
+        address: `${address}, ${city}, ${state}, ${zip}`,
+        paymentMethod: paymentMethod.value
     };
-    document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
+    localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
 
-    // Populate the vendor details
-    document.getElementById("vendor-name").textContent = selectedVendor.name;
-    document.getElementById("vendor-about").textContent = selectedVendor.about;
-    document.getElementById("vendor-address").textContent = selectedVendor.address;
-
-    // Set base price and update UI
-    basePrice = parseFloat(selectedVendor.price.replace(/₹/, ""));
-    discount = 0; // No discount initially
-    updateCartUI();
-});
-
-function applyPromoCode() {
-    const promoCode = document.getElementById("promo-code").value;
-    if (promoCode === "customcraft") {
-        discount = basePrice * 0.10; // Apply 10% discount
-        alert("✅ Promo code applied! 10% discount added.");
-    } else {
-        alert("❌ Invalid promo code");
-    }
-    updateCartUI();
+    // Navigate to the payment page
+    window.location.href = "payment.html"; // Change this to your actual payment page
 }
 
-function updateCartUI() {
-    // Calculate final price with delivery charges and discount
-    let finalPrice = basePrice - discount + deliveryCharges;
-    if (isNaN(finalPrice)) finalPrice = 0; // Prevent NaN result
-
-    // Update the UI with prices
-    document.getElementById("normal-price").textContent = basePrice.toFixed(2);
-    document.getElementById("discount").textContent = discount.toFixed(2);
-    document.getElementById("delivery-charges").textContent = deliveryCharges.toFixed(2);
-    document.getElementById("final-price").textContent = "Final Price: ₹" + finalPrice.toFixed(2);
-    document.getElementById("vendor-price").textContent = "₹" + basePrice.toFixed(2);  // Show the base price
-}
-
-function checkout() {
-    alert("Proceeding to payment...");
-}
-
+      
     </script>
 </body>
 </html>
