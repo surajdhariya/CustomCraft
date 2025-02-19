@@ -7,8 +7,8 @@
     <title>CustomCraft</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
     <link
-    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -164,8 +164,8 @@
         .container {
             /* max-width: 1300px; */
             margin-top: 80px;
-            padding: 20px;   
-            
+            padding: 20px;
+
             position: relative;
 
         }
@@ -182,8 +182,9 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-            max-height: 80vh; /* Limits height */
-    overflow-y: auto; 
+            max-height: 80vh;
+            /* Limits height */
+            overflow-y: auto;
 
 
         }
@@ -278,27 +279,27 @@
 
         #customMessage {
             width: 81%;
-    height: 100px;
-    border-radius: 12px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    resize: vertical;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    outline: none;
-    resize: none;
+            height: 100px;
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            resize: vertical;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            outline: none;
+            resize: none;
 
-    font-family: "Urbanist", sans-serif;
+            font-family: "Urbanist", sans-serif;
         }
 
 
-#customMessage:focus {
-    border-color:#F6E7DA;
-    background-color: #fff;
-    box-shadow: #F6E7DA;
-}
+        #customMessage:focus {
+            border-color: #F6E7DA;
+            background-color: #fff;
+            box-shadow: #F6E7DA;
+        }
 
         /* Preview Section */
         .preview-section {
@@ -306,15 +307,16 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border:0.1px solid rgb(148, 147, 147);
-    font-size: 17PX;
+            border: 0.1px solid rgb(148, 147, 147);
+            font-size: 17PX;
 
 
-    position: sticky;
-    top: 0; /* Sticks only inside the parent */
-    align-self: flex-start;
-    max-height: auto; 
-    /* overflow-y: auto; Allows scrolling inside */
+            position: sticky;
+            top: 0;
+            /* Sticks only inside the parent */
+            align-self: flex-start;
+            max-height: auto;
+            /* overflow-y: auto; Allows scrolling inside */
 
         }
 
@@ -324,7 +326,7 @@
 
         #preview p {
             margin: 10px 0;
-            
+
         }
 
         .proceed-button {
@@ -438,10 +440,10 @@
                                 <button class="spec-button" data-spec="os" data-value="linux">Linux</button>
                                 <button class="spec-button" data-spec="os" data-value="dos">DOS</button>
                             </div>
-                           <br> 
+                            <br>
                             <label for="customMessage">Custom Message (Optional):</label>
                             <div class="form-group">
-                              
+
                                 <textarea id="customMessage" class="form-control" rows="3"
                                     placeholder="Enter your message..."></textarea>
                             </div>
@@ -466,7 +468,7 @@
                             <p><strong>Storage:</strong> <span id="preview-storage">None</span></p>
                             <p><strong>Operating System:</strong> <span id="preview-os">None</span></p>
                         </div>
-                        <a ><button class="proceed-button">Proceed</button></a>
+                        <a><button class="proceed-button">Proceed</button></a>
                     </div>
                 </div>
             </div>
@@ -476,135 +478,135 @@
         <footer> unde saepe.
         </footer>
 
-            <script>
-               document.addEventListener('DOMContentLoaded', function () {
-    const deviceOptions = document.querySelectorAll('.device-option');
-    const specButtonsContainers = {
-        screenSize: document.getElementById('screen-size-buttons'),
-        processor: document.getElementById('processor-buttons'),
-        ram: document.getElementById('ram-buttons'),
-        storage: document.getElementById('storage-buttons'),
-        os: document.getElementById('os-buttons'),
-    };
-    const preview = {
-        device: document.getElementById('preview-device'),
-        screenSize: document.getElementById('preview-screen-size'),
-        processor: document.getElementById('preview-processor'),
-        ram: document.getElementById('preview-ram'),
-        storage: document.getElementById('preview-storage'),
-        os: document.getElementById('preview-os'),
-        image: document.getElementById('preview-image'),
-    };
-    const proceedButton = document.querySelector('.proceed-button');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const deviceOptions = document.querySelectorAll('.device-option');
+                const specButtonsContainers = {
+                    screenSize: document.getElementById('screen-size-buttons'),
+                    processor: document.getElementById('processor-buttons'),
+                    ram: document.getElementById('ram-buttons'),
+                    storage: document.getElementById('storage-buttons'),
+                    os: document.getElementById('os-buttons'),
+                };
+                const preview = {
+                    device: document.getElementById('preview-device'),
+                    screenSize: document.getElementById('preview-screen-size'),
+                    processor: document.getElementById('preview-processor'),
+                    ram: document.getElementById('preview-ram'),
+                    storage: document.getElementById('preview-storage'),
+                    os: document.getElementById('preview-os'),
+                    image: document.getElementById('preview-image'),
+                };
+                const proceedButton = document.querySelector('.proceed-button');
 
-    const deviceImages = {
-        computer: '../img/coding.png',
-        smartphone: '../img/phone.png',
-        tablet: '../img/ipad.png',
-    };
+                const deviceImages = {
+                    computer: '../img/coding.png',
+                    smartphone: '../img/phone.png',
+                    tablet: '../img/ipad.png',
+                };
 
-    const deviceSpecs = {
-        computer: {
-            screenSize: ['13 inch', '14 inch', '15 inch', '16 inch'],
-            processor: ['i3', 'i5', 'i7'],
-            ram: ['8GB', '16GB', '32GB', '64GB'],
-            storage: ['256GB SSD', '512GB SSD', '1TB SSD', '2TB'],
-            os: ['Windows', 'Linux', 'DOS'],
-        },
-        smartphone: {
-            screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
-            processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
-            ram: ['6GB', '8GB', '12GB'],
-            storage: ['128GB', '256GB', '512GB', '1TB'],
-            os: ['Android', 'iOS'],
-        },
-        tablet: {
-            screenSize: ['10 inch', '11 inch', '12.9 inch'],
-            processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
-            ram: ['4GB', '6GB', '8GB'],
-            storage: ['64GB', '128GB', '256GB', '1TB'],
-            os: ['Android', 'iPadOS'],
-        },
-    };
+                const deviceSpecs = {
+                    computer: {
+                        screenSize: ['13 inch', '14 inch', '15 inch', '16 inch'],
+                        processor: ['i3', 'i5', 'i7'],
+                        ram: ['8GB', '16GB', '32GB', '64GB'],
+                        storage: ['256GB SSD', '512GB SSD', '1TB SSD', '2TB'],
+                        os: ['Windows', 'Linux', 'DOS'],
+                    },
+                    smartphone: {
+                        screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
+                        processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
+                        ram: ['6GB', '8GB', '12GB'],
+                        storage: ['128GB', '256GB', '512GB', '1TB'],
+                        os: ['Android', 'iOS'],
+                    },
+                    tablet: {
+                        screenSize: ['10 inch', '11 inch', '12.9 inch'],
+                        processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
+                        ram: ['4GB', '6GB', '8GB'],
+                        storage: ['64GB', '128GB', '256GB', '1TB'],
+                        os: ['Android', 'iPadOS'],
+                    },
+                };
 
-    let selectedDevice = null;
-    let selectedSpecs = { screenSize: null, processor: null, ram: null, storage: null, os: null };
+                let selectedDevice = null;
+                let selectedSpecs = { screenSize: null, processor: null, ram: null, storage: null, os: null };
 
-    // Device Selection
-    deviceOptions.forEach(option => {
-        option.addEventListener('click', function () {
-            deviceOptions.forEach(opt => opt.classList.remove('active'));
-            this.classList.add('active');
-            selectedDevice = this.dataset.device;
-            updateSpecifications(selectedDevice);
-            updatePreview();
-        });
-    });
+                // Device Selection
+                deviceOptions.forEach(option => {
+                    option.addEventListener('click', function () {
+                        deviceOptions.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                        selectedDevice = this.dataset.device;
+                        updateSpecifications(selectedDevice);
+                        updatePreview();
+                    });
+                });
 
-    function updateSpecifications(device) {
-        for (const spec in specButtonsContainers) {
-            specButtonsContainers[spec].innerHTML = '';
-            deviceSpecs[device][spec].forEach(option => {
-                const button = document.createElement('button');
-                button.className = 'spec-button';
-                button.dataset.spec = spec;
-                button.dataset.value = option;
-                button.textContent = option;
-                specButtonsContainers[spec].appendChild(button);
+                function updateSpecifications(device) {
+                    for (const spec in specButtonsContainers) {
+                        specButtonsContainers[spec].innerHTML = '';
+                        deviceSpecs[device][spec].forEach(option => {
+                            const button = document.createElement('button');
+                            button.className = 'spec-button';
+                            button.dataset.spec = spec;
+                            button.dataset.value = option;
+                            button.textContent = option;
+                            specButtonsContainers[spec].appendChild(button);
+                        });
+                    }
+
+                    document.querySelectorAll('.spec-button').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const spec = this.dataset.spec;
+                            const value = this.dataset.value;
+                            selectedSpecs[spec] = value;
+                            updatePreview();
+                            document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
+                            this.classList.add('active');
+                        });
+                    });
+                }
+
+                function updatePreview() {
+                    preview.image.src = deviceImages[selectedDevice] || '';
+                    preview.image.alt = `${selectedDevice} Image`;
+                    preview.device.textContent = selectedDevice || 'None';
+                    preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
+                    preview.processor.textContent = selectedSpecs.processor || 'None';
+                    preview.ram.textContent = selectedSpecs.ram || 'None';
+                    preview.storage.textContent = selectedSpecs.storage || 'None';
+                    preview.os.textContent = selectedSpecs.os || 'None';
+                }
+
+                // Proceed Button Click Event
+                proceedButton.addEventListener('click', function () {
+                    console.log("Proceed button clicked!");
+
+                    if (!selectedDevice || Object.values(selectedSpecs).includes(null)) {
+                        alert('⚠️ Please select a device and all specifications before proceeding.');
+                        return;
+                    }
+
+                    const configuration = {
+                        device: selectedDevice,
+                        ...selectedSpecs,
+                    };
+
+                    try {
+                        localStorage.setItem("selectedSpecs", JSON.stringify(configuration));
+                        console.log("Saved to localStorage:", localStorage.getItem("selectedSpecs"));
+                        window.location.href = 'vendor.html';
+                    } catch (e) {
+                        console.error("Error saving to localStorage:", e);
+                        alert("⚠️ Failed to save selection. Try again.");
+                    }
+                });
             });
-        }
 
-        document.querySelectorAll('.spec-button').forEach(button => {
-            button.addEventListener('click', function () {
-                const spec = this.dataset.spec;
-                const value = this.dataset.value;
-                selectedSpecs[spec] = value;
-                updatePreview();
-                document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    }
 
-    function updatePreview() {
-        preview.image.src = deviceImages[selectedDevice] || '';
-        preview.image.alt = `${selectedDevice} Image`;
-        preview.device.textContent = selectedDevice || 'None';
-        preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
-        preview.processor.textContent = selectedSpecs.processor || 'None';
-        preview.ram.textContent = selectedSpecs.ram || 'None';
-        preview.storage.textContent = selectedSpecs.storage || 'None';
-        preview.os.textContent = selectedSpecs.os || 'None';
-    }
+        </script>
 
-    // Proceed Button Click Event
-    proceedButton.addEventListener('click', function () {
-        console.log("Proceed button clicked!");
-
-        if (!selectedDevice || Object.values(selectedSpecs).includes(null)) {
-            alert('⚠️ Please select a device and all specifications before proceeding.');
-            return;
-        }
-
-        const configuration = {
-            device: selectedDevice,
-            ...selectedSpecs,
-        };
-
-        try {
-            localStorage.setItem("selectedSpecs", JSON.stringify(configuration));
-            console.log("Saved to localStorage:", localStorage.getItem("selectedSpecs"));
-            window.location.href = 'vendor.html';
-        } catch (e) {
-            console.error("Error saving to localStorage:", e);
-            alert("⚠️ Failed to save selection. Try again.");
-        }
-    });
-});
-
-                
-            </script>
-     
 
 </body>
 
