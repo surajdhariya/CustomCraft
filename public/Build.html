@@ -52,11 +52,19 @@
 
 
 
-        body {
+     
 
-            font-family: "Urbanist", sans-serif;
-            background-color: #F6E7DA;
-        }
+        
+body{
+    font-family: "Urbanist", sans-serif;
+    background-color: #F6E7DA;
+    background-color: #F6E7DA;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
 
         nav {
             background-color: #FFB473;
@@ -358,6 +366,166 @@
             border-radius: 8px;
             /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
         }
+
+
+
+/* prebuild products */
+.pbp-container {
+  width: 90%;
+  margin: auto;
+  padding: 20px 0;
+  text-align: center;
+}
+.products-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.products-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.products {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.product {
+  width: 250px;
+  margin-left: 25px;
+margin-right: 25px;
+  text-align: center;
+  flex-shrink: 0;
+  border: 2px solid rgb(84, 84, 84);
+  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 24px;
+  background-color: white;
+  
+}
+.product img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: auto;
+}
+.navigation {
+  margin-top: 20px;
+}
+.nav-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+
+
+
+/* footer */
+
+footer {
+          background-color:#FFB473;
+          ;
+          color: black;
+          padding: 0px 0;
+          text-align: center;
+    font-family: "Urbanist", sans-serif;
+    /* border-radius: 24px; */
+    border-start-start-radius: 24px;
+    border-top-right-radius: 24px;
+
+
+
+      }
+
+      .footer-container {
+          width: 1491px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+
+      .footer-content {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          margin-bottom: 15px;
+      }
+
+      .footer-content div {
+          flex: 1;
+          padding: 10px;
+          min-width: 200px;
+
+      }
+
+      .footer-content h3 {
+          font-size: 18px;
+          margin-bottom: 10px;
+          font-weight: bold;
+          text-transform: uppercase;
+      }
+
+      .footer-content p {
+          font-size: 15px;
+          line-height: 1.4;
+      }
+
+      .footer-content ul {
+          list-style: none;
+          padding: 0;
+      }
+
+      .footer-content ul li {
+          margin-bottom: 12px;
+      }
+
+      .footer-content ul li a {
+          color: black;
+          text-decoration: none;
+          font-size: 20px;
+          transition: color 0.3s ease;
+      }
+
+      .footer-content ul li a:hover {
+          color: white;
+      }
+
+      .social-icons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .social-icons a {
+          margin: 0 8px;
+          font-size: 16px;
+          color: black;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+
+
+      .social-icons a:hover {
+          color: #f39c12;
+      }
+
+      .footer-bottom {
+          /* border-top: 0.5px solid black; */
+          padding: 1px 0;
+          font-size: 12px;
+          color: black;
+      }
+
+      .footer-bottom p {
+          margin: 0;
+      }
+
     </style>
 </head>
 
@@ -474,9 +642,101 @@
             </div>
         </div>
 
+
         <br><br><br><br>
-        <footer> unde saepe.
-        </footer>
+
+  <!-- prebuild products START-->
+  <div class="pbp-container">
+    <h1 style="float: left;">Products you may like:</h1></h1>
+    <div class="products-wrapper" id="scroll-container">
+        <div class="products">
+            <div class="product">
+                <img src="img/laptop.png" alt="Product 1">
+                <p>Product name<br>variant<br>Rs55k</p>
+            </div>
+            <div class="product">
+                <img src="img/device.png" alt="Product 2">
+                <p>Product name<br>variant<br>Rs55k</p>
+            </div>
+            <div class="product">
+                <img src="img/laptop.png" alt="Product 3">
+                <p>Product name<br>variant<br>Rs55k</p>
+            </div>
+            <div class="product">
+                <img src="img/laptop.png" alt="Product 4">
+                <p>Product name<br>variant<br>Rs58k</p>
+            </div>
+            <div class="product">
+                <img src="img/device.png" alt="Product 5">
+                <p>Product name<br>variant<br>Rs55k</p>
+            </div>
+            <div class="product">
+                <img src="img/ipad.png" alt="Product 6">
+                <p>Product name<br>variant<br>Rs60k</p>
+            </div>
+            <div class="product">
+                <img src="img/phone.png" alt="Product 7">
+                <p>Product name<br>variant<br>Rs65k</p>
+            </div>
+            <div class="product">
+                <img src="img/device.png" alt="Product 8">
+                <p>Product name<br>variant<br>Rs70k</p>
+            </div>
+        </div>
+    </div>
+
+</div></div>
+<br><br><br><br><br>
+  <!-- prebuild products ENDS-->
+
+
+
+
+  <footer>
+    <div class="footer-container">
+        <div class="footer-content">
+            <!-- CustomCraft Section -->
+            <div>
+           <img src="img/cc.png" alt="" style="height: 80px;width: 80px;">
+                <h1 style="font-family: Anonymous Pro">CustomCraft</h1>
+                <p>We offer a unique way to customize tech devices just the way you like it. Choose your specifications and build your dream device with ease!</p>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Stay Connected Section -->
+            <div>
+                <h3>Stay Connected</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <img src="img/facebook.png" alt="Facebook" style="width: 50px; height: 50px;">
+                    </a>
+                    <a href="#" class="social-icon">
+                        <img src="img/twitter.png" alt="Twitter" style="width: 50px; height: 50px;">
+                    </a>
+                    <a href="#" class="social-icon">
+                        <img src="img/instagram.png" alt="Instagram" style="width: 50px; height: 50px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 CustomCraft. All rights reserved.</p>
+            <br>
+        </div>
+    </div>
+</footer>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
