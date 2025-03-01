@@ -29,32 +29,7 @@
     }
 
 
-    /* scroll Animation */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        50% {
-            opacity: 0.5;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .reveal {
-        opacity: 0;
-        animation: fadeIn 1s ease-out both;
-        animation-timeline: view();
-        animation-range: entry 20% cover 60%;
-    }
-    
-  /* scroll Animation */
-
-
+  
 body{
     background-color: #F6E7DA;
     height: 100%;
@@ -262,6 +237,35 @@ transition: 0.5s;
 }
 
 /* steps----------------------------------------------------------------------------- */
+
+  /* scroll Animation */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateY(10px) scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    animation: fadeIn 1s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 15% cover 50%;
+}
+
+
+/* scroll Animation */
+
+
+
 .steps p{
 
     text-align: center;
@@ -329,13 +333,15 @@ body {
     border-radius: 12px;
     cursor: pointer;
     font-size: 30px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 20px;
-  }
+}
 
-  .button:hover {
+.button:hover {
     background-color: #e67e3a;
-  }
+    transform: scale(1.1);
+}
+
 
   @media (max-width: 768px) {
     .card {
@@ -409,7 +415,7 @@ margin-top: 25px;
 margin-bottom: 25px;
   text-align: center;
   flex-shrink: 0;
-  border: 2px solid rgb(84, 84, 84);
+  border: 0.1px solid rgb(84, 84, 84);
   padding: 10px;
   padding-left: 10px;
   padding-right: 10px;

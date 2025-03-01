@@ -369,7 +369,40 @@ body{
 
 
 
+
 /* prebuild products */
+
+/* product animations */
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.reveal-right {
+    opacity: 0;
+    animation: slideInRight 1s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 50%;
+}
+
+.product {
+    transition: transform 0.3s ease-in-out;
+}
+.product:hover {
+    transform: scale(1.05);
+}
+/* product animations */
+
 .pbp-container {
   width: 90%;
   margin: auto;
@@ -395,6 +428,8 @@ body{
   width: 250px;
   margin-left: 25px;
 margin-right: 25px;
+margin-top: 25px;
+margin-bottom: 25px;
   text-align: center;
   flex-shrink: 0;
   border: 2px solid rgb(84, 84, 84);
@@ -646,7 +681,7 @@ footer {
         <br><br><br><br>
 
   <!-- prebuild products START-->
-  <div class="pbp-container">
+  <div class="pbp-container reveal-right">
     <h1 style="float: left;">Products you may like:</h1></h1>
     <div class="products-wrapper" id="scroll-container">
         <div class="products">
