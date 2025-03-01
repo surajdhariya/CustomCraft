@@ -52,37 +52,6 @@
         animation-range: entry 20% cover 60%;
     }
     
-    /* right */
-
-   @keyframes slideInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    60% {
-        opacity: 1;
-        transform: translateX(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.reveal-right {
-    opacity: 0;
-    animation: slideInRight 1s ease-out both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 50%;
-}
-
-.product {
-    transition: transform 0.3s ease-in-out;
-}
-.product:hover {
-    transform: scale(1.05);
-}
-
   /* scroll Animation */
 
 
@@ -378,6 +347,37 @@ body {
 
 
 /* prebuild products */
+
+/* product animations */
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.reveal-right {
+    opacity: 0;
+    animation: slideInRight 1s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 50%;
+}
+
+.product {
+    transition: transform 0.3s ease-in-out;
+}
+.product:hover {
+    transform: scale(1.05);
+}
+/* product animations */
 .pbp-container {
   width: 90%;
   margin: auto;
@@ -438,13 +438,7 @@ margin-bottom: 25px;
 
 
 
-
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    margin: 0;
-    padding: 0;
-} */
+/* foooter */
         footer {
           background-color:#FFB473;
           ;
