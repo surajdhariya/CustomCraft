@@ -78,3 +78,26 @@ function scrollRight() {
         container.scrollLeft += 200;
     }
 }
+
+
+
+// scroll Animation
+// document.addEventListener("DOMContentLoaded", function () {
+//     function revealElements() {
+//         let reveals = document.querySelectorAll(".reveal");
+//         reveals.forEach(function (element) {
+//             let windowHeight = window.innerHeight;
+//             let elementTop = element.getBoundingClientRect().top;
+//             let threshold = 150; // Adjust for when the effect starts
+
+//             if (elementTop < windowHeight - threshold) {
+//                 element.classList.add("active");
+//             }
+//         });
+//     }
+
+//     window.addEventListener("scroll", revealElements);
+//     revealElements(); // Run once to check if elements are already in view
+// });
+
+// scroll Animation
