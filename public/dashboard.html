@@ -4,20 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CustomCraft</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: #fff;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #1e1e1e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .menu li:hover {
+            background: #f39c12;
+            color: #121212;
+        }
+
+        .logout-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: darkred;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e1e1e;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header span {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard">
-        <h1>Welcome, <span id="userName"></span>!</h1>
-        <p>Email: <span id="userEmail"></span></p>
-        <button onclick="logout()">Logout</button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo">CustomCraft</div>
+        <ul class="menu">
+            <li>🏠 Dashboard</li>
+            <li>📦 Orders</li>
+            <li>⚙ Settings</li>
+        </ul>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="header">
+            <span>Welcome, <span id="userFullName"></span>!</span>
+            <span>Email: <span id="userEmail"></span></span>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2>Your Orders</h2>
+                <p>Active Orders: <span id="activeOrders">0</span></p>
+            </div>
+            <div class="card">
+                <h2>Settings</h2>
+                <p>Manage your account settings here.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 CustomCraft. All Rights Reserved.</p>
+        </footer>
     </div>
 
     <script>
         async function fetchUserData() {
             const token = localStorage.getItem("token");
             if (!token) {
-                window.location.href = "/login.html"; // Redirect to login if not authenticated
+                window.location.href = "/login.html"; 
                 return;
             }
 
@@ -28,7 +175,7 @@
 
             const data = await response.json();
             if (data.user) {
-                document.getElementById("userName").textContent = data.user.name;
+                document.getElementById("userFullName").textContent = data.user.name;
                 document.getElementById("userEmail").textContent = data.user.email;
             } else {
                 alert("Session expired. Please log in again.");
@@ -41,7 +188,8 @@
             window.location.href = "/login.html";
         }
 
-        fetchUserData(); // Load user details on page load
+        fetchUserData();
     </script>
+
 </body>
 </html>

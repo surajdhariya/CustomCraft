@@ -8,46 +8,97 @@
 
     <style>
         body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-}
+            font-family: 'Urbanist', sans-serif; /* Use a custom font if available */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f6e7da; /* Soft background color */
+            margin: 0;
+        }
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+        .container {
+            background: white;
+            padding: 30px;
+            padding-right: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px; /* Fixed width for better alignment */
+            height: 400px; /* Allow height to adjust based on content */
+        }
 
-input {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-}
+        h2 {
+            margin-bottom: 20px;
+            color: #333; /* Darker text for better readability */
+        }
 
-button {
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
 
+        input:focus {
+            border-color: #ff973c; /* Highlight border on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        button {
+            background-color: #ff973c; /* Custom button color */
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #f68d45; /* Darker shade on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+
+        p {
+            margin-top: 15px;
+            color: #666; /* Lighter text for secondary information */
+        }
+
+        a {
+            color: #ff973c; /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        #signupMessage {
+            margin-top: 15px;
+            color: red; /* Error message color */
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                width: 90%; /* Use a percentage for better responsiveness */
+                padding: 20px; /* Adjust padding for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Signup</h2>
         <form id="signupForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="name" placeholder="Full Name" required aria-label="Full Name">
+            <input type="email" id="email" placeholder="Email" required aria-label="Email Address">
+            <input type="password" id="password" placeholder="Password" required aria-label="Password">
             <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="login.html">Login here</a></p>
