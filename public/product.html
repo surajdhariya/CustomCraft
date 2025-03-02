@@ -116,19 +116,19 @@
         /* Zoom effect */
         .zoom {
             position: absolute;
-    top: 8px; /* Adjust this value to position it above the product details */
-    left: 479px; /* Adjust this value to position it to the right of the main image */
-    width: 655px; /* Size of the zoom lens */
-    height: 500px; /* Size of the zoom lens */
-    border: 2px solid #FFB473;
-    border-radius: 8px;
-    cursor: none;
-    display: none; /* Hidden by default */
-    pointer-events: none; /* Prevent mouse events */
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
-    backdrop-filter: blur(10px); /* Apply blur effect */
-    background-repeat: no-repeat;
-    z-index: 10; /* Ensure it appears above other elements */
+            top: 8px; /* Adjust this value to position it above the product details */
+            left: 479px; /* Adjust this value to position it to the right of the main image */
+            width: 655px; /* Size of the zoom lens */
+            height: 500px; /* Size of the zoom lens */
+            border: 2px solid #FFB473;
+            border-radius: 8px;
+            cursor: none;
+            display: none; /* Hidden by default */
+            pointer-events: none; /* Prevent mouse events */
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+            backdrop-filter: blur(10px); /* Apply blur effect */
+            background-repeat: no-repeat;
+            z-index: 10; /* Ensure it appears above other elements */
         }
 
         ::-webkit-scrollbar {
@@ -217,10 +217,20 @@
             document.getElementById("spec-os").textContent += productData.os;
             document.getElementById("vendor-name").textContent = productData.vendor;
 
-            // Handle add to cart button click
-            document.getElementById("add-to-cart-button").addEventListener("click", function() {
+                       // Handle add to cart button click
+                       document.getElementById("add-to-cart-button").addEventListener("click", function() {
                 const cart = JSON.parse(localStorage.getItem("cart")) || [];
-                cart.push(productData);
+                const productToAdd = {
+                    title: productData.title,
+                    price: productData.price,
+                    specifications: {
+                        processor: productData.processor,
+                        ram: productData.ram,
+                        storage: productData.storage,
+                        os: productData.os
+                    }
+                };
+                cart.push(productToAdd);
                 localStorage.setItem("cart", JSON.stringify(cart));
                 document.getElementById("message").textContent = "Product added to cart!";
             });
@@ -228,9 +238,19 @@
             // Handle buy now button click
             document.getElementById("buy-now-button").addEventListener("click", function() {
                 const cart = JSON.parse(localStorage.getItem("cart")) || [];
-                cart.push(productData);
+                const productToBuy = {
+                    title: productData.title,
+                    price: productData.price,
+                    specifications: {
+                        processor: productData.processor,
+                        ram: productData.ram,
+                        storage: productData.storage,
+                        os: productData.os
+                    }
+                };
+                cart.push(productToBuy);
                 localStorage.setItem("cart", JSON.stringify(cart));
-                window.location.href = "cart.html"; // Change this to your actual checkout page
+                window.location.href = "cart.html"; // Redirect to cart page
             });
         });
 

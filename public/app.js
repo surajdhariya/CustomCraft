@@ -101,3 +101,37 @@ function scrollRight() {
 // });
 
 // scroll Animation
+
+
+async function fetchUserData() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        // If no token, keep the logo
+        return;
+    }
+
+    const response = await fetch("/dashboard", {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+
+    const data = await response.json();
+    if (data.user) {
+        // Extract initials from the user's name
+        const initials = data.user.name
+            .split(" ")
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase();
+
+        // Replace the logo with the dynamic profile icon
+        const profileSection = document.getElementById("profileSection");
+        profileSection.innerHTML = `<div class="profile-icon">${initials}</div>`;
+    } else {
+        // If the token is invalid, redirect to login
+        alert("Session expired. Please log in again.");
+        window.location.href = "/login.html";
+    }
+}
+
+fetchUserData();
