@@ -111,3 +111,20 @@ app.listen(port, async () => {
     await connectToDB();
     console.log(`🚀 Server running on http://localhost:${port}`);
 });
+
+
+// ✅ Protected route to fetch user details for the dashboard
+app.get('/dashboard', authenticateToken, async (req, res) => {
+    try {
+        const db = client.db("customcraftDB");
+        const users = db.collection("users");
+
+        const user = await users.findOne({ email: req.user.email }, { projection: { password: 0 } });
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        res.json({ user });
+    } catch (error) {
+        console.error("❌ Error fetching user data:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
