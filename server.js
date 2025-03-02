@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 const path = require('path');
 
 const app = express();
-const port = 3005;
+const port = 3000;
 
 // MongoDB connection string (ensure it's correct)
 const uri = 'mongodb+srv://surajdhariya:<db_password>@customcraft-cluster.xoakt.mongodb.net/customcraftDB?retryWrites=true&w=majority&tls=true';
