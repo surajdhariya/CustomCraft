@@ -6,161 +6,92 @@
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&display=swap" rel="stylesheet">
-    
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
+   
     <style>
-
-
-       
-
         /* For Webkit browsers (Chrome, Safari, Edge) */
         ::-webkit-scrollbar {
             width: 5px;
-            /* Width of the scrollbar */
             height: 12px;
-            /* Height of the scrollbar (for horizontal scrollbar) */
             border-radius: 20px;
             background-color: #ff973c;
         }
 
         ::-webkit-scrollbar-track {
             background-color: whitesmoke;
-            /* Color of the scrollbar track */
             border-radius: 10px;
-            color: red;
         }
 
         ::-webkit-scrollbar-thumb {
             background-color: #FFB473;
-            ;
-            /* Color of the scrollbar thumb */
             border-radius: 10px;
             transition: background-color 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background-color: #555;
-            /* Hover color for the scrollbar thumb */
         }
 
+        body {
+            font-family: "Urbanist", sans-serif;
+            background-color: #F6E7DA;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
 
+        nav {
+            background-color: #FFB473;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            font-size: 20px;
+            box-shadow: 0px 0.8px 1px -1px;
+        }
 
+        .logo {
+            display: flex;
+            align-items: center;
+        }
 
+        .logo img {
+            height: 50px;
+            width: 50px;
+            padding-left: 20px;
+        }
 
-        
-body{
-    font-family: "Urbanist", sans-serif;
-    background-color: #F6E7DA;
-    background-color: #F6E7DA;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
+        .logo img:hover {
+            transition: 0.5s;
+            transform: scale(1.1);
+        }
 
-/* navvv */
+        .logo h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+            margin-left: 20px;
+        }
 
-/* navbar----------------------------------------------------- */
-nav {
-    background-color: #FFB473;
+        .link ul {
+            list-style: none;
+            display: flex;
+        }
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10; /* Ensure the navbar stays on top */
-    font-family: "Urbanist", sans-serif;
-    font-size: 20px;
-    box-shadow: 0px 0.8px 1px -1px;
-  
-}
+        .link ul li {
+            margin-top: 9px;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-  
-}
-
-.logo img {
-    height: 50px;
-    width: 50px;
-    /* margin-right: 10px; */
-    padding-left: 20px;
-  
-}
-.logo img:hover{transition: 0.5s;
-    transform: scale(1.1);
-    
-}
-
-.logo h1 {
-    margin: 0;
-    font-size: 2em;
-    font-weight: bold;
-    margin-left: 20px;
-}
-
-.link ul {
-    list-style: none;
-    /* margin: 10px; */
-    /* padding: 10px; */
-    display: flex;
-   
-}
-
-
-
-.link ul li {
-    /* margin-left: 20px; */
-    margin-top:9px; 
-    :hover{
-        color: white;
-        transform: scale(1.5px);  
-        transition: 0.3s;
-        /* font-size: 1.05em; */
-       
-     }
-}
-
-
-.link ul li a {
-    text-decoration: none;
-    color: #333;
-    /* font-weight: bold; */
-    padding-right: 50px;
-
- 
-}
-.link ul img{
-    padding-left: 10px;
-    padding-right: 20px;
-    filter: invert(10%) ;
-
-}
-.link ul img:hover{
-    /* filter: invert(20%) ; */
-transition: 0.5s;
-        transform: scale(1.05);
-    transition: 0.3s;
-    
-  }
-
-
-  /* navvv */
-
+        .link ul li a {
+            text-decoration: none;
+            color: #333;
+            padding-right: 50px;
+        }
 
         .cart-container {
             display: flex;
@@ -180,10 +111,6 @@ transition: 0.5s;
             gap: 20px;
             border-bottom: 1px solid #ddd;
             padding: 15px 0;
-        }
-
-        .device-info, .vendor-info, .price-info {
-            flex: 1;
         }
 
         .device-info img {
@@ -229,7 +156,7 @@ transition: 0.5s;
             margin-bottom: 10px;
         }
 
-        .checkout-button {
+        .pay-button {
             display: block;
             width: 250px;
             margin: 20px auto;
@@ -241,19 +168,19 @@ transition: 0.5s;
             font-size: 18px;
         }
 
-        .checkout-button:hover {
+        .pay-button:hover {
             background: #ff973c;
         }
 
         .pricing-details {
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Align to the right */
+            align-items: flex-end;
             margin-top: 20px;
         }
 
         .pricing-details p {
-            margin: 5px 0; /* Add some spacing between price elements */
+            margin: 5px 0;
         }
 
         .address-container {
@@ -270,150 +197,122 @@ transition: 0.5s;
             border-radius: 4px;
         }
 
-        .payment-methods {
-            margin-top: 10px;
-        }
-
-        .payment-methods label {
-            display: block;
-            margin: 5px 0;
-        }
-
         .message {
             color: red;
             margin-top: 10px;
             text-align: center;
         }
 
-
-
-        /* footer */
-
-        
         footer {
-          background-color:#FFB473;
-          ;
-          color: black;
-          padding: 0px 0;
-          text-align: center;
-    font-family: "Urbanist", sans-serif;
-    /* border-radius: 24px; */
-    border-start-start-radius: 24px;
-    border-top-right-radius: 24px;
+            background-color: #FFB473;
+            color: black;
+            padding: 0px 0;
+            text-align: center;
+            font-family: "Urbanist", sans-serif;
+        }
 
+        .footer-container {
+            width: 1491px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
 
-      }
+        .footer-content div {
+            flex: 1;
+            padding: 10px;
+            min-width: 200px;
+        }
 
-      .footer-container {
-          width: 1491px;
-          margin: 0 auto;
-          padding: 0 20px;
-      }
+        .footer-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-      .footer-content {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          margin-bottom: 15px;
-      }
+        .footer-content p {
+            font-size: 15px;
+            line-height: 1.4;
+        }
 
-      .footer-content div {
-          flex: 1;
-          padding: 10px;
-          min-width: 200px;
+        .footer-content ul {
+            list-style: none;
+            padding: 0;
+        }
 
-      }
+        .footer-content ul li {
+            margin-bottom: 12px;
+        }
 
-      .footer-content h3 {
-          font-size: 18px;
-          margin-bottom: 10px;
-          font-weight: bold;
-          text-transform: uppercase;
-      }
+        .footer-content ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
 
-      .footer-content p {
-          font-size: 15px;
-          line-height: 1.4;
-      }
+        .footer-content ul li a:hover {
+            color: white;
+        }
 
-      .footer-content ul {
-          list-style: none;
-          padding: 0;
-      }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-      .footer-content ul li {
-          margin-bottom: 12px;
-      }
+        .social-icons a {
+            margin: 0 8px;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-      .footer-content ul li a {
-          color: black;
-          text-decoration: none;
-          font-size: 20px;
-          transition: color 0.3s ease;
-      }
+        .social-icons a:hover {
+            color: #f39c12;
+        }
 
-      .footer-content ul li a:hover {
-          color: white;
-      }
+        .footer-bottom {
+            padding: 1px 0;
+            font-size: 12px;
+            color: black;
+        }
 
-      .social-icons {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-
-      .social-icons a {
-          margin: 0 8px;
-          font-size: 16px;
-          color: black;
-          text-decoration: none;
-          transition: color 0.3s ease;
-      }
-
-
-      .social-icons a:hover {
-          color: #f39c12;
-      }
-
-      .footer-bottom {
-          /* border-top: 0.5px solid black; */
-          padding: 1px 0;
-          font-size: 12px;
-          color: black;
-      }
-
-      .footer-bottom p {
-          margin: 0;
-      }
-
-      /* footerrrr */
+        .footer-bottom p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">
-          <a href="index.html"><img src="img/cc.png" height="1000px" width=100px" alt="CustomCraft Logo" /></a>
-          <h1 style="font-family: Anonymous Pro" , monospace;;">CustomCraft</h1>
+            <a href="index.html"><img src="img/cc.png" height="1000px" width="100px" alt="CustomCraft Logo" /></a>
+            <h1 style="font-family: Anonymous Pro, monospace;">CustomCraft</h1>
         </div>
         <div class="link">
-          <ul>
-            <li><a href="#">Customize-Devices</a></li>
-            <li><a href="#">Smartphone</a></li>
-            <li><a href="#">Laptops</a></li>
-            <li><a href="#">Tablet</a></li>
-            <ul class="cart-user">
-              <a class="cart" href="cart.html" class="cart"><img src="img/cart2.png" height="40px" width="40px"
-                  alt="CustomCraft Logo" /></a>
-              <img src="img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
+            <ul>
+                <li><a href="#">Customize-Devices</a></li>
+                <li><a href="#">Smartphone</a></li>
+                <li><a href="#">Laptops</a></li>
+                <li><a href="#">Tablet</a></li>
+                <ul class="cart-user">
+                    <a class="cart" href="cart.html"><img src="img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo" /></a>
+                    <img src="img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
+                </ul>
             </ul>
-          </ul>
         </div>
-    
-      </nav>
+    </nav>
 
-<br><br><br><br>
+    <br><br><br><br>
 
     <h1 style="text-align: center;">Shopping Cart</h1>
     <div class="cart-container">
@@ -463,31 +362,19 @@ transition: 0.5s;
             <input type="text" id="zip" placeholder="Zip Code" required>
         </div>
 
-        <div class="payment-methods">
-            <h3>Select Payment Method</h3>
-            <label><input type="radio" name="payment-method" value="credit-card"> Credit Card</label>
-            <label><input type="radio" name="payment-method" value="debit-card"> Debit Card</label>
-            <label><input type="radio" name="payment-method" value="paypal"> PayPal</label>
-            <label><input type="radio" name="payment-method" value="cash-on-delivery"> Cash on Delivery</label>
-        </div>
-
         <div class="message" id="message"></div>
 
-        <button class="checkout-button" onclick="checkout()">Proceed to Checkout</button>
+        <button class="pay-button" id="payBtn">Pay Now</button>
     </div>
-</div>
-<br><br><br><br>
+
     <footer>
         <div class="footer-container">
             <div class="footer-content">
-                <!-- CustomCraft Section -->
                 <div>
-               <img src="img/cc.png" alt="" style="height: 80px;width: 80px;">
+                    <img src="img/cc.png" alt="" style="height: 80px;width: 80px;">
                     <h1 style="font-family: Anonymous Pro">CustomCraft</h1>
                     <p>We offer a unique way to customize tech devices just the way you like it. Choose your specifications and build your dream device with ease!</p>
                 </div>
-    
-                <!-- Quick Links Section -->
                 <div>
                     <h3>Quick Links</h3>
                     <ul>
@@ -497,8 +384,6 @@ transition: 0.5s;
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
-    
-                <!-- Stay Connected Section -->
                 <div>
                     <h3>Stay Connected</h3>
                     <div class="social-icons">
@@ -514,8 +399,6 @@ transition: 0.5s;
                     </div>
                 </div>
             </div>
-    
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; 2025 CustomCraft. All rights reserved.</p>
                 <br>
@@ -523,16 +406,14 @@ transition: 0.5s;
         </div>
     </footer>
 
-
-
     <script>
         let basePrice, discount, deliveryCharges = 200;
         let quantity = 1;
-
+    
         document.addEventListener("DOMContentLoaded", function () {
             const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
             const selectedVendor = JSON.parse(localStorage.getItem("selectedVendor"));
-
+    
             if (!selectedSpecs || !selectedVendor) {
                 document.getElementById("message").textContent = "⚠️ No items in the cart! Redirecting...";
                 setTimeout(() => {
@@ -540,37 +421,37 @@ transition: 0.5s;
                 }, 2000);
                 return;
             }
-
+    
             // Populate the cart with the selected specifications and vendor details
             document.getElementById("spec-device").textContent = selectedSpecs.device;
             document.getElementById("spec-processor").textContent = selectedSpecs.processor;
             document.getElementById("spec-ram").textContent = selectedSpecs.ram;
             document.getElementById("spec-storage").textContent = selectedSpecs.storage;
             document.getElementById("spec-os").textContent = selectedSpecs.os;
-
+    
             const deviceImages = {
                 computer: '../img/coding.png',
                 smartphone: '../img/phone.png',
                 tablet: '../img/ipad.png',
             };
             document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
-
+    
             // Populate the vendor details
             document.getElementById("vendor-name").textContent = selectedVendor.name;
             document.getElementById("vendor-about").textContent = selectedVendor.about;
             document.getElementById("vendor-address").textContent = selectedVendor.address;
-
+    
             // Set base price and update UI
             basePrice = parseFloat(selectedVendor.price.replace(/₹/, ""));
             discount = 0; // No discount initially
             updateCartUI();
-
+    
             // Add event listeners for quantity control
             document.getElementById("increase-quantity").addEventListener("click", () => {
                 quantity++;
                 updateCartUI();
             });
-
+    
             document.getElementById("decrease-quantity").addEventListener("click", () => {
                 if (quantity > 1) {
                     quantity--;
@@ -578,7 +459,7 @@ transition: 0.5s;
                 }
             });
         });
-
+    
         function applyPromoCode() {
             const promoCode = document.getElementById("promo-code").value;
             if (promoCode === "customcraft") {
@@ -589,50 +470,65 @@ transition: 0.5s;
             }
             updateCartUI();
         }
-
+    
         function updateCartUI() {
-            // Calculate total price based on quantity
             let totalPrice = basePrice * quantity;
             let finalPrice = totalPrice - discount + deliveryCharges;
-            if (isNaN(finalPrice)) finalPrice = 0; // Prevent NaN result
-
-            // Update the UI with prices
+            if (isNaN(finalPrice)) finalPrice = 0;
+    
             document.getElementById("normal-price").textContent = (totalPrice).toFixed(2);
             document.getElementById("discount").textContent = discount.toFixed(2);
             document.getElementById("delivery-charges").textContent = deliveryCharges.toFixed(2);
             document.getElementById("final-price").textContent = "Final Price: ₹" + finalPrice.toFixed(2);
-            document.getElementById("vendor-price").textContent = "₹" + basePrice.toFixed(2);  // Show the base price
-            document.getElementById("quantity").textContent = quantity; // Update quantity display
+            document.getElementById("vendor-price").textContent = "₹" + basePrice.toFixed(2);
+            document.getElementById("quantity").textContent = quantity;
         }
-
-        function checkout() {
-    const address = document.getElementById("address").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    const zip = document.getElementById("zip").value;
-    const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
-
-    // Clear previous messages
-    document.getElementById("message").textContent = "";
-
-    // Validate the input fields
-    if (!address || !city || !state || !zip || !paymentMethod) {
-        document.getElementById("message").textContent = "⚠️ Please fill in all the fields before proceeding to checkout.";
-        return;
-    }
-
-    // Store the address and payment method in local storage or session storage
-    const orderDetails = {
-        address: `${address}, ${city}, ${state}, ${zip}`,
-        paymentMethod: paymentMethod.value
-    };
-    localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
-
-    // Navigate to the payment page
-    window.location.href = "payment.html"; // Change this to your actual payment page
-}
-
-      
+    
+        document.getElementById("payBtn").addEventListener("click", async () => {
+            const finalPrice = parseFloat(document.getElementById("final-price").textContent.replace(/Final Price: ₹/, ""));
+            const jwtToken = localStorage.getItem("jwtToken");
+    
+            if (!jwtToken) {
+                alert("You need to log in before making a payment!");
+                return;
+            }
+    
+            const response = await fetch("http://localhost:3005/create-order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${jwtToken}`
+                },
+                body: JSON.stringify({ amount: finalPrice })
+            });
+    
+            if (!response.ok) {
+                const error = await response.json();
+                alert("Error creating order: " + error.message);
+                return;
+            }
+    
+            const order = await response.json();
+    
+            const options = {
+                key: "rzp_test_OcaBdjX7L1Ov65",
+                amount: order.amount,
+                currency: "INR",
+                order_id: order.id,
+                handler: function (response) {
+                    alert("✅ Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                },
+                prefill: {
+                    name: document.getElementById("userFullName") ? document.getElementById("userFullName").textContent : "Guest",
+                    email: document.getElementById("userEmail") ? document.getElementById("userEmail").textContent : "guest@example.com",
+                    contact: "1234567890"
+                }
+            };
+    
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
     </script>
+     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>
 </html>
