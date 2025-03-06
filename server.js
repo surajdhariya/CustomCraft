@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); // Import cors
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -10,7 +11,11 @@ dotenv.config(); // Load environment variables
 
 const app = express();
 const port = 3005;
-
+app.use(cors({
+    origin: ['http://127.0.0.1:3005', 'http://localhost:3005'], // Add allowed origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 // MongoDB connection string
 const uri = 'mongodb+srv://surajdhariya:suraj@customcraft-cluster.xoakt.mongodb.net/customcraftDB?retryWrites=true&w=majority&tls=true';
 let client;

@@ -305,8 +305,13 @@
                 <li><a href="#">Laptops</a></li>
                 <li><a href="#">Tablet</a></li>
                 <ul class="cart-user">
-                    <a class="cart" href="cart.html"><img src="img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo" /></a>
-                    <img src="img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
+                    <a class="cart" href="cart.html"><img src="img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo" /></a> <a href="dashboard.html" style="text-decoration: none;" class="user-profile">
+                        <div id="profileSection">
+                            <!-- Logo will be shown by default -->
+                            <img src="img/user1.png" class="user-logo" 
+                            height="40px" width="40px" alt="CustomCraft Logo" />
+                        </div>
+                    </a>
                 </ul>
             </ul>
         </div>
@@ -486,14 +491,14 @@
     
         document.getElementById("payBtn").addEventListener("click", async () => {
             const finalPrice = parseFloat(document.getElementById("final-price").textContent.replace(/Final Price: ₹/, ""));
-            const jwtToken = localStorage.getItem("jwtToken");
+            const jwtToken = localStorage.getItem("token");
     
             if (!jwtToken) {
                 alert("You need to log in before making a payment!");
                 return;
             }
     
-            const response = await fetch("http://localhost:3005/create-order", {
+            const response = await fetch("http://127.0.0.1:3005/create-order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
