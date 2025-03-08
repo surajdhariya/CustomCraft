@@ -16,6 +16,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 // MongoDB connection string
 const uri = 'mongodb+srv://surajdhariya:suraj@customcraft-cluster.xoakt.mongodb.net/customcraftDB?retryWrites=true&w=majority&tls=true';
 let client;
@@ -53,8 +54,8 @@ app.post('/signup', async (req, res) => {
         const db = client.db("customcraftDB");
         const users = db.collection("users");
 
-        const existingUser = await users.findOne({ email });
-        if (existingUser) return res.status(400).json({ message: "❌ User already exists" });
+        const existingUser  = await users.findOne({ email });
+        if (existingUser ) return res.status(400).json({ message: "❌ User already exists" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const result = await users.insertOne({ name, email, password: hashedPassword });
@@ -102,7 +103,7 @@ const authenticateToken = (req, res, next) => {
 // ✅ Create Razorpay Order
 app.post("/create-order", authenticateToken, async (req, res) => {
     try {
-        const { amount } = req.body;
+        const { amount, address } = req.body; // Accept address from the request
         const options = {
             amount: amount * 100, // Convert ₹ to paise
             currency: "INR",
@@ -120,13 +121,28 @@ app.post("/create-order", authenticateToken, async (req, res) => {
             amount: amount,
             currency: "INR",
             status: "created",
-            createdAt: new Date()
+            createdAt: new Date(),
+            address: address // Store the address
         });
 
         res.json(order);
     } catch (error) {
         console.error("❌ Error creating order:", error);
         res.status(500).json({ message: "❌ Order creation failed" });
+    }
+});
+
+// ✅ Fetch User Orders
+app.get("/my-orders", authenticateToken, async (req, res) => {
+    try {
+        const db = client.db("customcraftDB");
+        const payments = db.collection("payments");
+
+        const userOrders = await payments.find({ userId: req.user.userId }).toArray();
+        res.json({ orders: userOrders });
+    } catch (error) {
+        console.error("❌ Error fetching orders:", error);
+        res.status(500).json({ message: "❌ Failed to fetch orders" });
     }
 });
 
@@ -168,7 +184,7 @@ app.get('/dashboard', authenticateToken, async (req, res) => {
         const users = db.collection("users");
 
         const user = await users.findOne({ email: req.user.email }, { projection: { password: 0 } });
-        if (!user) return res.status(404).json({ message: "User not found" });
+        if (!user) return res.status(404).json({ message: "User  not found" });
 
         res.json({ user });
     } catch (error) {
