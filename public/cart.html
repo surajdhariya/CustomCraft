@@ -490,49 +490,61 @@
         }
     
         document.getElementById("payBtn").addEventListener("click", async () => {
-            const finalPrice = parseFloat(document.getElementById("final-price").textContent.replace(/Final Price: ₹/, ""));
-            const jwtToken = localStorage.getItem("token");
+    // Get address values
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value.trim();
+    const zip = document.getElementById("zip").value.trim();
     
-            if (!jwtToken) {
-                alert("You need to log in before making a payment!");
-                return;
-            }
-    
-            const response = await fetch("http://127.0.0.1:3005/create-order", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${jwtToken}`
-                },
-                body: JSON.stringify({ amount: finalPrice })
-            });
-    
-            if (!response.ok) {
-                const error = await response.json();
-                alert("Error creating order: " + error.message);
-                return;
-            }
-    
-            const order = await response.json();
-    
-            const options = {
-                key: "rzp_test_fS7ZcRoBQcK9nv",
-                amount: order.amount,
-                currency: "INR",
-                order_id: order.id,
-                handler: function (response) {
-                    alert("✅ Payment Successful! Payment ID: " + response.razorpay_payment_id);
-                },
-                prefill: {
-                    name: document.getElementById("userFullName") ? document.getElementById("userFullName").textContent : "Guest",
-                    email: document.getElementById("userEmail") ? document.getElementById("userEmail").textContent : "guest@example.com",
-                    contact: "1234567890"
-                }
-            };
-    
-            const rzp = new Razorpay(options);
-            rzp.open();
-        });
+    // Validate address fields
+    if (!address || !city || !state || !zip) {
+        document.getElementById("message").textContent = "⚠️ Please fill in all address fields before proceeding.";
+        return;
+    }
+
+    const finalPrice = parseFloat(document.getElementById("final-price").textContent.replace(/Final Price: ₹/, ""));
+    const jwtToken = localStorage.getItem("token");
+
+    if (!jwtToken) {
+        alert("You need to log in before making a payment!");
+        return;
+    }
+
+    const response = await fetch("http://127.0.0.1:3005/create-order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwtToken}`
+        },
+        body: JSON.stringify({ amount: finalPrice })
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        alert("Error creating order: " + error.message);
+        return;
+    }
+
+    const order = await response.json();
+
+    const options = {
+        key: "rzp_test_fS7ZcRoBQcK9nv",
+        amount: order.amount,
+        currency: "INR",
+        order_id: order.id,
+        handler: function (response) {
+            alert("✅ Payment Successful! Payment ID: " + response.razorpay_payment_id);
+        },
+        prefill: {
+            name: document.getElementById("userFullName") ? document.getElementById("userFullName").textContent : "Guest",
+            email: document.getElementById("userEmail") ? document.getElementById("userEmail").textContent : "guest@example.com",
+            contact: "1234567890"
+        }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+});
     </script>
      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>
