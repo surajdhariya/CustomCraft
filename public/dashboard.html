@@ -146,6 +146,17 @@
             </div>
         </div>
 
+        <div class="cart-container">
+            <!-- Existing cart items here -->
+        </div>
+        
+        <div id="active-orders" class="active-orders-container">
+            <h2>Your Active Orders</h2>
+            <ul id="order-list">
+                <!-- Active orders will be displayed here -->
+            </ul>
+
+        </div>
         <button class="logout-btn" onclick="logout()">Logout</button>
 
         <footer>
@@ -154,43 +165,68 @@
     </div>
 
     <script>
-        async function fetchUserData() {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                window.location.href = "/login.html"; 
-                return;
-            }
+      async function fetchUserData() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        window.location.href = "/login.html"; 
+        return;
+    }
 
-            const response = await fetch("/dashboard", {
-                method: "GET",
-                headers: { "Authorization": `Bearer ${token}` }
-            });
+    // Fetch user data
+    const userResponse = await fetch("/dashboard", {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+    const userData = await userResponse.json();
 
-            const data = await response.json();
-            if (data.user) {
-                // Display user's full name and email
-                document.getElementById("userFullName").textContent = data.user.name;
-                document.getElementById("userEmail").textContent = data.user.email;
+    if (userData.user) {
+        // Display user's full name and email
+        document.getElementById("userFullName").textContent = userData.user.name;
+        document.getElementById("userEmail").textContent = userData.user.email;
 
-                // Extract initials from the user's name
-                const initials = data.user.name
-                    .split(" ")
-                    .map((word) => word[0])
-                    .join("")
-                    .toUpperCase();
-                document.getElementById("userInitials").textContent = initials;
-            } else {
-                alert("Session expired. Please log in again.");
-                window.location.href = "/login.html";
-            }
-        }
+        // Extract initials from the user's name
+        const initials = userData.user.name
+            .split(" ")
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase();
+        document.getElementById("userInitials").textContent = initials;
 
-        function logout() {
-            localStorage.removeItem("token");
-            window.location.href = "/login.html";
-        }
+        // Fetch active orders
+        const ordersResponse = await fetch("/my-orders", {
+            method: "GET",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        const ordersData = await ordersResponse.json();
 
-        fetchUserData();
+        // Display active orders
+        const activeOrders = ordersData.orders;
+        document.getElementById("activeOrders").textContent = activeOrders.length;
+
+        const orderList = document.getElementById("order-list");
+        activeOrders.forEach(order => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <strong>Order ID:</strong> ${order._id} <br>
+                <strong>Status:</strong> ${order.status} <br>
+                <strong>Amount:</strong> ₹${order.amount} <br>
+                <strong>Address:</strong> ${order.address} <br>
+                <strong>Created At:</strong> ${new Date(order.createdAt).toLocaleDateString()}
+            `;
+            orderList.appendChild(li);
+        });
+    } else {
+        alert("Session expired. Please log in again.");
+        window.location.href = "/login.html";
+    }
+}
+
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/login.html";
+}
+
+fetchUserData();
     </script>
 </body>
 </html>

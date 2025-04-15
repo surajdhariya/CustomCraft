@@ -179,6 +179,7 @@ app.get("/my-payments", authenticateToken, async (req, res) => {
     }
 });
 
+
 // ✅ Protected User Dashboard
 app.get('/dashboard', authenticateToken, async (req, res) => {
     try {
@@ -194,6 +195,8 @@ app.get('/dashboard', authenticateToken, async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+
 
 // Graceful shutdown
 process.on('SIGINT', async () => {

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&display=swap" rel="stylesheet">
-   
+
     <style>
         /* For Webkit browsers (Chrome, Safari, Edge) */
         ::-webkit-scrollbar {
@@ -291,6 +292,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -305,11 +307,13 @@
                 <li><a href="#">Laptops</a></li>
                 <li><a href="#">Tablet</a></li>
                 <ul class="cart-user">
-                    <a class="cart" href="cart.html"><img src="img/cart2.png" height="40px" width="40px" alt="CustomCraft Logo" /></a> <a href="dashboard.html" style="text-decoration: none;" class="user-profile">
+                    <a class="cart" href="cart.html"><img src="img/cart2.png" height="40px" width="40px"
+                            alt="CustomCraft Logo" /></a> <a href="dashboard.html" style="text-decoration: none;"
+                        class="user-profile">
                         <div id="profileSection">
                             <!-- Logo will be shown by default -->
-                            <img src="img/user1.png" class="user-logo" 
-                            height="40px" width="40px" alt="CustomCraft Logo" />
+                            <img src="img/user1.png" class="user-logo" height="40px" width="40px"
+                                alt="CustomCraft Logo" />
                         </div>
                     </a>
                 </ul>
@@ -378,7 +382,8 @@
                 <div>
                     <img src="img/cc.png" alt="" style="height: 80px;width: 80px;">
                     <h1 style="font-family: Anonymous Pro">CustomCraft</h1>
-                    <p>We offer a unique way to customize tech devices just the way you like it. Choose your specifications and build your dream device with ease!</p>
+                    <p>We offer a unique way to customize tech devices just the way you like it. Choose your
+                        specifications and build your dream device with ease!</p>
                 </div>
                 <div>
                     <h3>Quick Links</h3>
@@ -414,11 +419,11 @@
     <script>
         let basePrice, discount, deliveryCharges = 99;
         let quantity = 1;
-    
+
         document.addEventListener("DOMContentLoaded", function () {
             const selectedSpecs = JSON.parse(localStorage.getItem("selectedSpecs"));
             const selectedVendor = JSON.parse(localStorage.getItem("selectedVendor"));
-    
+
             if (!selectedSpecs || !selectedVendor) {
                 document.getElementById("message").textContent = "⚠️ No items in the cart! Redirecting...";
                 setTimeout(() => {
@@ -426,37 +431,37 @@
                 }, 2000);
                 return;
             }
-    
+
             // Populate the cart with the selected specifications and vendor details
             document.getElementById("spec-device").textContent = selectedSpecs.device;
             document.getElementById("spec-processor").textContent = selectedSpecs.processor;
             document.getElementById("spec-ram").textContent = selectedSpecs.ram;
             document.getElementById("spec-storage").textContent = selectedSpecs.storage;
             document.getElementById("spec-os").textContent = selectedSpecs.os;
-    
+
             const deviceImages = {
                 computer: '../img/coding.png',
                 smartphone: '../img/phone.png',
                 tablet: '../img/ipad.png',
             };
             document.getElementById("spec-image").src = deviceImages[selectedSpecs.device] || "";
-    
+
             // Populate the vendor details
             document.getElementById("vendor-name").textContent = selectedVendor.name;
             document.getElementById("vendor-about").textContent = selectedVendor.about;
             document.getElementById("vendor-address").textContent = selectedVendor.address;
-    
+
             // Set base price and update UI
             basePrice = parseFloat(selectedVendor.price.replace(/₹/, ""));
             discount = 0; // No discount initially
             updateCartUI();
-    
+
             // Add event listeners for quantity control
             document.getElementById("increase-quantity").addEventListener("click", () => {
                 quantity++;
                 updateCartUI();
             });
-    
+
             document.getElementById("decrease-quantity").addEventListener("click", () => {
                 if (quantity > 1) {
                     quantity--;
@@ -464,7 +469,7 @@
                 }
             });
         });
-    
+
         function applyPromoCode() {
             const promoCode = document.getElementById("promo-code").value;
             if (promoCode === "customcraft") {
@@ -475,12 +480,12 @@
             }
             updateCartUI();
         }
-    
+
         function updateCartUI() {
             let totalPrice = basePrice * quantity;
             let finalPrice = totalPrice - discount + deliveryCharges;
             if (isNaN(finalPrice)) finalPrice = 0;
-    
+
             document.getElementById("normal-price").textContent = (totalPrice).toFixed(2);
             document.getElementById("discount").textContent = discount.toFixed(2);
             document.getElementById("delivery-charges").textContent = deliveryCharges.toFixed(2);
@@ -488,64 +493,122 @@
             document.getElementById("vendor-price").textContent = "₹" + basePrice.toFixed(2);
             document.getElementById("quantity").textContent = quantity;
         }
-    
+
         document.getElementById("payBtn").addEventListener("click", async () => {
-    // Get address values
-    const address = document.getElementById("address").value.trim();
-    const city = document.getElementById("city").value.trim();
-    const state = document.getElementById("state").value.trim();
-    const zip = document.getElementById("zip").value.trim();
-    
-    // Validate address fields
-    if (!address || !city || !state || !zip) {
-        document.getElementById("message").textContent = "⚠️ Please fill in all address fields before proceeding.";
-        return;
-    }
+            // Get address values
+            const address = document.getElementById("address").value.trim();
+            const city = document.getElementById("city").value.trim();
+            const state = document.getElementById("state").value.trim();
+            const zip = document.getElementById("zip").value.trim();
 
-    const finalPrice = parseFloat(document.getElementById("final-price").textContent.replace(/Final Price: ₹/, ""));
-    const jwtToken = localStorage.getItem("token");
+            // Validate address fields
+            if (!address || !city || !state || !zip) {
+                document.getElementById("message").textContent = "⚠️ Please fill in all address fields before proceeding.";
+                return;
+            }
 
-    if (!jwtToken) {
-        alert("You need to log in before making a payment!");
-        return;
-    }
+            const finalPrice = parseFloat(document.getElementById("final-price").textContent.replace(/Final Price: ₹/, ""));
+            const jwtToken = localStorage.getItem("token");
 
-    const response = await fetch("http://127.0.0.1:3005/create-order", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${jwtToken}`
-        },
-        body: JSON.stringify({ amount: finalPrice })
-    });
+            if (!jwtToken) {
+                alert("You need to log in before making a payment!");
+                return;
+            }
 
-    if (!response.ok) {
-        const error = await response.json();
-        alert("Error creating order: " + error.message);
-        return;
-    }
+            const response = await fetch("http://127.0.0.1:3005/create-order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${jwtToken}`
+                },
+                body: JSON.stringify({ amount: finalPrice })
+            });
 
-    const order = await response.json();
+            if (!response.ok) {
+                const error = await response.json();
+                alert("Error creating order: " + error.message);
+                return;
+            }
 
-    const options = {
-        key: "rzp_test_fS7ZcRoBQcK9nv",
-        amount: order.amount,
-        currency: "INR",
-        order_id: order.id,
-        handler: function (response) {
-            alert("✅ Payment Successful! Payment ID: " + response.razorpay_payment_id);
-        },
-        prefill: {
-            name: document.getElementById("userFullName") ? document.getElementById("userFullName").textContent : "Guest",
-            email: document.getElementById("userEmail") ? document.getElementById("userEmail").textContent : "guest@example.com",
-            contact: "1234567890"
+            const order = await response.json();
+
+            const options = {
+                key: "rzp_test_fS7ZcRoBQcK9nv",
+                amount: order.amount,
+                currency: "INR",
+                order_id: order.id,
+                handler: async function (response) {
+                    alert("✅ Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                    const saveOrderResponse = await fetch("http://127.0.0.1:3005/my-orders", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${jwtToken}`
+                        },
+                        body: JSON.stringify({
+                            specs: selectedSpecs, // Ensure this is defined
+                            vendor: selectedVendor, // Ensure this is defined
+                            amount: finalPrice,
+                            paymentId: response.razorpay_payment_id,
+                            address: `${address}, ${city}, ${state} - ${zip}`,
+                            status: "active"
+                        })
+                    });
+
+                    if (saveOrderResponse.ok) {
+                        // Fetch active orders after saving the order
+                        const ordersResponse = await fetch("http://127.0.0.1:3005/get-active-orders", {
+                            method: "GET",
+                            headers: {
+                                "Authorization": `Bearer ${jwtToken}`
+                            }
+                        });
+
+                        if (ordersResponse.ok) {
+                            const orders = await ordersResponse.json();
+                            displayOrders(orders.orders); // Call a function to display orders
+                        } else {
+                            alert("Error fetching orders.");
+                        }
+                    } else {
+                        alert("Error saving order.");
+                    }
+                },
+                prefill: {
+                    name: document.getElementById("userFullName") ? document.getElementById("userFullName").textContent : "Guest",
+                    email: document.getElementById("userEmail") ? document.getElementById("userEmail").textContent : "guest@example.com",
+                    contact: "1234567890"
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+
+        function displayOrders(orders) {
+            const ordersContainer = document.getElementById("active-orders"); // Ensure this ID exists in your HTML
+            ordersContainer.innerHTML = ""; // Clear previous orders
+
+            if (orders.length === 0) {
+                ordersContainer.innerHTML = "<p>No active orders found.</p>";
+                return;
+            }
+
+            orders.forEach(order => {
+                const orderElement = document.createElement("div");
+                orderElement.className = "order-item";
+                orderElement.innerHTML = `
+            <p>Order ID: ${order.id}</p>
+            <p>Amount: ₹${order.amount}</p>
+            <p>Status: ${order.status}</p>
+            <p>Address: ${order.address}</p>
+        `;
+                ordersContainer.appendChild(orderElement);
+            });
         }
-    };
 
-    const rzp = new Razorpay(options);
-    rzp.open();
-});
     </script>
-     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>
+
 </html>
