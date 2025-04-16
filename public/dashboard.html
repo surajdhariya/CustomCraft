@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - CustomCraft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            background: #f5f5f5;
+            background: #f4f6f9;
             color: #333;
             display: flex;
             justify-content: center;
@@ -26,97 +27,93 @@
         /* Main Content */
         .main {
             width: 90%;
-            max-width: 800px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
             gap: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: #fff;
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: 10px;
-            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .header span {
             font-size: 1.2em;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .profile-circle {
+            width: 80px;
+            height: 80px;
+            background: #f39c12;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
             font-weight: bold;
+            color: #fff;
         }
 
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .card {
             background: #fff;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 10px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .card h2 {
             margin-bottom: 10px;
             font-size: 1.5em;
+            color: #333;
         }
 
         .card p {
-            font-size: 1em;
+            font-size: 1.1em;
             color: #666;
         }
 
-        /* User Profile */
-        .profile {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .profile-circle {
-            width: 60px;
-            height: 60px;
-            background: #f39c12;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        /* Logout Button */
         .logout-btn {
             background: #ff4444;
             color: white;
             border: none;
             padding: 12px;
-            text-align: center;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s;
             width: 100%;
-            transition: 0.3s;
+            font-size: 1.1em;
             margin-top: 20px;
         }
 
@@ -125,23 +122,36 @@
         }
 
         .active-orders-container {
-    max-height: 250px; /* Adjust height as needed */
-    overflow-y: auto;
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-#order-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    list-style: none;
-}
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+        }
 
-#order-list li:last-child {
-    border-bottom: none; /* Remove line after the last item */
-}
+        #order-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            list-style: none;
+            color: #444;
+            font-size: 1em;
+        }
 
+        #order-list li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+        }
 
     </style>
 </head>
@@ -150,15 +160,16 @@
     <!-- Main Content -->
     <div class="main">
         <div class="header">
-            <span>Welcome, <span id="userFullName"></span>!</span>
-            <span>Email: <span id="userEmail"></span></span>
+            <div>
+                <span>Welcome, <span id="userFullName"></span>!</span>
+                <p>Email: <span id="userEmail"></span></p>
+            </div>
+            <div class="profile">
+                <div class="profile-circle" id="userInitials"></div>
+            </div>
         </div>
 
-        <!-- User Profile -->
-        <div class="profile">
-            <div class="profile-circle" id="userInitials"></div>
-        </div>
-
+        <!-- Dashboard Cards -->
         <div class="dashboard">
             <div class="card">
                 <h2>Your Orders</h2>
@@ -166,87 +177,84 @@
             </div>
         </div>
 
-        <div class="cart-container">
-            <!-- Existing cart items here -->
-        </div>
-        
         <div id="active-orders" class="active-orders-container">
             <h2>Your Active Orders</h2>
             <ul id="order-list">
                 <!-- Active orders will be displayed here -->
             </ul>
-
         </div>
+
+        <!-- Logout Button -->
         <button class="logout-btn" onclick="logout()">Logout</button>
 
+        <!-- Footer -->
         <footer>
             <p>&copy; 2025 CustomCraft. All Rights Reserved.</p>
         </footer>
     </div>
 
     <script>
-      async function fetchUserData() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-        window.location.href = "/login.html"; 
-        return;
-    }
+        async function fetchUserData() {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                window.location.href = "/login.html"; 
+                return;
+            }
 
-    // Fetch user data
-    const userResponse = await fetch("/dashboard", {
-        method: "GET",
-        headers: { "Authorization": `Bearer ${token}` }
-    });
-    const userData = await userResponse.json();
+            // Fetch user data
+            const userResponse = await fetch("/dashboard", {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+            const userData = await userResponse.json();
 
-    if (userData.user) {
-        // Display user's full name and email
-        document.getElementById("userFullName").textContent = userData.user.name;
-        document.getElementById("userEmail").textContent = userData.user.email;
+            if (userData.user) {
+                // Display user's full name and email
+                document.getElementById("userFullName").textContent = userData.user.name;
+                document.getElementById("userEmail").textContent = userData.user.email;
 
-        // Extract initials from the user's name
-        const initials = userData.user.name
-            .split(" ")
-            .map((word) => word[0])
-            .join("")
-            .toUpperCase();
-        document.getElementById("userInitials").textContent = initials;
+                // Extract initials from the user's name
+                const initials = userData.user.name
+                    .split(" ")
+                    .map((word) => word[0])
+                    .join("")
+                    .toUpperCase();
+                document.getElementById("userInitials").textContent = initials;
 
-        // Fetch active orders
-        const ordersResponse = await fetch("/my-orders", {
-            method: "GET",
-            headers: { "Authorization": `Bearer ${token}` }
-        });
-        const ordersData = await ordersResponse.json();
+                // Fetch active orders
+                const ordersResponse = await fetch("/my-orders", {
+                    method: "GET",
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                const ordersData = await ordersResponse.json();
 
-        // Display active orders
-        const activeOrders = ordersData.orders;
-        document.getElementById("activeOrders").textContent = activeOrders.length;
+                // Display active orders
+                const activeOrders = ordersData.orders;
+                document.getElementById("activeOrders").textContent = activeOrders.length;
 
-        const orderList = document.getElementById("order-list");
-        activeOrders.forEach(order => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <strong>Order ID:</strong> ${order._id} <br>
-                <strong>Status:</strong> ${order.status} <br>
-                <strong>Amount:</strong> ₹${order.amount} <br>
-              
-                <strong>Created At:</strong> ${new Date(order.createdAt).toLocaleDateString()}
-            `;
-            orderList.appendChild(li);
-        });
-    } else {
-        alert("Session expired. Please log in again.");
-        window.location.href = "/login.html";
-    }
-}
+                const orderList = document.getElementById("order-list");
+                activeOrders.forEach(order => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <strong>Order ID:</strong> ${order._id} <br>
+                        <strong>Status:</strong> ${order.status} <br>
+                        <strong>Amount:</strong> ₹${order.amount} <br>
+                        <strong>Created At:</strong> ${new Date(order.createdAt).toLocaleDateString()}
+                    `;
+                    orderList.appendChild(li);
+                });
+            } else {
+                alert("Session expired. Please log in again.");
+                window.location.href = "/login.html";
+            }
+        }
 
-function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "/login.html";
-}
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "/login.html";
+        }
 
-fetchUserData();
+        fetchUserData();
     </script>
 </body>
 </html>
