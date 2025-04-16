@@ -290,6 +290,47 @@
         .footer-bottom p {
             margin: 0;
         }
+
+
+        
+        .profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ff973c; /* Custom color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border: 3px solid black;
+}
+#profileSection{
+    padding-right: 10px;
+
+
+}
+
+/* .user-profile{
+    padding-right: 10px;
+} */
+
+.user-logo {
+    height: 40px;
+    width: 40px;
+   
+    padding-right: 135px;
+  
+}
+
+.profile-icon:hover {
+    background-color: #f68d45; /* Darker shade on hover */
+}
+
+
+
     </style>
 </head>
 
@@ -308,16 +349,20 @@
                 <li><a href="#">Tablet</a></li>
                 <ul class="cart-user">
                     <a class="cart" href="cart.html"><img src="img/cart2.png" height="40px" width="40px"
-                            alt="CustomCraft Logo" /></a> <a href="dashboard.html" style="text-decoration: none;"
+                            alt="CustomCraft Logo" /></a>
+                            
+                            <a href="dashboard.html" style="text-decoration: none;"
                         class="user-profile">
                         <div id="profileSection">
                             <!-- Logo will be shown by default -->
-                            <img src="img/user1.png" class="user-logo" height="40px" width="40px"
+                            <img src="img/user1.png" class="user-logo" height="40px" width="40px" padding-left="100px"
                                 alt="CustomCraft Logo" />
                         </div>
                     </a>
-                </ul>
-            </ul>
+        </div>
+        </a>
+        </ul>
+        </ul>
         </div>
     </nav>
 
@@ -605,8 +650,44 @@
         `;
                 ordersContainer.appendChild(orderElement);
             });
+
+
+
+            
         }
 
+        async function fetchUserData() {
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    // If no token, keep the logo
+                    return;
+                }
+
+                const response = await fetch("/dashboard", {
+                    method: "GET",
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+
+                const data = await response.json();
+                if (data.user) {
+                    // Extract initials from the user's name
+                    const initials = data.user.name
+                        .split(" ")
+                        .map((word) => word[0])
+                        .join("")
+                        .toUpperCase();
+
+                    // Replace the logo with the dynamic profile icon
+                    const profileSection = document.getElementById("profileSection");
+                    profileSection.innerHTML = `<div class="profile-icon">${initials}</div>`;
+                } else {
+                    // If the token is invalid, redirect to login
+                    alert("Session expired. Please log in again.");
+                    window.location.href = "/login.html";
+                }
+            }
+
+            fetchUserData();
     </script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>

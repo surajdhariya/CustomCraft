@@ -52,19 +52,19 @@
 
 
 
-     
 
-        
-body{
-    font-family: "Urbanist", sans-serif;
-    background-color: #F6E7DA;
-    background-color: #F6E7DA;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
+
+
+        body {
+            font-family: "Urbanist", sans-serif;
+            background-color: #F6E7DA;
+            background-color: #F6E7DA;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
 
         nav {
             background-color: #FFB473;
@@ -370,196 +370,249 @@ body{
 
 
 
-/* prebuild products */
+        /* prebuild products */
 
-/* product animations */
-@keyframes slideInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    60% {
-        opacity: 1;
-        transform: translateX(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+        /* product animations */
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateX(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reveal-right {
+            opacity: 0;
+            animation: slideInRight 1s ease-out both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 50%;
+        }
+
+        .product {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        /* product animations */
+
+        .pbp-container {
+            width: 90%;
+            margin: auto;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .products-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .products-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .product {
+            width: 250px;
+            margin-left: 25px;
+            margin-right: 25px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            flex-shrink: 0;
+            border: 2px solid rgb(84, 84, 84);
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 24px;
+            background-color: white;
+
+        }
+
+        .product img {
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin: auto;
+        }
+
+        .navigation {
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+
+
+
+
+        /* footer */
+
+        footer {
+            background-color: #FFB473;
+            ;
+            color: black;
+            padding: 0px 0;
+            text-align: center;
+            font-family: "Urbanist", sans-serif;
+            /* border-radius: 24px; */
+            border-start-start-radius: 24px;
+            border-top-right-radius: 24px;
+
+
+
+        }
+
+        .footer-container {
+            width: 1491px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .footer-content div {
+            flex: 1;
+            padding: 10px;
+            min-width: 200px;
+
+        }
+
+        .footer-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .footer-content p {
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .footer-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-content ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-content ul li a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-icons a {
+            margin: 0 8px;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+
+        .social-icons a:hover {
+            color: #f39c12;
+        }
+
+        .footer-bottom {
+            /* border-top: 0.5px solid black; */
+            padding: 1px 0;
+            font-size: 12px;
+            color: black;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ff973c; /* Custom color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border: 3px solid black;
+}
+#profileSection{
+    padding-right: 10px;
+
+
 }
 
-.reveal-right {
-    opacity: 0;
-    animation: slideInRight 1s ease-out both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 50%;
-}
+/* .user-profile{
+    padding-right: 10px;
+} */
 
-.product {
-    transition: transform 0.3s ease-in-out;
-}
-.product:hover {
-    transform: scale(1.05);
-}
-/* product animations */
-
-.pbp-container {
-  width: 90%;
-  margin: auto;
-  padding: 20px 0;
-  text-align: center;
-}
-.products-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
-  display: flex;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.products-wrapper::-webkit-scrollbar {
-  display: none;
-}
-.products {
-  display: flex;
-  flex-wrap: nowrap;
-}
-.product {
-  width: 250px;
-  margin-left: 25px;
-margin-right: 25px;
-margin-top: 25px;
-margin-bottom: 25px;
-  text-align: center;
-  flex-shrink: 0;
-  border: 2px solid rgb(84, 84, 84);
-  padding: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 24px;
-  background-color: white;
+.user-logo {
+    height: 40px;
+    width: 40px;
+   
+    padding-right: 135px;
   
 }
-.product img {
-  width: 200px;
-  height: 200px;
-  display: block;
-  margin: auto;
-}
-.navigation {
-  margin-top: 20px;
-}
-.nav-button {
-  background-color: orange;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
+
+.profile-icon:hover {
+    background-color: #f68d45; /* Darker shade on hover */
 }
 
-
-
-
-
-/* footer */
-
-footer {
-          background-color:#FFB473;
-          ;
-          color: black;
-          padding: 0px 0;
-          text-align: center;
-    font-family: "Urbanist", sans-serif;
-    /* border-radius: 24px; */
-    border-start-start-radius: 24px;
-    border-top-right-radius: 24px;
-
-
-
-      }
-
-      .footer-container {
-          width: 1491px;
-          margin: 0 auto;
-          padding: 0 20px;
-      }
-
-      .footer-content {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          margin-bottom: 15px;
-      }
-
-      .footer-content div {
-          flex: 1;
-          padding: 10px;
-          min-width: 200px;
-
-      }
-
-      .footer-content h3 {
-          font-size: 18px;
-          margin-bottom: 10px;
-          font-weight: bold;
-          text-transform: uppercase;
-      }
-
-      .footer-content p {
-          font-size: 15px;
-          line-height: 1.4;
-      }
-
-      .footer-content ul {
-          list-style: none;
-          padding: 0;
-      }
-
-      .footer-content ul li {
-          margin-bottom: 12px;
-      }
-
-      .footer-content ul li a {
-          color: black;
-          text-decoration: none;
-          font-size: 20px;
-          transition: color 0.3s ease;
-      }
-
-      .footer-content ul li a:hover {
-          color: white;
-      }
-
-      .social-icons {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-
-      .social-icons a {
-          margin: 0 8px;
-          font-size: 16px;
-          color: black;
-          text-decoration: none;
-          transition: color 0.3s ease;
-      }
-
-
-      .social-icons a:hover {
-          color: #f39c12;
-      }
-
-      .footer-bottom {
-          /* border-top: 0.5px solid black; */
-          padding: 1px 0;
-          font-size: 12px;
-          color: black;
-      }
-
-      .footer-bottom p {
-          margin: 0;
-      }
 
     </style>
 </head>
@@ -572,14 +625,20 @@ footer {
         </div>
         <div class="link">
             <ul>
-                <li><a href="#">Customize-Devices</a></li>
-                <li><a href="#">Smartphone</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Tablet</a></li>
+
+                <li><a href="#scroll-container">Smartphone</a></li>
+                <li><a href="#scroll-container">Laptops</a></li>
+                <li><a href="#scroll-container">Tablet</a></li>
                 <ul class="cart-user">
-                    <a class="cart" href="other pages/cart.html" class="cart"><img src="../img/cart2.png" height="40px"
-                            width="40px" alt="CustomCraft Logo" /></a>
-                    <img src="../img/user1.png" height="40px" width="40px" alt="CustomCraft Logo" />
+                    <a class="cart" href="cart.html" class="cart"><img src="../img/cart2.png" height="40px" width="40px"
+                            alt="CustomCraft Logo" /></a>
+                            <a href="dashboard.html" style="text-decoration: none;" class="user-profile">
+                                <div id="profileSection">
+                                    <!-- Logo will be shown by default -->
+                                    <img src="img/user1.png" class="user-logo" 
+                                    height="40px" width="40px" alt="CustomCraft Logo" />
+                                </div>
+                            </a>
                 </ul>
             </ul>
         </div>
@@ -680,227 +739,265 @@ footer {
 
         <br><br><br><br>
 
-  <!-- prebuild products START-->
-  <div class="pbp-container reveal-right">
-    <h1 style="float: left;">Products you may like:</h1></h1>
-    <div class="products-wrapper" id="scroll-container">
-        <div class="products">
-            <div class="product">
-                <img src="img/laptop.png" alt="Product 1">
-                <p>Product name<br>variant<br>Rs55k</p>
-            </div>
-            <div class="product">
-                <img src="img/device.png" alt="Product 2">
-                <p>Product name<br>variant<br>Rs55k</p>
-            </div>
-            <div class="product">
-                <img src="img/laptop.png" alt="Product 3">
-                <p>Product name<br>variant<br>Rs55k</p>
-            </div>
-            <div class="product">
-                <img src="img/laptop.png" alt="Product 4">
-                <p>Product name<br>variant<br>Rs58k</p>
-            </div>
-            <div class="product">
-                <img src="img/device.png" alt="Product 5">
-                <p>Product name<br>variant<br>Rs55k</p>
-            </div>
-            <div class="product">
-                <img src="img/ipad.png" alt="Product 6">
-                <p>Product name<br>variant<br>Rs60k</p>
-            </div>
-            <div class="product">
-                <img src="img/phone.png" alt="Product 7">
-                <p>Product name<br>variant<br>Rs65k</p>
-            </div>
-            <div class="product">
-                <img src="img/device.png" alt="Product 8">
-                <p>Product name<br>variant<br>Rs70k</p>
-            </div>
-        </div>
-    </div>
-
-</div></div>
-<br><br><br><br><br>
-  <!-- prebuild products ENDS-->
-
-
-
-
-  <footer>
-    <div class="footer-container">
-        <div class="footer-content">
-            <!-- CustomCraft Section -->
-            <div>
-           <img src="img/cc.png" alt="" style="height: 80px;width: 80px;">
-                <h1 style="font-family: Anonymous Pro">CustomCraft</h1>
-                <p>We offer a unique way to customize tech devices just the way you like it. Choose your specifications and build your dream device with ease!</p>
-            </div>
-
-            <!-- Quick Links Section -->
-            <div>
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Stay Connected Section -->
-            <div>
-                <h3>Stay Connected</h3>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">
-                        <img src="img/facebook.png" alt="Facebook" style="width: 50px; height: 50px;">
-                    </a>
-                    <a href="#" class="social-icon">
-                        <img src="img/twitter.png" alt="Twitter" style="width: 50px; height: 50px;">
-                    </a>
-                    <a href="https://www.instagram.com/surajdhariya_/" class="social-icon">
-                        <img src="img/instagram.png" alt="Instagram" style="width: 50px; height: 50px;">
-                    </a>
+        <!-- prebuild products START-->
+        <div class="pbp-container reveal-right">
+            <h1 style="float: left;">Products you may like:</h1>
+            </h1>
+            <div class="products-wrapper" id="scroll-container">
+                <div class="products ">
+                    <div class="product">
+                      <a href="product.html">  <img src="img/laptop.png" alt="Product 1"></a>
+                        <p>Product name<br>variant<br>Rs55k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">  <img src="img/device.png" alt="Product 2"></a>
+                        <p>Product name<br>variant<br>Rs55k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">    <img src="img/laptop.png" alt="Product 3"></a>
+                        <p>Product name<br>variant<br>Rs55k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">     <img src="img/laptop.png" alt="Product 4"></a>
+                        <p>Product name<br>variant<br>Rs58k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">    <img src="img/device.png" alt="Product 5"></a>
+                        <p>Product name<br>variant<br>Rs55k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">    <img src="img/ipad.png" alt="Product 6"></a>
+                        <p>Product name<br>variant<br>Rs60k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">    <img src="img/phone.png" alt="Product 7"></a>
+                        <p>Product name<br>variant<br>Rs65k</p>
+                    </div>
+                    <div class="product">
+                      <a href="product.html">    <img src="img/device.png" alt="Product 8"></a>
+                        <p>Product name<br>variant<br>Rs70k</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <p>&copy; 2025 CustomCraft. All rights reserved.</p>
-            <br>
         </div>
     </div>
-</footer>
+    <br><br><br><br><br>
+    <!-- prebuild products ENDS-->
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const deviceOptions = document.querySelectorAll('.device-option');
-                const specButtonsContainers = {
-                    screenSize: document.getElementById('screen-size-buttons'),
-                    processor: document.getElementById('processor-buttons'),
-                    ram: document.getElementById('ram-buttons'),
-                    storage: document.getElementById('storage-buttons'),
-                    os: document.getElementById('os-buttons'),
-                };
-                const preview = {
-                    device: document.getElementById('preview-device'),
-                    screenSize: document.getElementById('preview-screen-size'),
-                    processor: document.getElementById('preview-processor'),
-                    ram: document.getElementById('preview-ram'),
-                    storage: document.getElementById('preview-storage'),
-                    os: document.getElementById('preview-os'),
-                    image: document.getElementById('preview-image'),
-                };
-                const proceedButton = document.querySelector('.proceed-button');
 
-                const deviceImages = {
-                    computer: '../img/coding.png',
-                    smartphone: '../img/phone.png',
-                    tablet: '../img/ipad.png',
-                };
 
-                const deviceSpecs = {
-                    computer: {
-                        screenSize: ['13 inch', '14 inch', '15 inch', '16 inch'],
-                        processor: ['i3', 'i5', 'i7'],
-                        ram: ['8GB', '16GB', '32GB', '64GB'],
-                        storage: ['256GB SSD', '512GB SSD', '1TB SSD', '2TB'],
-                        os: ['Windows', 'Linux', 'DOS'],
-                    },
-                    smartphone: {
-                        screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
-                        processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
-                        ram: ['6GB', '8GB', '12GB'],
-                        storage: ['128GB', '256GB', '512GB', '1TB'],
-                        os: ['Android', 'iOS'],
-                    },
-                    tablet: {
-                        screenSize: ['10 inch', '11 inch', '12.9 inch'],
-                        processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
-                        ram: ['4GB', '6GB', '8GB'],
-                        storage: ['64GB', '128GB', '256GB', '1TB'],
-                        os: ['Android', 'iPadOS'],
-                    },
-                };
 
-                let selectedDevice = null;
-                let selectedSpecs = { screenSize: null, processor: null, ram: null, storage: null, os: null };
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- CustomCraft Section -->
+                <div>
+                    <img src="img/cc.png" alt="" style="height: 80px;width: 80px;">
+                    <h1 style="font-family: Anonymous Pro">CustomCraft</h1>
+                    <p>We offer a unique way to customize tech devices just the way you like it. Choose your
+                        specifications and build your dream device with ease!</p>
+                </div>
 
-                // Device Selection
-                deviceOptions.forEach(option => {
-                    option.addEventListener('click', function () {
-                        deviceOptions.forEach(opt => opt.classList.remove('active'));
-                        this.classList.add('active');
-                        selectedDevice = this.dataset.device;
-                        updateSpecifications(selectedDevice);
-                        updatePreview();
-                    });
-                });
+                <!-- Quick Links Section -->
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
 
-                function updateSpecifications(device) {
-                    for (const spec in specButtonsContainers) {
-                        specButtonsContainers[spec].innerHTML = '';
-                        deviceSpecs[device][spec].forEach(option => {
-                            const button = document.createElement('button');
-                            button.className = 'spec-button';
-                            button.dataset.spec = spec;
-                            button.dataset.value = option;
-                            button.textContent = option;
-                            specButtonsContainers[spec].appendChild(button);
-                        });
-                    }
+                <!-- Stay Connected Section -->
+                <div>
+                    <h3>Stay Connected</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <img src="img/facebook.png" alt="Facebook" style="width: 50px; height: 50px;">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="img/twitter.png" alt="Twitter" style="width: 50px; height: 50px;">
+                        </a>
+                        <a href="https://www.instagram.com/surajdhariya_/" class="social-icon">
+                            <img src="img/instagram.png" alt="Instagram" style="width: 50px; height: 50px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                    document.querySelectorAll('.spec-button').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const spec = this.dataset.spec;
-                            const value = this.dataset.value;
-                            selectedSpecs[spec] = value;
-                            updatePreview();
-                            document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
-                            this.classList.add('active');
-                        });
-                    });
-                }
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 CustomCraft. All rights reserved.</p>
+                <br>
+            </div>
+        </div>
+    </footer>
 
-                function updatePreview() {
-                    preview.image.src = deviceImages[selectedDevice] || '';
-                    preview.image.alt = `${selectedDevice} Image`;
-                    preview.device.textContent = selectedDevice || 'None';
-                    preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
-                    preview.processor.textContent = selectedSpecs.processor || 'None';
-                    preview.ram.textContent = selectedSpecs.ram || 'None';
-                    preview.storage.textContent = selectedSpecs.storage || 'None';
-                    preview.os.textContent = selectedSpecs.os || 'None';
-                }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deviceOptions = document.querySelectorAll('.device-option');
+            const specButtonsContainers = {
+                screenSize: document.getElementById('screen-size-buttons'),
+                processor: document.getElementById('processor-buttons'),
+                ram: document.getElementById('ram-buttons'),
+                storage: document.getElementById('storage-buttons'),
+                os: document.getElementById('os-buttons'),
+            };
+            const preview = {
+                device: document.getElementById('preview-device'),
+                screenSize: document.getElementById('preview-screen-size'),
+                processor: document.getElementById('preview-processor'),
+                ram: document.getElementById('preview-ram'),
+                storage: document.getElementById('preview-storage'),
+                os: document.getElementById('preview-os'),
+                image: document.getElementById('preview-image'),
+            };
+            const proceedButton = document.querySelector('.proceed-button');
 
-                // Proceed Button Click Event
-                proceedButton.addEventListener('click', function () {
-                    console.log("Proceed button clicked!");
+            const deviceImages = {
+                computer: '../img/coding.png',
+                smartphone: '../img/phone.png',
+                tablet: '../img/ipad.png',
+            };
 
-                    if (!selectedDevice || Object.values(selectedSpecs).includes(null)) {
-                        alert('⚠️ Please select a device and all specifications before proceeding.');
-                        return;
-                    }
+            const deviceSpecs = {
+                computer: {
+                    screenSize: ['13 inch', '14 inch', '15 inch', '16 inch'],
+                    processor: ['i3', 'i5', 'i7'],
+                    ram: ['8GB', '16GB', '32GB', '64GB'],
+                    storage: ['256GB SSD', '512GB SSD', '1TB SSD', '2TB'],
+                    os: ['Windows', 'Linux', 'DOS'],
+                },
+                smartphone: {
+                    screenSize: ['5.5 inch', '6.1 inch', '6.7 inch'],
+                    processor: ['Snapdragon 888', 'A15 Bionic', 'Exynos 2100'],
+                    ram: ['6GB', '8GB', '12GB'],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    os: ['Android', 'iOS'],
+                },
+                tablet: {
+                    screenSize: ['10 inch', '11 inch', '12.9 inch'],
+                    processor: ['Snapdragon 865', 'MediaTek Dimensity', 'A12Z Bionic'],
+                    ram: ['4GB', '6GB', '8GB'],
+                    storage: ['64GB', '128GB', '256GB', '1TB'],
+                    os: ['Android', 'iPadOS'],
+                },
+            };
 
-                    const configuration = {
-                        device: selectedDevice,
-                        ...selectedSpecs,
-                    };
+            let selectedDevice = null;
+            let selectedSpecs = { screenSize: null, processor: null, ram: null, storage: null, os: null };
 
-                    try {
-                        localStorage.setItem("selectedSpecs", JSON.stringify(configuration));
-                        console.log("Saved to localStorage:", localStorage.getItem("selectedSpecs"));
-                        window.location.href = 'vendor.html';
-                    } catch (e) {
-                        console.error("Error saving to localStorage:", e);
-                        alert("⚠️ Failed to save selection. Try again.");
-                    }
+            // Device Selection
+            deviceOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    deviceOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedDevice = this.dataset.device;
+                    updateSpecifications(selectedDevice);
+                    updatePreview();
                 });
             });
 
+            function updateSpecifications(device) {
+                for (const spec in specButtonsContainers) {
+                    specButtonsContainers[spec].innerHTML = '';
+                    deviceSpecs[device][spec].forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = 'spec-button';
+                        button.dataset.spec = spec;
+                        button.dataset.value = option;
+                        button.textContent = option;
+                        specButtonsContainers[spec].appendChild(button);
+                    });
+                }
 
-        </script>
+                document.querySelectorAll('.spec-button').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const spec = this.dataset.spec;
+                        const value = this.dataset.value;
+                        selectedSpecs[spec] = value;
+                        updatePreview();
+                        document.querySelectorAll(`.spec-button[data-spec="${spec}"]`).forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+
+            function updatePreview() {
+                preview.image.src = deviceImages[selectedDevice] || '';
+                preview.image.alt = `${selectedDevice} Image`;
+                preview.device.textContent = selectedDevice || 'None';
+                preview.screenSize.textContent = selectedSpecs.screenSize || 'None';
+                preview.processor.textContent = selectedSpecs.processor || 'None';
+                preview.ram.textContent = selectedSpecs.ram || 'None';
+                preview.storage.textContent = selectedSpecs.storage || 'None';
+                preview.os.textContent = selectedSpecs.os || 'None';
+            }
+
+            // Proceed Button Click Event
+            proceedButton.addEventListener('click', function () {
+                console.log("Proceed button clicked!");
+
+                if (!selectedDevice || Object.values(selectedSpecs).includes(null)) {
+                    alert('⚠️ Please select a device and all specifications before proceeding.');
+                    return;
+                }
+
+                const configuration = {
+                    device: selectedDevice,
+                    ...selectedSpecs,
+                };
+
+                try {
+                    localStorage.setItem("selectedSpecs", JSON.stringify(configuration));
+                    console.log("Saved to localStorage:", localStorage.getItem("selectedSpecs"));
+                    window.location.href = 'vendor.html';
+                } catch (e) {
+                    console.error("Error saving to localStorage:", e);
+                    alert("⚠️ Failed to save selection. Try again.");
+                }
+            });
+
+
+            
+async function fetchUserData() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        // If no token, keep the logo
+        return;
+    }
+
+    const response = await fetch("/dashboard", {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+
+    const data = await response.json();
+    if (data.user) {
+        // Extract initials from the user's name
+        const initials = data.user.name
+            .split(" ")
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase();
+
+        // Replace the logo with the dynamic profile icon
+        const profileSection = document.getElementById("profileSection");
+        profileSection.innerHTML = `<div class="profile-icon">${initials}</div>`;
+    } else {
+        // If the token is invalid, redirect to login
+        alert("Session expired. Please log in again.");
+        window.location.href = "/login.html";
+    }
+}
+
+fetchUserData();
+        });
+
+
+    </script>
 
 
 </body>

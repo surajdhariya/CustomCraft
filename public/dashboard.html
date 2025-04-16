@@ -123,6 +123,26 @@
         .logout-btn:hover {
             background: #cc0000;
         }
+
+        .active-orders-container {
+    max-height: 250px; /* Adjust height as needed */
+    overflow-y: auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#order-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    list-style: none;
+}
+
+#order-list li:last-child {
+    border-bottom: none; /* Remove line after the last item */
+}
+
+
     </style>
 </head>
 <body>
@@ -210,7 +230,7 @@
                 <strong>Order ID:</strong> ${order._id} <br>
                 <strong>Status:</strong> ${order.status} <br>
                 <strong>Amount:</strong> ₹${order.amount} <br>
-                <strong>Address:</strong> ${order.address} <br>
+              
                 <strong>Created At:</strong> ${new Date(order.createdAt).toLocaleDateString()}
             `;
             orderList.appendChild(li);

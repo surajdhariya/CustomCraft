@@ -28,7 +28,9 @@
         /* Hover color for the scrollbar thumb */
     }
 
-
+html{
+    scroll-behavior: smooth;
+}
   
 body{
     background-color: #F6E7DA;
