@@ -344,7 +344,6 @@ body {
     gap: 50px;
     padding: 20px;
     font-family: "Urbanist", sans-serif;
-
   }
 
   .card {
@@ -354,6 +353,8 @@ body {
     text-align: center;
     /* box-shadow: 0 0.5px 0.5px ; */
     width: 300px;
+    border: 2px dashed #FFB473;
+
   }
 
   .card img {
