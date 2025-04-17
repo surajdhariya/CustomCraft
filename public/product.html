@@ -15,12 +15,12 @@
     href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
     <style>
-        body {
+        /* body {
             font-family: "Urbanist", sans-serif;
             background-color: #F6E7DA;
             margin: 0;
             padding: 20px;
-        }
+        } */
 
         .container {
             display: flex;
@@ -345,9 +345,9 @@ transition: 0.5s;
         }
 
         .footer-container {
-            width: 1201px;
+            width: 1101px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 20px; 
         }
 
         .footer-content {
@@ -665,7 +665,48 @@ transition: 0.5s;
         // Hide the zoom lens when the mouse leaves the main image
         mainImage.addEventListener("mouseleave", function() {
             zoom.style.display = "none"; // Hide the zoom lens
+      
+      
+      
         });
+
+        
+            
+async function fetchUserData() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        // If no token, keep the logo
+        return;
+    }
+
+    const response = await fetch("/dashboard", {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+
+    const data = await response.json();
+    if (data.user) {
+        // Extract initials from the user's name
+        const initials = data.user.name
+            .split(" ")
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase();
+
+        // Replace the logo with the dynamic profile icon
+        const profileSection = document.getElementById("profileSection");
+        profileSection.innerHTML = `<div class="profile-icon">${initials}</div>`;
+    } else {
+        // If the token is invalid, redirect to login
+        alert("Session expired. Please log in again.");
+        window.location.href = "/login.html";
+    }
+}
+
+fetchUserData();
+    
+
+        
     </script>
 </body>
 </html>
