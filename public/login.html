@@ -1,29 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<link rel="icon" type="image/png" sizes="32x32" href="img/cc.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CustomCraft</title>
     <style>
-        body {
-            font-family: 'Urbanist', sans-serif; /* Use a custom font if available */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f6e7da; /* Soft background color */
-            margin: 0;
-        }
+ body {
+    font-family: 'Urbanist', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
 
-        .container {
-            background: white;
-            padding: 30px ;
-            padding-right: 60px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px ; /* Fixed width for better alignment */
-            /* height: 400px; */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f6e7da, #d0c4df); /* Soft pastel blend */
+    filter: blur(20px); /* Apply background blur */
+    z-index: -1;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.2); /* semi-transparent background */
+    padding: 30px;
+    padding-right: 60px;
+    padding-left: 40px;
+
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+
+    backdrop-filter: blur(10px); /* Apply blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional border for contrast */
+}
+
+        img{
+            height: 100px;
+            width: 100px;
         }
 
         h2 {
@@ -85,7 +118,9 @@
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
+     <center> <img src="img/cc.png" alt="">
+     <!-- <h2>CustomCraft</h2> -->
+        <h2>Login</h2></center> 
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>

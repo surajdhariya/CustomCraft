@@ -5,32 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - CustomCraft</title>
     <link rel="stylesheet" href="styles.css">
-
     <style>
-        body {
-            font-family: 'Urbanist', sans-serif; /* Use a custom font if available */
+       body {
+            font-family: 'Urbanist', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f6e7da; /* Soft background color */
             margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #f6e7da, #d0c4df);
+            filter: blur(20px);
+            z-index: -1;
         }
 
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.2);
             padding: 30px;
             padding-right: 60px;
+            padding-left: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 300px; /* Fixed width for better alignment */
-            height: 400px; /* Allow height to adjust based on content */
+            width: 300px;
+            height: 500px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
         }
 
         h2 {
             margin-bottom: 20px;
-            color: #333; /* Darker text for better readability */
+            color: #333;
         }
 
         input {
@@ -45,12 +63,12 @@
         }
 
         input:focus {
-            border-color: #ff973c; /* Highlight border on focus */
-            outline: none; /* Remove default outline */
+            border-color: #ff973c;
+            outline: none;
         }
 
         button {
-            background-color: #ff973c; /* Custom button color */
+            background-color: #ff973c;
             color: white;
             padding: 12px;
             border: none;
@@ -61,44 +79,85 @@
         }
 
         button:hover {
-            background-color: #f68d45; /* Darker shade on hover */
-            transform: scale(1.05); /* Slightly enlarge button on hover */
+            background-color: #f68d45;
+            transform: scale(1.05);
         }
 
         p {
             margin-top: 15px;
-            color: #666; /* Lighter text for secondary information */
+            color: #666;
         }
 
         a {
-            color: #ff973c; /* Link color */
-            text-decoration: none; /* Remove underline */
+            color: #ff973c;
+            text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
         }
 
         #signupMessage {
             margin-top: 15px;
-            color: red; /* Error message color */
+            color: red;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #888;
+            user-select: none;
+        }
+
+        .toggle-password:hover {
+            color: #ff973c;
         }
 
         @media (max-width: 400px) {
             .container {
-                width: 90%; /* Use a percentage for better responsiveness */
-                padding: 20px; /* Adjust padding for smaller screens */
+                width: 90%;
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Signup</h2>
+        <img src="img/cc.png" alt="">
+        <h2>SignUp</h2>
         <form id="signupForm">
             <input type="text" id="name" placeholder="Full Name" required aria-label="Full Name">
+            <p id="nameError" style="color: red; display: none;">Name should contain only letters and spaces (min 2 characters).</p>
+
             <input type="email" id="email" placeholder="Email" required aria-label="Email Address">
-            <input type="password" id="password" placeholder="Password" required aria-label="Password">
+            <p id="emailError" style="color: red; display: none;">Enter a valid email address.</p>
+
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Password" required aria-label="Password">
+                <span class="toggle-password" id="togglePassword">👁️</span>
+            </div>
+            <p id="passwordError" style="color: red; display: none;">Password must be at least 8 characters, include 1 letter, 1 number, and 1 special character.</p>
+
+            <br><br>
             <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="login.html">Login here</a></p>
@@ -106,24 +165,81 @@
     </div>
 
     <script>
+        // Validation patterns
+        const nameRegex = /^[A-Za-z\s]{2,}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+        document.getElementById("name").addEventListener("input", function () {
+            const name = this.value.trim();
+            const nameError = document.getElementById("nameError");
+            if (!nameRegex.test(name)) {
+                nameError.style.display = "block";
+            } else {
+                nameError.style.display = "none";
+            }
+        });
+
+        document.getElementById("email").addEventListener("input", function () {
+            const email = this.value.trim();
+            const emailError = document.getElementById("emailError");
+            if (!emailRegex.test(email)) {
+                emailError.style.display = "block";
+            } else {
+                emailError.style.display = "none";
+            }
+        });
+
+        document.getElementById("password").addEventListener("input", function () {
+            const password = this.value.trim();
+            const passwordError = document.getElementById("passwordError");
+            if (!passwordRegex.test(password)) {
+                passwordError.style.display = "block";
+            } else {
+                passwordError.style.display = "none";
+            }
+        });
+
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            const type = passwordField.type === "password" ? "text" : "password";
+            passwordField.type = type;
+
+            this.textContent = type === "password" ? "👁️" : "🙈";
+        });
+
+        // Submit form handler
         document.getElementById("signupForm").addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const messageEl = document.getElementById("signupMessage");
 
-            const response = await fetch("/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password })
-            });
+            messageEl.innerText = "";
 
-            const data = await response.json();
-            document.getElementById("signupMessage").innerText = data.message;
+            if (!name || !email || !password) {
+                messageEl.innerText = "All fields are required.";
+                return;
+            }
 
-            if (response.ok) {
-                setTimeout(() => window.location.href = "login.html", 2000);
+            try {
+                const response = await fetch("/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+                messageEl.innerText = data.message;
+
+                if (response.ok) {
+                    setTimeout(() => window.location.href = "login.html", 2000);
+                }
+            } catch (error) {
+                messageEl.innerText = "Something went wrong. Please try again.";
+                console.error(error);
             }
         });
     </script>
