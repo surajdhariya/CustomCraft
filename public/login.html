@@ -114,6 +114,46 @@ body::before {
             margin-top: 15px;
             color: red; /* Error message color */
         }
+
+
+        
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            color: #888;
+            user-select: none;
+        }
+
+        .toggle-password:hover {
+            color: #ff973c;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -123,7 +163,10 @@ body::before {
         <h2>Login</h2></center> 
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Password" required aria-label="Password">
+                <span class="toggle-password" id="togglePassword">👁️</span>
+            </div>
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
@@ -150,6 +193,15 @@ body::before {
                 localStorage.setItem("token", data.token); // Store JWT Token
                 setTimeout(() => window.location.href = "index.html", 2000);
             }
-        });</script>
+        });
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            const type = passwordField.type === "password" ? "text" : "password";
+            passwordField.type = type;
+    
+            this.textContent = type === "password" ? "👁️" : "🙈";
+        });
+    
+        </script>
 </body>
 </html>
