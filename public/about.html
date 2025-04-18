@@ -8,118 +8,77 @@
   <!-- Urbanist Font -->
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <!-- Bootstrap CDN -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 12px;
-      background-color: #ff973c;
-    }
-
-    ::-webkit-scrollbar-track {
-      background-color: whitesmoke;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: #FFB473;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: 'Urbanist', sans-serif;
-      background-color: #F6E7DA;
+      background-color: #fff8f2;
       color: #333;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      overflow-x: hidden;
     }
 
     /* Navbar */
     .navbar {
       background-color: #fff;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 0.7rem 1rem;
     }
 
-    .navbar a {
-      padding-left: 30px;
-      color: #333;
-      text-decoration: none;
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .navbar .nav-link {
       font-weight: 600;
+      color: #333;
     }
 
-    .navbar a:hover {
+    .navbar .nav-link:hover {
       color: #ff973c;
     }
 
-    /* Hero Section */
-    .hero-section {
-      padding: 100px 20px;
-      background: linear-gradient(135deg, #ffe7cc, #fdd9b5);
+    /* About Section */
+    .about-section {
+      padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #fff0e5, #ffe3d0);
       text-align: center;
     }
 
-    .hero-section h1 {
-      font-size: 3rem;
+    .about-section h1 {
+      font-size: 2.5rem;
       font-weight: 700;
       color: #ff973c;
+      margin-bottom: 30px;
     }
 
-    .hero-section p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 20px auto;
+    .about-section p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
       color: #555;
+      line-height: 1.8;
     }
 
-    /* Features */
-    .features {
-      padding: 60px 20px;
-      background-color: #fff;
-    }
-
-    .feature-card {
-      background: #fffaf5;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      border: 2px dashed #FFB473;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    }
-
-    .feature-icon {
-      font-size: 40px;
-      color: #ff973c;
-      margin-bottom: 20px;
-    }
-
-    /* Contact */
-    .contact-form {
+    /* Contact Section */
+    .contact-section {
       background-color: #fff4ea;
       padding: 60px 20px;
     }
 
-    .contact-form h2 {
+    .contact-section h2 {
       color: #ff973c;
       font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
     .form-control {
@@ -141,80 +100,44 @@
       background-color: #f68d45;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 30px;
-      background-color: #f1f3f5;
+      background-color: #f9f9f9;
       font-size: 0.9rem;
       color: #666;
-    }
-
-    @media (max-width: 768px) {
-      .hero-section h1 {
-        font-size: 2rem;
-      }
     }
   </style>
 </head>
 <body>
 
 <!-- Navbar -->
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container d-flex justify-content-between align-items-center">
-   
-    <div>
-      <a href="index.html">Home</a>
-      <a href="#about" class="me-3">About</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <a class="navbar-brand" href="#">
+      <img src="img/cc.png" alt="CustomCraft Logo">
+      <span style="font-weight: 700; color: #ff973c;">CustomCraft</span>
+    </a>
+    <a class="nav-link" href="index.html">Home</a>
   </div>
 </nav>
 
-<!-- About Section -->
-<section id="about" class="hero-section">
-  <div class="container">
-    <h1>Crafted for Your Imagination</h1>
-    <p>CustomCraft is your go-to platform for building your dream electronic devices. Select features, customize specs, and create a device that’s uniquely yours. We blend technology with creativity for the perfect custom experience.</p>
-  </div>
-</section>
 
-<!-- Features -->
-<section class="features">
+<!-- About Section -->
+<section class="about-section">
   <div class="container">
-    <div class="row text-center g-4">
-      <div class="col-md-4">
-        <div class="feature-card">
-          <div class="feature-icon">⚙️</div>
-          <h5>Fully Customizable</h5>
-          <p>Choose everything from RAM to display — your device, your rules.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h5>Fast & Secure</h5>
-          <p>Blazing-fast orders with top-tier encryption and secure payments.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-card">
-          <div class="feature-icon">💡</div>
-          <h5>Innovative Tech</h5>
-          <p>We stay ahead with the latest hardware options to keep you future-ready.</p>
-        </div>
-      </div>
-    </div>
+    <h1>About CustomCraft</h1>
+    <p>
+      CustomCraft is your creative partner in building personalized electronic devices that fit your unique preferences and needs. Our platform lets users choose specifications like RAM, processors, and aesthetics to create a perfect device tailored to them. The concept was brought to life through collaborative brainstorming by Suraj Dhariya (Founder), Sandhya Gowda, Kripashnakar Mishra, Gagana Gowda, and Wasifah Parkar. Together, they envisioned a user-friendly customization platform that merges design, speed, and innovation—turning imagination into reality.
+    </p>
   </div>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="contact-form">
+<section class="contact-section">
   <div class="container">
-    <div class="text-center mb-5">
-      <h2>Get in Touch</h2>
-      <p>We'd love to hear from you. Drop us a message!</p>
-    </div>
+    <h2>Get in Touch</h2>
     <form class="row g-4 mx-auto" style="max-width: 600px;">
       <div class="col-md-6">
         <input type="text" class="form-control" placeholder="Your Name" required>
@@ -234,7 +157,7 @@
 
 <!-- Footer -->
 <footer>
-  &copy; 2025 CustomCraft. Designed with ❤️ by Suraj.
+  &copy; 2025 CustomCraft. All rights reserved.
 </footer>
 
 </body>
