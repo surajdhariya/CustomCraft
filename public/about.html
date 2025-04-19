@@ -112,7 +112,6 @@
 <body>
 
 <!-- Navbar -->
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container d-flex justify-content-between align-items-center">
     <a class="navbar-brand" href="#">
@@ -122,7 +121,6 @@
     <a class="nav-link" href="index.html">Home</a>
   </div>
 </nav>
-
 
 <!-- About Section -->
 <section class="about-section">
@@ -138,15 +136,15 @@
 <section class="contact-section">
   <div class="container">
     <h2>Get in Touch</h2>
-    <form class="row g-4 mx-auto" style="max-width: 600px;">
+    <form class="row g-4 mx-auto" style="max-width: 600px;" action="https://formsubmit.co/dhariasuraj@gmail.co" method="POST">
       <div class="col-md-6">
-        <input type="text" class="form-control" placeholder="Your Name" required>
+        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
       </div>
       <div class="col-md-6">
-        <input type="email" class="form-control" placeholder="Your Email" required>
+        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
       </div>
       <div class="col-12">
-        <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+        <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
       </div>
       <div class="col-12 text-center">
         <button type="submit" class="btn btn-custom">Send Message</button>
