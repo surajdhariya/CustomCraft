@@ -539,6 +539,54 @@
             document.getElementById("quantity").textContent = quantity;
         }
 
+
+
+
+// Address field validation
+document.getElementById("address").addEventListener("input", function () {
+    const val = this.value;
+    const isValid = /^[a-zA-Z0-9\s,.-/]+$/.test(val);
+    toggleValidation(this, isValid, "Only letters, numbers, commas, dots allowed.");
+});
+
+document.getElementById("city").addEventListener("input", function () {
+    const val = this.value;
+    const isValid = /^[a-zA-Z\s]+$/.test(val);
+    toggleValidation(this, isValid, "Only letters and spaces allowed.");
+});
+
+document.getElementById("state").addEventListener("input", function () {
+    const val = this.value;
+    const isValid = /^[a-zA-Z\s]+$/.test(val);
+    toggleValidation(this, isValid, "Only letters and spaces allowed.");
+});
+
+document.getElementById("zip").addEventListener("input", function () {
+    const val = this.value;
+    const isValid = /^\d{0,6}$/.test(val); // max 6 digits
+    toggleValidation(this, isValid, "Only numbers allowed (up to 6 digits).");
+});
+
+function toggleValidation(inputElement, isValid, message) {
+    if (!isValid) {
+        inputElement.style.borderColor = "red";
+        if (!inputElement.nextElementSibling || !inputElement.nextElementSibling.classList.contains("error-msg")) {
+            const msg = document.createElement("div");
+            msg.classList.add("error-msg");
+            msg.style.color = "red";
+            msg.style.fontSize = "12px";
+            msg.textContent = message;
+            inputElement.parentNode.insertBefore(msg, inputElement.nextSibling);
+        }
+    } else {
+        inputElement.style.borderColor = "";
+        if (inputElement.nextElementSibling && inputElement.nextElementSibling.classList.contains("error-msg")) {
+            inputElement.nextElementSibling.remove();
+        }
+    }
+}
+
+
         document.getElementById("payBtn").addEventListener("click", async () => {
             // Get address values
             const address = document.getElementById("address").value.trim();
