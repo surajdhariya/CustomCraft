@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const path = require('path');
 const Razorpay = require("razorpay");
+const dotenv = require('dotenv');
+
+
 
 dotenv.config(); // Load environment variables
 
