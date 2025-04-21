@@ -28,8 +28,8 @@ const JWT_SECRET = process.env.JWT_SECRET || "mySuperSecureRandomJWTKey12345!"; 
 
 // Razorpay instance
 const razorpay = new Razorpay({
-    key_id: "rzp_test_fS7ZcRoBQcK9nv",  // Replace with your test key
-    key_secret: "2B8NDzyh642gzYzHH0nwsIMZ"  // Replace with your test secret
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
 // Function to connect to MongoDB
