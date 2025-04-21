@@ -19,7 +19,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     
 }));
-app.use(cors({ origin: "https://customcraft.onrender.com/" }));
+app.use(cors({ origin: "https://customcraft.onrender.com" }));
 
 // MongoDB connection string
 const uri = 'mongodb+srv://surajdhariya:suraj@customcraft-cluster.xoakt.mongodb.net/customcraftDB?retryWrites=true&w=majority&tls=true';
